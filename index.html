@@ -273,63 +273,109 @@
 </div>
 
 
-    <!-- ======================================
-         NAVIGATION
-    ======================================= -->
+   
 
-    <header class="site-header" id="siteHeader">
 
-        <div class="container nav-container">
+    <!-- =========================================
+     ACHIEVE ACADEMY — HEADER NAVIGATION
+========================================= -->
 
-            <a href="index.html" class="brand-logo">
-                <span class="brand-icon">A</span>
+<header class="site-header" id="siteHeader">
 
-                <span class="brand-text">
-                    <strong>ACHIEVE</strong>
-                    <small>ACADEMY</small>
-                </span>
+    <div class="container nav-container">
+
+        <!-- LOGO -->
+        <a href="index.html"
+           class="brand-logo"
+           aria-label="Achieve Academy Home">
+
+            <img src="assets/logo.webp"
+                 alt="Achieve Academy Logo">
+
+        </a>
+
+
+        <!-- MOBILE MENU TOGGLE -->
+        <button class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-controls="mainNav"
+                aria-expanded="false">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+
+        <!-- NAVIGATION -->
+        <nav class="main-nav" id="mainNav">
+
+            <!-- HOME -->
+            <a href="index.html" class="active">
+                Home
             </a>
 
-            <button class="menu-toggle"
-                    id="menuToggle"
-                    aria-label="Toggle navigation"
-                    aria-expanded="false">
+            <!-- ABOUT -->
+            <a href="about.html">
+                About Us
+            </a>
 
-                <span></span>
-                <span></span>
-                <span></span>
+            <!-- COURSES -->
+            <a href="courses.html">
+                Courses
+            </a>
+
+            <!-- RESULTS -->
+            <a href="results.html">
+                Results
+            </a>
+
+            <!-- CONTACT -->
+            <a href="contact.html">
+                Contact
+            </a>
+
+            <!-- LOGIN -->
+            <button class="btn btn-outline login-trigger"
+                    type="button">
+
+                Login
 
             </button>
 
-            <nav class="main-nav" id="mainNav">
+            <!-- JOIN NOW -->
+            <a href="contact.html#admission"
+               class="btn btn-primary nav-cta">
 
-                <a href="index.html" class="active">Home</a>
+                Join Now <span aria-hidden="true">↗</span>
 
-                <a href="about.html">About Us</a>
+            </a>
 
-                <a href="courses.html">Courses</a>
+        </nav>
 
-                <a href="results.html">Results</a>
+    </div>
 
-                <a href="contact.html">Contact</a>
 
-                <button class="btn btn-outline login-trigger"
-                        type="button">
-                    Login
-                </button>
+    <!-- SCROLL PROGRESS -->
+    <div class="scroll-progress"
+         id="scrollProgress">
+    </div>
 
-                <a href="contact.html#admission"
-                   class="btn btn-primary nav-cta">
-                    Join Now <span>↗</span>
-                </a>
+</header>
 
-            </nav>
 
-        </div>
+<!-- =========================================
+     MOBILE NAVIGATION OVERLAY
+========================================= -->
 
-        <div class="scroll-progress" id="scrollProgress"></div>
+<div class="mobile-nav-overlay"
+     id="mobileNavOverlay"
+     aria-hidden="true">
+</div>
 
-    </header>
 
 
     <main>
@@ -366,7 +412,7 @@
 
                     <div class="hero-actions">
 
-                        <a href="courses.html"
+                        <a href="404.html"
                            class="btn btn-primary btn-large">
                             Explore Our Courses
                             <span>↗</span>
@@ -411,19 +457,19 @@
                         </div>
 
                         <img
-                            src="assets/images/hero-1.png"
+                            src="assets/h1.webp"
                             class="hero-image active"
                             alt="Students preparing for competitive examinations"
                         >
 
                         <img
-                            src="assets/images/hero-2.png"
+                            src="assets/h2.webp"
                             class="hero-image"
                             alt="Focused learning and exam preparation"
                         >
 
                         <img
-                            src="assets/images/hero-3.png"
+                            src="assets/h3.webp"
                             class="hero-image"
                             alt="Students working towards academic success"
                         >
@@ -532,7 +578,7 @@
 
                     <div class="about-image-main">
                         <img
-                            src="assets/images/classroom.png"
+                            src="assets/h4.webp"
                             alt="ACHIEVE Academy learning environment"
                             loading="lazy"
                         >
@@ -594,7 +640,7 @@
 
                     </div>
 
-                    <a href="about.html" class="btn btn-primary">
+                    <a href="404.html" class="btn btn-primary">
                         Discover Our Approach
                         <span>↗</span>
                     </a>
@@ -642,7 +688,7 @@
 
                         <div class="course-image">
                             <img
-                                src="assets/images/course-1.png"
+                                src="assets/h5.webp"
                                 alt="Government examination preparation"
                                 loading="lazy"
                             >
@@ -664,7 +710,7 @@
                                 government examinations.
                             </p>
 
-                            <a href="courses.html"
+                            <a href="404.html"
                                class="course-link">
                                 Explore Course <span>→</span>
                             </a>
@@ -680,7 +726,7 @@
 
                         <div class="course-image">
                             <img
-                                src="assets/images/course-2.png"
+                                src="assets/h6.webp"
                                 alt="Banking and aptitude exam preparation"
                                 loading="lazy"
                             >
@@ -702,7 +748,7 @@
                                 through regular practice.
                             </p>
 
-                            <a href="courses.html"
+                            <a href="404.html"
                                class="course-link">
                                 Explore Course <span>→</span>
                             </a>
@@ -718,7 +764,7 @@
 
                         <div class="course-image">
                             <img
-                                src="assets/images/course-3.png"
+                                src="assets/h7.webp"
                                 alt="General competitive examination preparation"
                                 loading="lazy"
                             >
@@ -740,7 +786,7 @@
                                 examination-focused practice.
                             </p>
 
-                            <a href="courses.html"
+                            <a href="404.html"
                                class="course-link">
                                 Explore Course <span>→</span>
                             </a>
@@ -753,7 +799,7 @@
 
 
                 <div class="section-center reveal">
-                    <a href="courses.html" class="btn btn-outline">
+                    <a href="404.html" class="btn btn-outline">
                         View All Courses <span>↗</span>
                     </a>
                 </div>
@@ -818,7 +864,7 @@
                     <span>Group IV</span>
                 </div>
 
-                <a href="courses.html" class="exam-category-link">
+                <a href="404.html" class="exam-category-link">
                     Explore Preparation <span>↗</span>
                 </a>
 
@@ -848,7 +894,7 @@
                     <span>MTS</span>
                 </div>
 
-                <a href="courses.html" class="exam-category-link">
+                <a href="404.html" class="exam-category-link">
                     Explore Preparation <span>↗</span>
                 </a>
 
@@ -878,7 +924,7 @@
                     <span>RRB</span>
                 </div>
 
-                <a href="courses.html" class="exam-category-link">
+                <a href="404.html" class="exam-category-link">
                     Explore Preparation <span>↗</span>
                 </a>
 
@@ -907,7 +953,7 @@
                     <span>Group D</span>
                 </div>
 
-                <a href="courses.html" class="exam-category-link">
+                <a href="404.html" class="exam-category-link">
                     Explore Preparation <span>↗</span>
                 </a>
 
@@ -936,7 +982,7 @@
                     <span>Foundation</span>
                 </div>
 
-                <a href="courses.html" class="exam-category-link">
+                <a href="404.html" class="exam-category-link">
                     Explore Preparation <span>↗</span>
                 </a>
 
@@ -965,7 +1011,7 @@
                     <span>Revision</span>
                 </div>
 
-                <a href="courses.html" class="exam-category-link">
+                <a href="404.htm" class="exam-category-link">
                     Explore Preparation <span>↗</span>
                 </a>
 
@@ -976,7 +1022,7 @@
 
         <div class="section-center reveal">
 
-            <a href="courses.html" class="btn btn-primary">
+            <a href="404.html" class="btn btn-primary">
                 Discover All Courses <span>↗</span>
             </a>
 
@@ -1031,7 +1077,7 @@
                     formulas and topic summaries for regular revision.
                 </p>
 
-                <a href="courses.html">
+                <a href="404.html">
                     Explore Learning <span>→</span>
                 </a>
 
@@ -1053,7 +1099,7 @@
                     topic-based questions and reviewing mistakes.
                 </p>
 
-                <a href="courses.html">
+                <a href="404.html">
                     Start Preparing <span>→</span>
                 </a>
 
@@ -1075,7 +1121,7 @@
                     and identify topics that need more attention.
                 </p>
 
-                <a href="courses.html">
+                <a href="404.html">
                     View Test Preparation <span>→</span>
                 </a>
 
@@ -1098,7 +1144,7 @@
                     with your examination syllabus.
                 </p>
 
-                <a href="courses.html">
+                <a href="404.html">
                     Explore Preparation <span>→</span>
                 </a>
 
@@ -1162,7 +1208,7 @@
 
             </div>
 
-            <a href="courses.html" class="btn btn-primary">
+            <a href="404.html" class="btn btn-primary">
                 Find Your Learning Path <span>↗</span>
             </a>
 
@@ -1583,7 +1629,7 @@
                         their examination goals.
                     </p>
 
-                    <a href="results.html" class="btn btn-primary">
+                    <a href="404.html" class="btn btn-primary">
                         Explore Results & Updates
                         <span>↗</span>
                     </a>
@@ -1594,7 +1640,7 @@
                 <div class="results-visual reveal">
 
                     <img
-                        src="assets/images/results.png"
+                        src="assets/h8.webp"
                         alt="Academic achievement and student progress"
                         loading="lazy"
                     >
@@ -1776,13 +1822,13 @@
 
                         <div class="admission-actions">
 
-                            <a href="contact.html#admission"
+                            <a href="404.html"
                                class="btn btn-light">
                                 Enquire About Admission
                                 <span>↗</span>
                             </a>
 
-                            <a href="courses.html"
+                            <a href="404.html"
                                class="btn btn-glass">
                                 Browse Courses
                             </a>
@@ -1824,18 +1870,13 @@
         <!-- BRAND COLUMN -->
         <div class="footer-brand">
 
-            <a href="index.html"
-               class="brand-logo footer-logo"
-               aria-label="Achieve Academy Home">
+       <a href="index.html"
+   class="brand-logo footer-logo"
+   aria-label="Achieve Academy Home">
 
-                <span class="brand-icon">A</span>
+    <img src="assets/logo.webp" alt="Achieve Academy Logo">
 
-                <span class="brand-text">
-                    <strong>ACHIEVE</strong>
-                    <small>ACADEMY</small>
-                </span>
-
-            </a>
+</a>
 
             <p>
                 Helping aspirants prepare with purpose,
@@ -2131,7 +2172,7 @@
         <div class="login-visual">
 
             <img
-                src="assets/images/login-academy.jpg"
+                src="assets/l1.webp"
                 alt="ACHIEVE Academy students preparing for competitive examinations"
             >
 

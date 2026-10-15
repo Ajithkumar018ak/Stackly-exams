@@ -23,6 +23,7 @@
 
          <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/courses.css">
+<link rel="stylesheet" href="css/responsive.css">
 
     
 
@@ -261,66 +262,111 @@
 </div>
 
 
-    <!-- ======================================
-         NAVIGATION
-    ======================================= -->
+    <!-- =========================================
+     ACHIEVE ACADEMY — HEADER NAVIGATION
+========================================= -->
 
-    <header class="site-header" id="siteHeader">
+<header class="site-header" id="siteHeader">
 
-        <div class="container nav-container">
+    <div class="container nav-container">
 
-            <a href="index.html" class="brand-logo">
-                <span class="brand-icon">A</span>
+        <!-- LOGO -->
+        <a href="index.html"
+           class="brand-logo"
+           aria-label="Achieve Academy Home">
 
-                <span class="brand-text">
-                    <strong>ACHIEVE</strong>
-                    <small>ACADEMY</small>
-                </span>
+            <img src="assets/logo.webp"
+                 alt="Achieve Academy Logo">
+
+        </a>
+
+
+        <!-- MOBILE MENU TOGGLE -->
+        <button class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-controls="mainNav"
+                aria-expanded="false">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+
+        <!-- NAVIGATION -->
+        <nav class="main-nav" id="mainNav">
+
+            <!-- HOME -->
+            <a href="index.html" >
+                Home
             </a>
 
-            <button class="menu-toggle"
-                    id="menuToggle"
-                    aria-label="Toggle navigation"
-                    aria-expanded="false">
+            <!-- ABOUT -->
+            <a href="about.html">
+                About Us
+            </a>
 
-                <span></span>
-                <span></span>
-                <span></span>
+            <!-- COURSES -->
+            <a href="courses.html" class="active">
+                Courses
+            </a>
+
+            <!-- RESULTS -->
+            <a href="results.html">
+                Results
+            </a>
+
+            <!-- CONTACT -->
+            <a href="contact.html">
+                Contact
+            </a>
+
+            <!-- LOGIN -->
+            <button class="btn btn-outline login-trigger"
+                    type="button">
+
+                Login
 
             </button>
 
-            <nav class="main-nav" id="mainNav">
+            <!-- JOIN NOW -->
+            <a href="contact.html#admission"
+               class="btn btn-primary nav-cta">
 
-                <a href="index.html" >Home</a>
+                Join Now <span aria-hidden="true">↗</span>
 
-                <a href="about.html">About Us</a>
+            </a>
 
-                <a href="courses.html"class="active">Courses</a>
+        </nav>
 
-                <a href="results.html">Results</a>
-
-                <a href="contact.html">Contact</a>
-
-                <button class="btn btn-outline login-trigger"
-                        type="button">
-                    Login
-                </button>
-
-                <a href="contact.html#admission"
-                   class="btn btn-primary nav-cta">
-                    Join Now <span>↗</span>
-                </a>
-
-            </nav>
-
-        </div>
-
-        <div class="scroll-progress" id="scrollProgress"></div>
-
-    </header>
+    </div>
 
 
-   <main class="courses-page"></main>
+    <!-- SCROLL PROGRESS -->
+    <div class="scroll-progress"
+         id="scrollProgress">
+    </div>
+
+</header>
+
+
+<!-- =========================================
+     MOBILE NAVIGATION OVERLAY
+========================================= -->
+
+<div class="mobile-nav-overlay"
+     id="mobileNavOverlay"
+     aria-hidden="true">
+</div>
+
+
+
+
+
+  <main class="courses-page">
 
     <!-- =====================================================
          1. HERO SECTION
@@ -356,12 +402,12 @@
                 </p>
 
                 <div class="hero-actions">
-                    <a href="#featuredCourses" class="btn btn-primary">
+                    <a href="404.html" class="btn btn-primary">
                         Explore Courses
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
 
-                    <a href="#learningPaths" class="btn btn-secondary">
+                    <a href="404.html" class="btn btn-secondary">
                         Discover Learning Paths
                     </a>
                 </div>
@@ -369,17 +415,17 @@
                 <div class="hero-trust">
 
                     <div class="hero-avatars">
-                        <img src="assets/images/student-01.webp"
+                        <img src="assets/c1.webp"
                              alt="Academy student"
-                             onerror="this.onerror=null;this.src='https://placehold.co/80x80/182345/ffffff?text=S1'">
+                             >
 
-                        <img src="assets/images/student-02.webp"
+                        <img src="assets/c2.webp"
                              alt="Academy learner"
-                             onerror="this.onerror=null;this.src='https://placehold.co/80x80/28315b/ffffff?text=S2'">
+                           >
 
-                        <img src="assets/images/student-03.webp"
+                        <img src="assets/c3.webp"
                              alt="Academy graduate"
-                             onerror="this.onerror=null;this.src='https://placehold.co/80x80/51437d/ffffff?text=S3'">
+                          >
                     </div>
 
                     <div class="hero-trust-text">
@@ -645,12 +691,12 @@
 
                     <div class="course-image">
 
-                        <img src="assets/images/course-fullstack.webp"
+                        <img src="assets/c4.webp"
                              alt="Full stack development learning"
                              loading="lazy"
                              onerror="this.onerror=null;this.src='https://placehold.co/700x450/17264b/e0e8ff?text=Full+Stack+Development'">
 
-                        <span class="course-tag">POPULAR COURSE</span>
+                  
 
                         <button type="button"
                                 class="course-bookmark"
@@ -684,7 +730,7 @@
 
                         <div class="course-instructor">
 
-                            <img src="assets/images/instructor-01.webp"
+                            <img src="assets/c5.webp"
                                  alt="Course instructor"
                                  loading="lazy"
                                  onerror="this.onerror=null;this.src='https://placehold.co/100x100/27365e/ffffff?text=I1'">
@@ -722,12 +768,12 @@
 
                     <div class="course-image">
 
-                        <img src="assets/images/course-python.webp"
+                        <img src="assets/c6.webp"
                              alt="Python programming course"
                              loading="lazy"
                              onerror="this.onerror=null;this.src='https://placehold.co/700x450/24365d/e0e8ff?text=Python+Programming'">
 
-                        <span class="course-tag">START HERE</span>
+                       
 
                         <button type="button"
                                 class="course-bookmark"
@@ -761,7 +807,7 @@
 
                         <div class="course-instructor">
 
-                            <img src="assets/images/instructor-02.webp"
+                            <img src="assets/c5.webp"
                                  alt="Python instructor"
                                  loading="lazy"
                                  onerror="this.onerror=null;this.src='https://placehold.co/100x100/37406c/ffffff?text=I2'">
@@ -799,12 +845,11 @@
 
                     <div class="course-image">
 
-                        <img src="assets/images/course-uiux.webp"
+                        <img src="assets/c7.webp"
                              alt="UI UX design learning"
                              loading="lazy"
                              onerror="this.onerror=null;this.src='https://placehold.co/700x450/43356d/f4eaff?text=UI+UX+Design'">
 
-                        <span class="course-tag">CREATIVE SKILLS</span>
 
                         <button type="button"
                                 class="course-bookmark"
@@ -838,7 +883,7 @@
 
                         <div class="course-instructor">
 
-                            <img src="assets/images/instructor-03.webp"
+                            <img src="assets/c5.webp"
                                  alt="Design instructor"
                                  loading="lazy"
                                  onerror="this.onerror=null;this.src='https://placehold.co/100x100/554475/ffffff?text=I3'">
@@ -876,12 +921,12 @@
 
                     <div class="course-image">
 
-                        <img src="assets/images/course-cloud.webp"
+                        <img src="assets/c8.webp"
                              alt="Cloud computing learning"
                              loading="lazy"
                              onerror="this.onerror=null;this.src='https://placehold.co/700x450/1a3651/e1f5ff?text=Cloud+Computing'">
 
-                        <span class="course-tag">CAREER SKILLS</span>
+                        
 
                         <button type="button"
                                 class="course-bookmark"
@@ -915,7 +960,7 @@
 
                         <div class="course-instructor">
 
-                            <img src="assets/images/instructor-04.webp"
+                            <img src="assets/c5.webp"
                                  alt="Cloud instructor"
                                  loading="lazy"
                                  onerror="this.onerror=null;this.src='https://placehold.co/100x100/25445a/ffffff?text=I4'">
@@ -953,12 +998,10 @@
 
                     <div class="course-image">
 
-                        <img src="assets/images/course-data.webp"
+                        <img src="assets/c9.webp"
                              alt="Data analytics course"
                              loading="lazy"
                              onerror="this.onerror=null;this.src='https://placehold.co/700x450/203a53/e4f6ff?text=Data+Analytics'">
-
-                        <span class="course-tag">ANALYTICAL SKILLS</span>
 
                         <button type="button"
                                 class="course-bookmark"
@@ -992,7 +1035,7 @@
 
                         <div class="course-instructor">
 
-                            <img src="assets/images/instructor-05.webp"
+                            <img src="assets/c5.webp"
                                  alt="Data analytics instructor"
                                  loading="lazy"
                                  onerror="this.onerror=null;this.src='https://placehold.co/100x100/304a5d/ffffff?text=I5'">
@@ -1030,12 +1073,12 @@
 
                     <div class="course-image">
 
-                        <img src="assets/images/course-javascript.webp"
+                        <img src="assets/c10.webp"
                              alt="JavaScript programming course"
                              loading="lazy"
                              onerror="this.onerror=null;this.src='https://placehold.co/700x450/4b3d24/fff0bc?text=JavaScript'">
 
-                        <span class="course-tag">PRACTICAL LEARNING</span>
+                  
 
                         <button type="button"
                                 class="course-bookmark"
@@ -1069,7 +1112,7 @@
 
                         <div class="course-instructor">
 
-                            <img src="assets/images/instructor-06.webp"
+                            <img src="assets/c5.webp"
                                  alt="JavaScript instructor"
                                  loading="lazy"
                                  onerror="this.onerror=null;this.src='https://placehold.co/100x100/4b4028/ffffff?text=I6'">
@@ -1144,7 +1187,7 @@
                 <article class="path-card reveal">
 
                     <div class="path-image">
-                        <img src="assets/images/path-developer.webp"
+                        <img src="assets/c11.webp"
                              alt="Software developer working"
                              loading="lazy"
                              onerror="this.onerror=null;this.src='https://placehold.co/700x850/152344/e5edff?text=Developer+Path'">
@@ -1177,7 +1220,7 @@
                 <article class="path-card reveal reveal-delay-1">
 
                     <div class="path-image">
-                        <img src="assets/images/path-designer.webp"
+                        <img src="assets/c12.webp"
                              alt="Creative designer working"
                              loading="lazy"
                              onerror="this.onerror=null;this.src='https://placehold.co/700x850/3b2d60/f3eaff?text=Designer+Path'">
@@ -1210,7 +1253,7 @@
                 <article class="path-card reveal reveal-delay-2">
 
                     <div class="path-image">
-                        <img src="assets/images/path-analytics.webp"
+                        <img src="assets/c13.webp"
                              alt="Professional working with data"
                              loading="lazy"
                              onerror="this.onerror=null;this.src='https://placehold.co/700x850/173e4c/e0fbff?text=Analytics+Path'">
@@ -1259,7 +1302,7 @@
 
                 <div class="benefits-main-image">
 
-                    <img src="assets/images/learning-students.webp"
+                    <img src="assets/c14.webp"
                          alt="Students learning together"
                          loading="lazy"
                          onerror="this.onerror=null;this.src='https://placehold.co/900x900/172747/e6edff?text=Learn+Together'">
@@ -1268,7 +1311,7 @@
 
                 <div class="benefits-image-accent">
 
-                    <img src="assets/images/mentor-session.webp"
+                    <img src="assets/c15.webp"
                          alt="Mentor helping a student"
                          loading="lazy"
                          onerror="this.onerror=null;this.src='https://placehold.co/500x500/39345e/f2ebff?text=Expert+Mentoring'">
@@ -1491,7 +1534,7 @@
                     </p>
                 </div>
 
-                <a href="#featuredCourses" class="btn btn-primary">
+                <a href="404.html" class="btn btn-primary">
                     Find Your Course
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>
@@ -1578,7 +1621,7 @@
 
                     <div class="testimonial-person">
 
-                        <img src="assets/images/testimonial-01.webp"
+                        <img src="assets/f1.webp"
                              alt="Student testimonial portrait"
                              loading="lazy"
                              onerror="this.onerror=null;this.src='https://placehold.co/100x100/27365e/ffffff?text=ST1'">
@@ -1604,7 +1647,7 @@
 
                     <div class="testimonial-person">
 
-                        <img src="assets/images/testimonial-02.webp"
+                        <img src="assets/m1.webp"
                              alt="Student testimonial portrait"
                              loading="lazy"
                              onerror="this.onerror=null;this.src='https://placehold.co/100x100/51437d/ffffff?text=ST2'">
@@ -1630,7 +1673,7 @@
 
                     <div class="testimonial-person">
 
-                        <img src="assets/images/testimonial-03.webp"
+                        <img src="assets/m1.webp"
                              alt="Student testimonial portrait"
                              loading="lazy"
                              onerror="this.onerror=null;this.src='https://placehold.co/100x100/304a5d/ffffff?text=ST3'">
@@ -1682,7 +1725,7 @@
 
                     <div class="cta-actions">
 
-                        <a href="#featuredCourses" class="btn btn-gold">
+                        <a href="404.html" class="btn btn-gold">
                             Explore Courses
                             <i class="fa-solid fa-arrow-right"></i>
                         </a>
@@ -1722,18 +1765,13 @@
         <!-- BRAND COLUMN -->
         <div class="footer-brand">
 
-            <a href="index.html"
-               class="brand-logo footer-logo"
-               aria-label="Achieve Academy Home">
+         <a href="index.html"
+   class="brand-logo footer-logo"
+   aria-label="Achieve Academy Home">
 
-                <span class="brand-icon">A</span>
+    <img src="assets/logo.webp" alt="Achieve Academy Logo">
 
-                <span class="brand-text">
-                    <strong>ACHIEVE</strong>
-                    <small>ACADEMY</small>
-                </span>
-
-            </a>
+</a>
 
             <p>
                 Helping aspirants prepare with purpose,
@@ -2029,7 +2067,7 @@
         <div class="login-visual">
 
             <img
-                src="assets/images/login-academy.jpg"
+                src="assets/l1.webp"
                 alt="ACHIEVE Academy students preparing for competitive examinations"
             >
 
@@ -2401,239 +2439,7 @@
 </div>
 
 
-    <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-
-            /* -----------------------------------------------
-               1. SCROLL REVEAL
-            ----------------------------------------------- */
-
-            const revealElements = document.querySelectorAll(".reveal");
-
-            if ("IntersectionObserver" in window) {
-
-                const revealObserver = new IntersectionObserver(
-                    (entries, observer) => {
-
-                        entries.forEach((entry) => {
-
-                            if (entry.isIntersecting) {
-
-                                entry.target.classList.add("visible");
-
-                                observer.unobserve(entry.target);
-
-                            }
-
-                        });
-
-                    },
-                    {
-                        threshold: 0.12,
-                        rootMargin: "0px 0px -35px 0px"
-                    }
-                );
-
-                revealElements.forEach((element) => {
-                    revealObserver.observe(element);
-                });
-
-            } else {
-
-                revealElements.forEach((element) => {
-                    element.classList.add("visible");
-                });
-
-            }
-
-
-            /* -----------------------------------------------
-               2. COURSE FILTERS
-            ----------------------------------------------- */
-
-            const filterButtons = document.querySelectorAll(".course-filter");
-            const courseCards = document.querySelectorAll(".course-card");
-
-            filterButtons.forEach((button) => {
-
-                button.addEventListener("click", () => {
-
-                    const selectedFilter = button.dataset.filter;
-
-                    filterButtons.forEach((item) => {
-                        item.classList.remove("active");
-                    });
-
-                    button.classList.add("active");
-
-                    courseCards.forEach((card) => {
-
-                        const cardCategory = card.dataset.category;
-
-                        const shouldShow =
-                            selectedFilter === "all" ||
-                            cardCategory === selectedFilter;
-
-                        card.hidden = !shouldShow;
-
-                    });
-
-                });
-
-            });
-
-
-            /* -----------------------------------------------
-               3. COURSE BOOKMARK DEMO
-               No LocalStorage / SessionStorage
-            ----------------------------------------------- */
-
-            const bookmarkButtons =
-                document.querySelectorAll('[data-demo="save"]');
-
-            bookmarkButtons.forEach((button) => {
-
-                button.addEventListener("click", () => {
-
-                    const icon = button.querySelector("i");
-
-                    const isSaved =
-                        button.getAttribute("aria-pressed") === "true";
-
-                    button.setAttribute(
-                        "aria-pressed",
-                        String(!isSaved)
-                    );
-
-                    if (!isSaved) {
-
-                        icon.classList.remove("fa-regular");
-                        icon.classList.add("fa-solid");
-
-                        button.style.color = "#f1c879";
-                        button.style.borderColor = "#f1c879";
-
-                    } else {
-
-                        icon.classList.remove("fa-solid");
-                        icon.classList.add("fa-regular");
-
-                        button.style.color = "";
-                        button.style.borderColor = "";
-
-                    }
-
-                });
-
-            });
-
-
-            /* -----------------------------------------------
-               4. ANIMATED STATS
-            ----------------------------------------------- */
-
-            const counters = document.querySelectorAll(".counter");
-
-            function animateCounter(counter) {
-
-                const target = Number(counter.dataset.target);
-
-                const duration = 1400;
-                const startTime = performance.now();
-
-                function updateCounter(currentTime) {
-
-                    const progress = Math.min(
-                        (currentTime - startTime) / duration,
-                        1
-                    );
-
-                    const easedProgress =
-                        1 - Math.pow(1 - progress, 3);
-
-                    const currentValue = Math.floor(
-                        easedProgress * target
-                    );
-
-                    counter.textContent = currentValue;
-
-                    if (progress < 1) {
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        counter.textContent = target;
-                    }
-
-                }
-
-                requestAnimationFrame(updateCounter);
-
-            }
-
-            if ("IntersectionObserver" in window) {
-
-                const counterObserver = new IntersectionObserver(
-                    (entries, observer) => {
-
-                        entries.forEach((entry) => {
-
-                            if (entry.isIntersecting) {
-
-                                animateCounter(entry.target);
-
-                                observer.unobserve(entry.target);
-
-                            }
-
-                        });
-
-                    },
-                    { threshold: 0.6 }
-                );
-
-                counters.forEach((counter) => {
-                    counterObserver.observe(counter);
-                });
-
-            } else {
-
-                counters.forEach((counter) => {
-                    counter.textContent = counter.dataset.target;
-                });
-
-            }
-
-
-            /* -----------------------------------------------
-               5. FOOTER YEAR
-            ----------------------------------------------- */
-
-            const yearElement = document.getElementById("currentYear");
-
-            if (yearElement) {
-                yearElement.textContent = new Date().getFullYear();
-            }
-
-
-            /* -----------------------------------------------
-               6. HERO BOOK ACCESSIBILITY
-            ----------------------------------------------- */
-
-            const heroVisual = document.querySelector(".hero-visual");
-
-            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-
-                if (heroVisual) {
-                    heroVisual.style.animation = "none";
-                }
-
-            }
-
-        });
-    </script>
+    
    <script src="js/main.js"></script>
 </body>
 </html>

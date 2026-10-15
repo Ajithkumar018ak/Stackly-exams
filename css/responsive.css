@@ -1,0 +1,1374 @@
+/* =========================================================
+   ACHIEVE ACADEMY — MOBILE RESPONSIVE
+   File: css/responsive.css
+
+   Fixes mobile layout for all pages:
+   index.html · about.html · courses.html · results.html
+   contact.html · 404.html
+
+   Breakpoints:
+   max-width: 900px  — mobile nav drawer trigger
+   max-width: 768px  — tablet portrait
+   max-width: 600px  — small tablet / large mobile
+   max-width: 430px  — large phones
+   max-width: 375px  — standard phones
+   max-width: 320px  — smallest phones
+========================================================= */
+
+
+/* =========================================================
+   1. UNIVERSAL BOX MODEL & OVERFLOW GUARD
+========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    /* Prevent horizontal scroll caused by any overflowing element */
+    overflow-x: clip;
+}
+
+body {
+    overflow-x: clip;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* All images must be contained */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* =========================================================
+   2. MOBILE HEADER — ALL PAGES
+   Ensure logo left / hamburger right, no overlap
+========================================================= */
+
+/* ---- 2a. Brand logo image sizing (mobile) ---- */
+@media (max-width: 900px) {
+
+    /* Sticky header reset so it stays on top */
+    .site-header {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 1000 !important;
+        width: 100% !important;
+    }
+
+    /* Nav container: logo on left, hamburger on right */
+    .nav-container {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex-wrap: nowrap !important;
+        gap: 12px !important;
+        min-height: 70px !important;
+        padding-inline: 0 !important;
+    }
+
+    /* Logo stays left, doesn't grow */
+    .brand-logo {
+        flex: 0 0 auto !important;
+        margin-right: auto !important;
+    }
+
+    /* Hamburger always visible and to the right */
+    .menu-toggle {
+        display: flex !important;
+        flex: 0 0 auto !important;
+        position: relative !important;
+        z-index: 1002 !important;
+        width: 44px !important;
+        height: 44px !important;
+        margin-left: auto !important;
+    }
+
+    /* Desktop nav links hidden on mobile */
+    .main-nav {
+        position: fixed !important;
+        top: 70px !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        z-index: 1001 !important;
+
+        width: min(320px, 88vw) !important;
+        height: calc(100dvh - 70px) !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+        gap: 4px !important;
+
+        padding: 24px 20px 32px !important;
+
+        overflow-y: auto !important;
+        overscroll-behavior: contain !important;
+
+        border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
+        background: rgba(10, 16, 36, 0.98) !important;
+        backdrop-filter: blur(22px) !important;
+        -webkit-backdrop-filter: blur(22px) !important;
+        box-shadow: -20px 0 60px rgba(0, 0, 0, 0.4) !important;
+
+        /* Hidden by default */
+        transform: translateX(105%) !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+
+        transition:
+            transform 0.32s ease,
+            visibility 0.32s ease !important;
+    }
+
+    /* Open state */
+    .main-nav.active,
+    .main-nav.open {
+        transform: translateX(0) !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    /* Mobile nav links */
+    .main-nav > a:not(.btn) {
+        display: block !important;
+        padding: 13px 12px !important;
+        border-radius: 10px !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+        color: #e2e8fb !important;
+        font-size: 13px !important;
+        font-weight: 600 !important;
+    }
+
+    .main-nav > a:not(.btn):hover,
+    .main-nav > a.active {
+        color: #ffe6ad !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+    }
+
+    /* Underline indicator hidden on mobile */
+    .main-nav > a:not(.btn)::after {
+        display: none !important;
+    }
+
+    /* Mobile buttons: full width */
+    .main-nav .btn {
+        width: 100% !important;
+        min-height: 48px !important;
+        margin-top: 8px !important;
+        text-align: center !important;
+        justify-content: center !important;
+    }
+
+    /* Prevent body scroll when menu is open */
+    body.menu-open {
+        overflow: hidden !important;
+    }
+}
+
+
+/* =========================================================
+   3. MOBILE NAV OVERLAY — ALL PAGES
+========================================================= */
+
+.mobile-nav-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 999 !important;
+    background: rgba(0, 0, 0, 0.55) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: opacity 0.3s ease, visibility 0.3s ease !important;
+}
+
+.mobile-nav-overlay.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+@media (min-width: 901px) {
+    .mobile-nav-overlay {
+        display: none !important;
+    }
+}
+
+
+/* =========================================================
+   4. HAMBURGER ANIMATION FIX
+========================================================= */
+
+.menu-toggle span {
+    display: block;
+    width: 19px;
+    height: 2px;
+    border-radius: 4px;
+    background: #ffffff;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu-toggle.active span:first-child {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.menu-toggle.active span:last-child {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+
+/* =========================================================
+   5. GLOBAL MOBILE LAYOUT — 768px and below
+========================================================= */
+
+@media (max-width: 768px) {
+
+    /* Container padding */
+    .container {
+        width: calc(100% - 36px) !important;
+        max-width: 100% !important;
+    }
+
+    /* Section padding reduction */
+    .section {
+        padding: 72px 0 !important;
+    }
+
+    /* Section headings */
+    .section-title {
+        font-size: clamp(26px, 7.5vw, 36px) !important;
+        line-height: 1.25 !important;
+        letter-spacing: -1px !important;
+    }
+
+    .section-heading > p {
+        font-size: 13px !important;
+        line-height: 1.85 !important;
+    }
+
+    /* ---- HERO GRID: stack vertically ---- */
+    .hero-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+
+    .hero-content {
+        max-width: 100% !important;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(35px, 9.5vw, 52px) !important;
+        line-height: 1.13 !important;
+        letter-spacing: -1.5px !important;
+    }
+
+    .hero-description {
+        font-size: 13px !important;
+        line-height: 1.9 !important;
+        margin-top: 16px !important;
+    }
+
+    .hero-actions {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 10px !important;
+        margin-top: 22px !important;
+    }
+
+    .hero-actions .btn {
+        width: 100% !important;
+        min-height: 50px !important;
+        justify-content: center !important;
+    }
+
+    /* Hero image frame */
+    .hero-visual {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .hero-image-frame {
+        height: 300px !important;
+        border-radius: 20px !important;
+    }
+
+    /* Floating cards: don't overflow viewport */
+    .floating-card-top {
+        right: 0 !important;
+        top: 20px !important;
+        max-width: 170px !important;
+    }
+
+    .floating-card-bottom {
+        left: 0 !important;
+        bottom: 30px !important;
+        max-width: 170px !important;
+    }
+
+    /* ---- STATS GRID ---- */
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 16px !important;
+    }
+
+    .stat-item:nth-child(2)::after {
+        display: none !important;
+    }
+
+    .stat-number,
+    .stat-suffix {
+        font-size: 28px !important;
+    }
+
+    /* ---- ABOUT / WEEKLY PLAN / RESULTS GRIDS ---- */
+    .about-grid,
+    .weekly-plan-grid,
+    .results-grid {
+        grid-template-columns: 1fr !important;
+        gap: 36px !important;
+    }
+
+    .about-visual,
+    .results-visual {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    /* ---- COURSES / EXAMS / WHY GRID ---- */
+    .courses-grid,
+    .exam-category-grid,
+    .study-resources-grid,
+    .why-grid,
+    .process-grid,
+    .methodology-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .course-image {
+        height: 200px !important;
+    }
+
+    /* ---- TESTIMONIALS ---- */
+    .testimonials-slider {
+        overflow: hidden !important;
+    }
+
+    /* ---- ADMISSION CTA ---- */
+    .admission-actions {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+
+    .admission-actions .btn {
+        width: 100% !important;
+    }
+
+    /* ---- FOOTER ---- */
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 28px !important;
+    }
+
+    .footer-bottom {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        padding: 18px 0 !important;
+        min-height: auto !important;
+    }
+
+    .footer-bottom p {
+        font-size: 10px !important;
+    }
+
+    /* ---- LOGIN MODAL ---- */
+    .modal-overlay {
+        align-items: flex-start !important;
+        padding: 12px !important;
+    }
+
+    .login-modal {
+        width: 100% !important;
+        flex-direction: column !important;
+        margin: auto 0 !important;
+        border-radius: 20px !important;
+        min-height: auto !important;
+    }
+
+    .login-visual {
+        min-height: 180px !important;
+        height: 180px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .login-visual-description,
+    .login-event-badge,
+    .login-visual-footer {
+        display: none !important;
+    }
+
+    .login-content {
+        padding: 26px 20px 22px !important;
+    }
+
+    /* ---- BACK TO TOP ---- */
+    #backToTop {
+        bottom: 20px !important;
+        right: 16px !important;
+    }
+
+}
+
+
+/* =========================================================
+   6. SMALL MOBILE — 600px and below
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .container {
+        width: calc(100% - 32px) !important;
+    }
+
+    .section {
+        padding: 60px 0 !important;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(32px, 9vw, 46px) !important;
+    }
+
+    .hero-image-frame {
+        height: 260px !important;
+    }
+
+    .floating-card {
+        max-width: 155px !important;
+        padding: 9px 10px !important;
+        gap: 7px !important;
+    }
+
+    .floating-card strong {
+        font-size: 9px !important;
+    }
+
+    .floating-card small {
+        font-size: 8px !important;
+    }
+
+    /* Stats: 2 columns */
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        row-gap: 16px !important;
+    }
+
+    /* Admission section */
+    .admission-card {
+        padding: 32px 20px !important;
+        border-radius: 22px !important;
+    }
+
+    .admission-content h2 {
+        font-size: 30px !important;
+    }
+
+    /* Section center button */
+    .section-center .btn {
+        width: 100% !important;
+    }
+
+    /* Preloader mobile */
+    .preloader-scene {
+        transform: scale(0.82) !important;
+        height: 260px !important;
+    }
+
+}
+
+
+/* =========================================================
+   7. PHONE — 430px and below
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .container {
+        width: calc(100% - 28px) !important;
+    }
+
+    .nav-container {
+        min-height: 66px !important;
+    }
+
+    .main-nav {
+        top: 66px !important;
+        height: calc(100dvh - 66px) !important;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(30px, 8.5vw, 42px) !important;
+        letter-spacing: -1px !important;
+    }
+
+    .stat-number,
+    .stat-suffix {
+        font-size: 26px !important;
+    }
+
+    .testimonial-card {
+        padding: 20px !important;
+    }
+
+    .section-title {
+        font-size: clamp(24px, 7vw, 32px) !important;
+    }
+
+}
+
+
+/* =========================================================
+   8. SMALL PHONE — 375px and below
+========================================================= */
+
+@media (max-width: 375px) {
+
+    .container {
+        width: calc(100% - 24px) !important;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(28px, 8vw, 38px) !important;
+    }
+
+    .hero-image-frame {
+        height: 230px !important;
+    }
+
+    .floating-card-top,
+    .floating-card-bottom {
+        display: none !important;
+    }
+
+    .about-note {
+        display: none !important;
+    }
+
+}
+
+
+/* =========================================================
+   9. MINIMUM — 320px
+========================================================= */
+
+@media (max-width: 320px) {
+
+    .container {
+        width: calc(100% - 20px) !important;
+    }
+
+    .hero-content h1 {
+        font-size: 26px !important;
+    }
+
+    .menu-toggle {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .brand-logo {
+        width: 120px !important;
+        height: 46px !important;
+    }
+
+    .hero-actions .btn {
+        font-size: 11px !important;
+        padding: 12px 14px !important;
+    }
+
+}
+
+
+/* =========================================================
+   10. ABOUT PAGE SPECIFIC
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .about-hero {
+        min-height: auto !important;
+        padding: 60px 0 100px !important;
+    }
+
+    .about-hero-grid {
+        grid-template-columns: 1fr !important;
+        gap: 36px !important;
+    }
+
+    .about-hero h1 {
+        font-size: clamp(34px, 9vw, 52px) !important;
+        line-height: 1.14 !important;
+    }
+
+    .about-hero-actions {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 10px !important;
+    }
+
+    .about-primary-btn,
+    .about-secondary-btn {
+        width: 100% !important;
+        text-align: center !important;
+        justify-content: center !important;
+    }
+
+    .about-carousel-frame {
+        height: clamp(280px, 85vw, 420px) !important;
+    }
+
+    .about-story-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+
+    .about-purpose-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    .about-values-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 12px !important;
+    }
+
+    .about-approach-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+
+    .about-why-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 12px !important;
+    }
+
+    .about-cta-actions {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+
+    .about-cta-light-btn,
+    .about-cta-glass-btn {
+        width: 100% !important;
+        text-align: center !important;
+        justify-content: center !important;
+    }
+
+    /* Fix about.css site-header override */
+    .about-page .site-header,
+    .site-header {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 1000 !important;
+    }
+
+}
+
+@media (max-width: 430px) {
+
+    .about-values-grid,
+    .about-why-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .about-value-card,
+    .about-why-card {
+        min-height: auto !important;
+    }
+
+}
+
+@media (max-width: 375px) {
+
+    .about-hero h1 {
+        font-size: 30px !important;
+    }
+
+    .about-carousel-frame {
+        height: 260px !important;
+    }
+
+}
+
+
+/* =========================================================
+   11. COURSES PAGE SPECIFIC
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .courses-page .container {
+        width: calc(100% - 36px) !important;
+    }
+
+    .courses-page .section {
+        padding: 70px 0 !important;
+    }
+
+    /* Courses hero */
+    .courses-page .courses-hero {
+        padding: 60px 0 80px !important;
+    }
+
+    .courses-page .hero-grid {
+        grid-template-columns: 1fr !important;
+        gap: 36px !important;
+    }
+
+    .courses-page .hero-content h1 {
+        font-size: clamp(34px, 9vw, 52px) !important;
+        line-height: 1.12 !important;
+    }
+
+    /* Filter pills */
+    .courses-page .filter-row {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        justify-content: flex-start !important;
+    }
+
+    .courses-page .course-filter {
+        font-size: 11px !important;
+        padding: 8px 14px !important;
+    }
+
+    /* Course grid */
+    .courses-page .courses-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    /* Instructor grid */
+    .courses-page .instructor-grid,
+    .courses-page .benefits-grid,
+    .courses-page .features-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    /* CTA */
+    .courses-page .cta-actions {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+
+}
+
+@media (max-width: 430px) {
+
+    .courses-page .hero-content h1 {
+        font-size: clamp(30px, 8.5vw, 42px) !important;
+    }
+
+    .courses-page .courses-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+}
+
+
+/* =========================================================
+   12. RESULTS PAGE SPECIFIC
+   results.html uses .site-header from style.css but also
+   loads result.css which has its own header classes.
+   We ensure the shared header pattern works.
+========================================================= */
+
+/* results.html: the site-header receives style.css styles.
+   Result.css .results-header / .header-inner are NOT used
+   in the final HTML — the HTML uses .site-header like other pages. */
+
+@media (max-width: 768px) {
+
+    /* Result page container */
+    .results-page .page-container {
+        width: calc(100% - 36px) !important;
+    }
+
+    /* Discovery hero stack */
+    .discovery-hero-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+
+    .discovery-content h1 {
+        font-size: clamp(32px, 9vw, 50px) !important;
+        line-height: 1.15 !important;
+        letter-spacing: -2px !important;
+    }
+
+    .hero-description {
+        font-size: 13px !important;
+        line-height: 1.9 !important;
+    }
+
+    .discovery-visual {
+        width: 100% !important;
+        min-height: 320px !important;
+        margin-inline: auto !important;
+    }
+
+    /* Results course grid */
+    .results-course-grid,
+    .results-layout {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    .quick-category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    /* Sidebar: full width on mobile */
+    .results-sidebar {
+        width: 100% !important;
+    }
+
+    /* Learning path / data */
+    .learning-path-grid,
+    .data-collection-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .learning-path-card:last-child,
+    .data-feature-card:last-child {
+        grid-column: auto !important;
+        width: 100% !important;
+    }
+
+    /* Spotlight */
+    .spotlight-card {
+        grid-template-columns: 1fr !important;
+        padding: 24px !important;
+    }
+
+    /* Student voices */
+    .student-voices-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .student-voice-card:last-child {
+        grid-column: auto !important;
+    }
+
+    /* Process steps */
+    .process-steps {
+        grid-template-columns: 1fr !important;
+        gap: 36px !important;
+    }
+
+    /* FAQ */
+    .faq-layout {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+    }
+
+    /* Final CTA */
+    .final-cta-card {
+        grid-template-columns: 1fr !important;
+        padding: 26px !important;
+    }
+
+    /* Footer */
+    .footer-main {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+    }
+
+    .footer-brand-column {
+        grid-column: auto !important;
+    }
+
+    /* Design / business grids */
+    .design-collection-grid,
+    .business-section-grid {
+        grid-template-columns: 1fr !important;
+        gap: 36px !important;
+    }
+
+    /* Development feature */
+    .development-feature-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Hero search */
+    .hero-search {
+        flex-wrap: nowrap !important;
+    }
+
+    .hero-search-input {
+        font-size: 13px !important;
+    }
+
+    .hero-search-btn {
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+    }
+
+}
+
+@media (max-width: 430px) {
+
+    .discovery-content h1 {
+        font-size: clamp(28px, 8.5vw, 40px) !important;
+    }
+
+    .quick-category-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .spotlight-card {
+        padding: 18px !important;
+    }
+
+    .final-cta-card {
+        padding: 20px !important;
+        gap: 24px !important;
+    }
+
+}
+
+@media (max-width: 375px) {
+
+    .discovery-content h1 {
+        font-size: 28px !important;
+    }
+
+}
+
+@media (max-width: 320px) {
+
+    .discovery-content h1 {
+        font-size: 24px !important;
+    }
+
+    .hero-search-btn span {
+        display: none !important;
+    }
+
+}
+
+
+/* =========================================================
+   13. CONTACT PAGE SPECIFIC
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .contact-page .section-padding {
+        padding: 70px 0 !important;
+    }
+
+    .contact-page .section-container {
+        width: calc(100% - 36px) !important;
+    }
+
+    /* Contact hero */
+    .contact-page .contact-hero {
+        min-height: auto !important;
+        padding: 100px 0 90px !important;
+    }
+
+    .contact-page .hero-content h1 {
+        font-size: clamp(34px, 9vw, 52px) !important;
+        line-height: 1.14 !important;
+    }
+
+    .contact-page .hero-actions {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 10px !important;
+    }
+
+    .contact-page .hero-actions .btn {
+        width: 100% !important;
+    }
+
+    /* Contact info grid */
+    .contact-page .contact-info-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    /* Form layout */
+    .contact-page .contact-form-layout {
+        grid-template-columns: 1fr !important;
+        gap: 36px !important;
+    }
+
+    /* Form row: 2-col to 1-col */
+    .contact-page .form-row {
+        grid-template-columns: 1fr !important;
+        gap: 0 !important;
+    }
+
+    .contact-page .form-group {
+        width: 100% !important;
+    }
+
+    .contact-page .form-input,
+    .contact-page .form-textarea,
+    .contact-page .form-select {
+        font-size: 14px !important;
+    }
+
+    /* Process */
+    .contact-page .process-layout {
+        grid-template-columns: 1fr !important;
+        gap: 36px !important;
+    }
+
+    /* FAQ */
+    .contact-page .faq-layout {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+    }
+
+    /* Why contact grid */
+    .contact-page .why-contact-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Map section */
+    .contact-page .map-frame {
+        height: 280px !important;
+    }
+
+    /* CTA */
+    .contact-page .final-cta-actions {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+
+}
+
+@media (max-width: 430px) {
+
+    .contact-page .contact-hero {
+        padding: 80px 0 70px !important;
+    }
+
+    .contact-page .hero-content h1 {
+        font-size: clamp(30px, 8.5vw, 42px) !important;
+    }
+
+    .contact-page .contact-form-card {
+        padding: 24px 18px !important;
+        border-radius: 20px !important;
+    }
+
+}
+
+@media (max-width: 375px) {
+
+    .contact-page .hero-content h1 {
+        font-size: 28px !important;
+    }
+
+    .contact-page .contact-info-card {
+        padding: 20px !important;
+    }
+
+}
+
+
+/* =========================================================
+   14. 404 PAGE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .error-container {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+        text-align: center !important;
+    }
+
+    .error-code {
+        font-size: clamp(80px, 22vw, 130px) !important;
+        letter-spacing: -6px !important;
+    }
+
+    .error-actions {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 10px !important;
+    }
+
+    .error-actions .btn,
+    .error-actions a {
+        width: 100% !important;
+        text-align: center !important;
+        justify-content: center !important;
+    }
+
+    .error-visual {
+        display: none !important;
+    }
+
+}
+
+@media (max-width: 430px) {
+
+    .error-code {
+        font-size: 80px !important;
+        letter-spacing: -4px !important;
+    }
+
+}
+
+
+/* =========================================================
+   15. PRELOADER — MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .academy-preloader {
+        padding: 20px !important;
+    }
+
+    .preloader-brand {
+        top: 20px !important;
+        left: 18px !important;
+    }
+
+    .preloader-brand-icon {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 19px !important;
+    }
+
+    .preloader-brand strong {
+        font-size: 11px !important;
+    }
+
+    .preloader-brand span {
+        font-size: 7px !important;
+    }
+
+    .preloader-scene {
+        width: 100% !important;
+        height: 260px !important;
+        transform: scale(0.82) !important;
+    }
+
+    .preloader-information h2 {
+        font-size: 20px !important;
+    }
+
+}
+
+
+/* =========================================================
+   16. SCROLL PROGRESS BAR
+========================================================= */
+
+.scroll-progress {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(135deg, #8db2ff 0%, #b4a0ff 55%, #f1c879 100%);
+    box-shadow: 0 0 12px rgba(145, 173, 255, 0.5);
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   17. FIX ABSOLUTE-POSITIONED DECORATIONS
+   Prevent them from causing overflow on mobile
+========================================================= */
+
+@media (max-width: 768px) {
+
+    /* Decorative circles/shapes that cause overflow */
+    .admission-decoration,
+    .about-cta-circle-one,
+    .about-cta-circle-two,
+    .about-cta-circle-three,
+    .about-cta-symbol,
+    .about-purpose-watermark {
+        pointer-events: none !important;
+    }
+
+    /* Constrain hero orbs */
+    .hero-orb,
+    .hero-orb-one,
+    .hero-orb-two {
+        max-width: 100% !important;
+    }
+
+}
+
+
+/* =========================================================
+   18. TESTIMONIAL SLIDER — MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .testimonials-wrapper {
+        overflow: hidden !important;
+    }
+
+    .testimonial-track {
+        gap: 16px !important;
+    }
+
+    .testimonial-card {
+        min-width: calc(100vw - 56px) !important;
+        max-width: calc(100vw - 56px) !important;
+    }
+
+}
+
+
+/* =========================================================
+   19. FORM ELEMENTS — MOBILE TOUCH TARGETS
+========================================================= */
+
+@media (max-width: 768px) {
+
+    input[type="email"],
+    input[type="text"],
+    input[type="password"],
+    input[type="tel"],
+    input[type="number"],
+    select,
+    textarea {
+        font-size: 16px !important; /* Prevents iOS zoom on focus */
+        min-height: 46px !important;
+    }
+
+    textarea {
+        min-height: 120px !important;
+    }
+
+    .btn {
+        min-height: 48px !important;
+    }
+
+}
+
+
+/* =========================================================
+   20. ENSURE DESKTOP STYLES ARE PRESERVED (1024px+)
+   These rules explicitly do nothing on desktop.
+   They exist as documentation of what is overridden only
+   at mobile widths. Desktop layout is unchanged.
+========================================================= */
+
+@media (min-width: 901px) {
+
+    /* Hamburger hidden on desktop */
+    .menu-toggle {
+        display: none !important;
+    }
+
+    /* Desktop nav shown normally */
+    .main-nav {
+        position: static !important;
+        transform: none !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        flex-direction: row !important;
+        height: auto !important;
+        width: auto !important;
+        background: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+}
+
+
+
+/* =========================================
+   ABOUT PAGE — FIXED HEADER CORRECTION
+========================================= */
+
+#siteHeader.site-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    margin: 0 !important;
+    transform: none !important;
+
+    z-index: 9999 !important;
+    box-sizing: border-box !important;
+
+    background: #080d1d !important;
+    border-radius: 0 !important;
+}
+
+/* Header container */
+
+#siteHeader .nav-container {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    box-sizing: border-box;
+}
+
+/* Desktop spacing */
+
+body {
+    padding-top: 80px;
+}
+
+/* Mobile correction */
+
+@media (max-width: 768px) {
+
+    #siteHeader.site-header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+
+        width: 100% !important;
+        border-radius: 0 !important;
+    }
+
+    #siteHeader .nav-container {
+        min-height: 68px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    body {
+        padding-top: 68px;
+    }
+
+}

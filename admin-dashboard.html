@@ -1,0 +1,5113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SKILLPREP — Admin Dashboard</title>
+
+    <meta name="description" content="SKILLPREP premium learning platform administration dashboard.">
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- BOOTSTRAP 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+
+    <!-- CHART.JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+
+    <style>
+        /* =====================================================
+           SKILLPREP ADMIN DASHBOARD
+           Single-file HTML + CSS + JavaScript
+        ===================================================== */
+
+        :root {
+            --navy: #172554;
+            --blue: #2563eb;
+            --blue-light: #eff6ff;
+            --indigo: #6366f1;
+            --purple: #7c3aed;
+            --orange: #f59e0b;
+            --green: #16a34a;
+            --red: #ef4444;
+
+            --background: #f5f7fb;
+            --white: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+            --border: #e2e8f0;
+
+            --sidebar-width: 258px;
+            --sidebar-collapsed: 82px;
+
+            --radius: 17px;
+            --shadow: 0 4px 20px rgba(15, 23, 42, 0.035);
+            --shadow-hover: 0 12px 30px rgba(15, 23, 42, 0.075);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--background);
+            color: var(--text);
+            font-family: "DM Sans", sans-serif;
+            font-size: 14px;
+            overflow-x: hidden;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .text-blue {
+            color: var(--blue);
+        }
+
+        .fw-800 {
+            font-weight: 800;
+        }
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .sidebar {
+            position: fixed;
+            inset: 0 auto 0 0;
+            z-index: 1050;
+            display: flex;
+            flex-direction: column;
+            width: var(--sidebar-width);
+            padding: 25px 17px 18px;
+            background: var(--white);
+            border-right: 1px solid var(--border);
+            transition: width 0.3s ease, transform 0.3s ease;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 0 9px;
+            margin-bottom: 32px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .brand-logo {
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            width: 43px;
+            height: 43px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--blue), var(--indigo));
+            color: white;
+            font-size: 20px;
+            box-shadow: 0 7px 15px rgba(37, 99, 235, 0.20);
+        }
+
+        .brand-name {
+            font-family: "Manrope", sans-serif;
+            color: var(--navy);
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+        }
+
+        .brand-name span {
+            color: var(--blue);
+        }
+
+        .brand-subtitle {
+            margin-top: 2px;
+            color: var(--muted);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .sidebar-label {
+            padding: 0 12px;
+            margin-bottom: 12px;
+            color: #94a3b8;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .sidebar-link {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            min-height: 47px;
+            padding: 0 14px;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            color: #64748b;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .sidebar-link i {
+            width: 20px;
+            flex-shrink: 0;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .sidebar-link:hover {
+            background: #f8fafc;
+            color: var(--blue);
+        }
+
+        .sidebar-link.active {
+            background: var(--blue-light);
+            border-color: #dbeafe;
+            color: var(--blue);
+            font-weight: 800;
+        }
+
+        .sidebar-link.active::before {
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            left: -18px;
+            width: 4px;
+            border-radius: 0 5px 5px 0;
+            background: var(--blue);
+            content: "";
+        }
+
+        .nav-count {
+            display: grid;
+            place-items: center;
+            min-width: 22px;
+            height: 22px;
+            padding: 0 6px;
+            margin-left: auto;
+            border-radius: 7px;
+            background: #eef2ff;
+            color: var(--indigo);
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .sidebar-spacer {
+            flex: 1;
+            min-height: 22px;
+        }
+
+        .sidebar-promo {
+            position: relative;
+            overflow: hidden;
+            padding: 17px;
+            margin: 12px 0 18px;
+            border: 1px solid #dbeafe;
+            border-radius: 15px;
+            background: linear-gradient(145deg, #eff6ff, #f5f3ff);
+        }
+
+        .sidebar-promo-icon {
+            display: grid;
+            place-items: center;
+            width: 34px;
+            height: 34px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            background: white;
+            color: var(--blue);
+            box-shadow: var(--shadow);
+        }
+
+        .sidebar-promo h4 {
+            margin-bottom: 5px;
+            color: var(--navy);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .sidebar-promo p {
+            margin-bottom: 13px;
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.7;
+        }
+
+        .sidebar-promo a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            min-height: 34px;
+            border-radius: 9px;
+            background: var(--blue);
+            color: white;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .sidebar-bottom {
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+        }
+
+        .admin-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+            padding: 8px 5px 13px;
+        }
+
+        .admin-avatar {
+            width: 39px;
+            height: 39px;
+            flex-shrink: 0;
+            overflow: hidden;
+            border: 2px solid #e0e7ff;
+            border-radius: 13px;
+            background: #e0e7ff;
+        }
+
+        .admin-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .admin-profile-copy {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .admin-profile-copy strong {
+            display: block;
+            overflow: hidden;
+            color: var(--navy);
+            font-size: 12px;
+            font-weight: 800;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .admin-profile-copy span {
+            display: block;
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .admin-profile > i {
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        .logout-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-height: 43px;
+            padding: 0 13px;
+            border-radius: 11px;
+            color: #dc2626;
+            font-size: 12px;
+            font-weight: 700;
+            transition: background 0.2s;
+        }
+
+        .logout-link:hover {
+            background: #fef2f2;
+        }
+
+        /* =====================================================
+           COLLAPSED SIDEBAR
+        ===================================================== */
+
+        body.sidebar-collapsed .sidebar {
+            width: var(--sidebar-collapsed);
+            padding-right: 13px;
+            padding-left: 13px;
+        }
+
+        body.sidebar-collapsed .brand {
+            justify-content: center;
+            padding: 0;
+        }
+
+        body.sidebar-collapsed .brand-copy,
+        body.sidebar-collapsed .sidebar-label,
+        body.sidebar-collapsed .sidebar-link .nav-text,
+        body.sidebar-collapsed .nav-count,
+        body.sidebar-collapsed .sidebar-promo,
+        body.sidebar-collapsed .admin-profile-copy,
+        body.sidebar-collapsed .admin-profile > i,
+        body.sidebar-collapsed .logout-text {
+            display: none;
+        }
+
+        body.sidebar-collapsed .sidebar-link {
+            justify-content: center;
+            padding: 0;
+        }
+
+        body.sidebar-collapsed .sidebar-link i {
+            width: auto;
+        }
+
+        body.sidebar-collapsed .sidebar-link.active::before {
+            left: -14px;
+        }
+
+        body.sidebar-collapsed .admin-profile {
+            justify-content: center;
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        body.sidebar-collapsed .logout-link {
+            justify-content: center;
+            padding: 0;
+        }
+
+        body.sidebar-collapsed .main-wrapper {
+            margin-left: var(--sidebar-collapsed);
+        }
+
+        /* =====================================================
+           MAIN LAYOUT
+        ===================================================== */
+
+        .main-wrapper {
+            min-height: 100vh;
+            margin-left: var(--sidebar-width);
+            transition: margin-left 0.3s ease;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            min-height: 82px;
+            padding: 15px 32px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            min-width: 0;
+        }
+
+        .icon-button {
+            position: relative;
+            display: grid;
+            place-items: center;
+            width: 41px;
+            height: 41px;
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: white;
+            color: #475569;
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+
+        .icon-button:hover {
+            border-color: #bfdbfe;
+            background: #eff6ff;
+            color: var(--blue);
+        }
+
+        .mobile-menu-button {
+            display: none;
+        }
+
+        .page-heading {
+            min-width: 0;
+        }
+
+        .page-heading h1 {
+            margin-bottom: 3px;
+            color: var(--navy);
+            font-family: "Manrope", sans-serif;
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: -0.7px;
+        }
+
+        .page-heading p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 255px;
+            height: 42px;
+            padding: 0 13px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #f8fafc;
+            color: #94a3b8;
+            transition: border 0.2s;
+        }
+
+        .search-box:focus-within {
+            border-color: #93c5fd;
+            background: white;
+        }
+
+        .search-box input {
+            width: 100%;
+            min-width: 0;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            color: var(--text);
+            font-size: 12px;
+        }
+
+        .search-box input::placeholder {
+            color: #94a3b8;
+        }
+
+        .notification-wrap,
+        .profile-wrap {
+            position: relative;
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 8px;
+            height: 8px;
+            border: 2px solid white;
+            border-radius: 50%;
+            background: #ef4444;
+        }
+
+        .topbar-avatar {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 3px 5px;
+            border: 0;
+            background: transparent;
+            text-align: left;
+        }
+
+        .topbar-avatar img {
+            width: 39px;
+            height: 39px;
+            border: 2px solid #e0e7ff;
+            border-radius: 13px;
+            background: #e0e7ff;
+            object-fit: cover;
+        }
+
+        .topbar-avatar strong {
+            display: block;
+            color: var(--navy);
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .topbar-avatar small {
+            display: block;
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .topbar-avatar .fa-chevron-down {
+            margin-left: 4px;
+            color: #94a3b8;
+            font-size: 10px;
+        }
+
+        .dropdown-panel {
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 0;
+            z-index: 1200;
+            display: none;
+            width: 265px;
+            padding: 15px;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+        }
+
+        .dropdown-panel.show {
+            display: block;
+            animation: dropdownIn 0.18s ease;
+        }
+
+        @keyframes dropdownIn {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dropdown-title {
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            color: var(--navy);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .dropdown-item-link {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 12px 3px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #475569;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .dropdown-item-link:last-child {
+            border-bottom: 0;
+        }
+
+        .dropdown-item-link i {
+            color: var(--blue);
+        }
+
+        .dropdown-item-link:hover {
+            color: var(--blue);
+        }
+
+        .main-content {
+            width: 100%;
+            max-width: 1800px;
+            padding: 29px 32px 45px;
+            margin: 0 auto;
+        }
+
+        /* =====================================================
+           COMMON COMPONENTS
+        ===================================================== */
+
+        .section-block {
+            margin-top: 30px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 17px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            color: var(--navy);
+            font-family: "Manrope", sans-serif;
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: -0.4px;
+        }
+
+        .section-heading p {
+            margin: 5px 0 0;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .text-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 0;
+            background: transparent;
+            color: var(--blue);
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .text-link:hover {
+            color: var(--purple);
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 40px;
+            padding: 0 16px;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 800;
+            transition: all 0.2s ease;
+        }
+
+        .primary-btn {
+            background: var(--blue);
+            color: white;
+            box-shadow: 0 5px 12px rgba(37, 99, 235, 0.16);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-1px);
+            background: #1d4ed8;
+            color: white;
+        }
+
+        .secondary-btn {
+            border-color: var(--border);
+            background: white;
+            color: var(--text);
+        }
+
+        .secondary-btn:hover {
+            border-color: #bfdbfe;
+            background: #eff6ff;
+            color: var(--blue);
+        }
+
+        .soft-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 9px;
+            border-radius: 7px;
+            background: #eff6ff;
+            color: var(--blue);
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .soft-badge.green {
+            background: #f0fdf4;
+            color: #15803d;
+        }
+
+        .soft-badge.orange {
+            background: #fffbeb;
+            color: #b45309;
+        }
+
+        .soft-badge.purple {
+            background: #f5f3ff;
+            color: #6d28d9;
+        }
+
+        .soft-badge.red {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        .panel {
+            min-width: 0;
+            padding: 21px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .panel-title {
+            margin: 0;
+            color: var(--navy);
+            font-family: "Manrope", sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .panel-subtitle {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        /* =====================================================
+           WELCOME BANNER
+        ===================================================== */
+
+        .welcome-banner {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(250px, 0.7fr);
+            align-items: center;
+            gap: 20px;
+            overflow: hidden;
+            min-height: 220px;
+            padding: 28px 31px;
+            border: 1px solid #dbeafe;
+            border-radius: 21px;
+            background:
+                radial-gradient(circle at 83% 20%, rgba(129, 140, 248, 0.15), transparent 29%),
+                linear-gradient(115deg, #ffffff 5%, #eff6ff 75%, #f5f3ff 100%);
+        }
+
+        .welcome-banner::before {
+            position: absolute;
+            top: -100px;
+            left: 43%;
+            width: 230px;
+            height: 230px;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            border-radius: 50%;
+            content: "";
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .welcome-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 13px;
+            color: var(--blue);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+        }
+
+        .welcome-content h2 {
+            max-width: 480px;
+            margin-bottom: 10px;
+            color: var(--navy);
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(23px, 2.1vw, 31px);
+            font-weight: 800;
+            letter-spacing: -1.1px;
+            line-height: 1.25;
+        }
+
+        .welcome-content h2 span {
+            color: var(--blue);
+        }
+
+        .welcome-content p {
+            max-width: 470px;
+            margin-bottom: 19px;
+            color: #64748b;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .welcome-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
+
+        .welcome-image-wrap {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 0;
+        }
+
+        .welcome-image {
+            width: 100%;
+            max-width: 340px;
+            height: 180px;
+            border: 5px solid rgba(255, 255, 255, 0.9);
+            border-radius: 17px;
+            background: #e2e8f0;
+            object-fit: cover;
+            box-shadow: 0 15px 30px rgba(30, 64, 175, 0.11);
+        }
+
+        .floating-note {
+            position: absolute;
+            right: -2px;
+            bottom: 9px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 10px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            background: white;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .floating-note-icon {
+            display: grid;
+            place-items: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 9px;
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .floating-note strong {
+            display: block;
+            color: var(--navy);
+            font-size: 11px;
+        }
+
+        .floating-note small {
+            display: block;
+            margin-top: 2px;
+            color: var(--muted);
+            font-size: 9px;
+        }
+
+        /* =====================================================
+           STATISTICS CARDS
+        ===================================================== */
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .stat-card {
+            position: relative;
+            min-width: 0;
+            overflow: hidden;
+            padding: 19px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: white;
+            box-shadow: var(--shadow);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .stat-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 19px;
+        }
+
+        .stat-icon {
+            display: grid;
+            place-items: center;
+            width: 43px;
+            height: 43px;
+            border-radius: 13px;
+            font-size: 17px;
+        }
+
+        .stat-icon.blue {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+        .stat-icon.purple {
+            background: #f5f3ff;
+            color: #7c3aed;
+        }
+
+        .stat-icon.orange {
+            background: #fffbeb;
+            color: #d97706;
+        }
+
+        .stat-icon.green {
+            background: #f0fdf4;
+            color: #16a34a;
+        }
+
+        .stat-icon.pink {
+            background: #fdf2f8;
+            color: #db2777;
+        }
+
+        .stat-icon.cyan {
+            background: #ecfeff;
+            color: #0891b2;
+        }
+
+        .stat-change {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 5px 7px;
+            border-radius: 7px;
+            background: #f0fdf4;
+            color: #16a34a;
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .stat-label {
+            margin-bottom: 5px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .stat-value {
+            margin-bottom: 9px;
+            color: var(--navy);
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(23px, 2vw, 29px);
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .stat-foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            color: var(--muted);
+            font-size: 9px;
+        }
+
+        .mini-progress {
+            height: 5px;
+            overflow: hidden;
+            margin-top: 14px;
+            border-radius: 10px;
+            background: #f1f5f9;
+        }
+
+        .mini-progress span {
+            display: block;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, var(--blue), var(--indigo));
+        }
+
+        /* =====================================================
+           CHARTS
+        ===================================================== */
+
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.65fr) minmax(260px, 0.9fr);
+            gap: 17px;
+        }
+
+        .chart-panel {
+            min-width: 0;
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: white;
+            box-shadow: var(--shadow);
+        }
+
+        .chart-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .chart-header h3 {
+            margin-bottom: 5px;
+            color: var(--navy);
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .chart-header p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .chart-select {
+            max-width: 125px;
+            height: 34px;
+            padding: 0 9px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            outline: none;
+            background: white;
+            color: #475569;
+            font-size: 10px;
+        }
+
+        .chart-canvas {
+            position: relative;
+            width: 100%;
+            height: 255px;
+        }
+
+        .chart-canvas.doughnut {
+            height: 230px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 17px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 3px;
+        }
+
+        .course-distribution {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 18px;
+        }
+
+        .distribution-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 7px 12px;
+        }
+
+        .distribution-row strong {
+            color: var(--text);
+            font-size: 11px;
+        }
+
+        .distribution-row span {
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .distribution-row .mini-progress {
+            grid-column: 1 / -1;
+            margin-top: 0;
+            height: 6px;
+        }
+
+        /* =====================================================
+           RECENT ENROLLMENTS TABLE
+        ===================================================== */
+
+        .table-panel {
+            overflow: hidden;
+            padding: 0;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: white;
+            box-shadow: var(--shadow);
+        }
+
+        .table-panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 21px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        .admin-table {
+            width: 100%;
+            min-width: 720px;
+            border-collapse: collapse;
+        }
+
+        .admin-table thead th {
+            padding: 13px 20px;
+            border-top: 1px solid #f1f5f9;
+            border-bottom: 1px solid var(--border);
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 10px;
+            font-weight: 800;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .admin-table tbody td {
+            padding: 15px 20px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #475569;
+            font-size: 11px;
+            vertical-align: middle;
+        }
+
+        .admin-table tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .admin-table tbody tr:hover {
+            background: #fafcff;
+        }
+
+        .student-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 185px;
+        }
+
+        .student-cell img {
+            width: 38px;
+            height: 38px;
+            flex-shrink: 0;
+            border: 2px solid #f1f5f9;
+            border-radius: 12px;
+            background: #e2e8f0;
+            object-fit: cover;
+        }
+
+        .student-cell strong {
+            display: block;
+            margin-bottom: 3px;
+            color: var(--navy);
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .student-cell small {
+            color: var(--muted);
+            font-size: 9px;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 9px;
+            border-radius: 7px;
+            background: #f0fdf4;
+            color: #15803d;
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .status-pill.pending {
+            background: #fffbeb;
+            color: #b45309;
+        }
+
+        .status-pill.inactive {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        .table-action {
+            display: grid;
+            place-items: center;
+            width: 31px;
+            height: 31px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            background: white;
+            color: #64748b;
+        }
+
+        .table-action:hover {
+            border-color: #bfdbfe;
+            background: #eff6ff;
+            color: var(--blue);
+        }
+
+        /* =====================================================
+           COURSE MANAGEMENT CARDS
+        ===================================================== */
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 17px;
+        }
+
+        .course-card {
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: white;
+            box-shadow: var(--shadow);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .course-image-wrap {
+            position: relative;
+            height: 160px;
+            overflow: hidden;
+            background: #e2e8f0;
+        }
+
+        .course-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .course-card:hover .course-image-wrap img {
+            transform: scale(1.04);
+        }
+
+        .course-image-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 7px 9px;
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.94);
+            color: var(--blue);
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .course-card-body {
+            padding: 17px;
+        }
+
+        .course-card-body h3 {
+            margin: 11px 0 7px;
+            color: var(--navy);
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .course-card-body > p {
+            min-height: 34px;
+            margin-bottom: 14px;
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.7;
+        }
+
+        .course-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding-bottom: 13px;
+            border-bottom: 1px solid #f1f5f9;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .course-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .course-meta i {
+            color: var(--blue);
+        }
+
+        .course-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding-top: 13px;
+        }
+
+        .course-card-footer strong {
+            color: var(--navy);
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .course-card-footer .primary-btn {
+            min-height: 34px;
+            padding: 0 12px;
+            font-size: 10px;
+        }
+
+        /* =====================================================
+           STUDENT PAGE / SEARCH / FILTERS
+        ===================================================== */
+
+        .page-view {
+            display: none;
+        }
+
+        .page-view.active {
+            display: block;
+            animation: pageIn 0.25s ease;
+        }
+
+        @keyframes pageIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-intro {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .page-intro h2 {
+            margin-bottom: 7px;
+            color: var(--navy);
+            font-family: "Manrope", sans-serif;
+            font-size: 23px;
+            font-weight: 800;
+            letter-spacing: -0.7px;
+        }
+
+        .page-intro p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .filter-toolbar {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 11px;
+            padding: 16px;
+            margin-bottom: 19px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: white;
+        }
+
+        .filter-search {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            min-width: 200px;
+            flex: 1;
+            height: 40px;
+            padding: 0 12px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: #94a3b8;
+        }
+
+        .filter-search input {
+            width: 100%;
+            min-width: 0;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            color: var(--text);
+            font-size: 11px;
+        }
+
+        .filter-select {
+            min-width: 125px;
+            height: 40px;
+            padding: 0 11px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            outline: none;
+            background: white;
+            color: #475569;
+            font-size: 11px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            overflow-x: auto;
+            padding-bottom: 3px;
+            margin-bottom: 18px;
+            scrollbar-width: thin;
+        }
+
+        .filter-tab {
+            flex-shrink: 0;
+            min-height: 36px;
+            padding: 0 13px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            background: white;
+            color: #64748b;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .filter-tab.active {
+            border-color: var(--blue);
+            background: var(--blue);
+            color: white;
+        }
+
+        .empty-state {
+            display: none;
+            padding: 40px 20px;
+            border: 1px dashed #cbd5e1;
+            border-radius: 15px;
+            background: white;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .empty-state i {
+            margin-bottom: 12px;
+            color: #94a3b8;
+            font-size: 28px;
+        }
+
+        .empty-state h3 {
+            margin-bottom: 7px;
+            color: var(--navy);
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .empty-state p {
+            margin: 0;
+            font-size: 11px;
+        }
+
+        /* =====================================================
+           MOCK TESTS
+        ===================================================== */
+
+        .test-card {
+            padding: 18px;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            background: white;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .test-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .test-card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .test-icon {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: #eff6ff;
+            color: var(--blue);
+            font-size: 17px;
+        }
+
+        .test-card h3 {
+            margin-bottom: 7px;
+            color: var(--navy);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .test-card p {
+            margin-bottom: 15px;
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.7;
+        }
+
+        .test-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 12px 0;
+            margin-bottom: 13px;
+            border-top: 1px solid #f1f5f9;
+            border-bottom: 1px solid #f1f5f9;
+            color: var(--muted);
+            font-size: 9px;
+        }
+
+        .test-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .test-meta i {
+            color: var(--blue);
+        }
+
+        .test-card .primary-btn {
+            width: 100%;
+        }
+
+        /* =====================================================
+           REPORTS / PROGRESS
+        ===================================================== */
+
+        .report-summary {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .report-summary-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 18px;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            background: white;
+            box-shadow: var(--shadow);
+        }
+
+        .report-summary-card .stat-icon {
+            flex-shrink: 0;
+        }
+
+        .report-summary-card span {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .report-summary-card strong {
+            display: block;
+            color: var(--navy);
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .progress-subject {
+            margin-top: 20px;
+        }
+
+        .progress-subject:first-of-type {
+            margin-top: 23px;
+        }
+
+        .progress-subject-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 9px;
+            color: var(--text);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .progress-subject-header span:last-child {
+            color: var(--blue);
+            font-weight: 800;
+        }
+
+        .large-progress {
+            height: 8px;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #f1f5f9;
+        }
+
+        .large-progress span {
+            display: block;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, var(--blue), var(--indigo));
+        }
+
+        /* =====================================================
+           MOBILE OVERLAY
+        ===================================================== */
+
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1040;
+            display: none;
+            background: rgba(15, 23, 42, 0.45);
+        }
+
+        .sidebar-overlay.show {
+            display: block;
+        }
+
+        /* =====================================================
+           IMAGE FALLBACK
+        ===================================================== */
+
+        img.image-failed {
+            object-fit: contain !important;
+            padding: 25px;
+            background: #f1f5f9 !important;
+        }
+
+        /* =====================================================
+           RESPONSIVE: TABLET
+        ===================================================== */
+
+        @media (max-width: 1200px) {
+            .main-content {
+                padding-right: 23px;
+                padding-left: 23px;
+            }
+
+            .topbar {
+                padding-right: 23px;
+                padding-left: 23px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .course-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .welcome-banner {
+                grid-template-columns: minmax(0, 1.1fr) minmax(220px, 0.8fr);
+            }
+
+            .search-box {
+                width: 205px;
+            }
+        }
+
+        @media (max-width: 950px) {
+            :root {
+                --sidebar-width: 235px;
+            }
+
+            .sidebar {
+                width: var(--sidebar-collapsed);
+                padding-right: 13px;
+                padding-left: 13px;
+            }
+
+            .brand {
+                justify-content: center;
+                padding: 0;
+            }
+
+            .brand-copy,
+            .sidebar-label,
+            .sidebar-link .nav-text,
+            .nav-count,
+            .sidebar-promo,
+            .admin-profile-copy,
+            .admin-profile > i,
+            .logout-text {
+                display: none;
+            }
+
+            .sidebar-link {
+                justify-content: center;
+                padding: 0;
+            }
+
+            .sidebar-link i {
+                width: auto;
+            }
+
+            .sidebar-link.active::before {
+                left: -14px;
+            }
+
+            .admin-profile {
+                justify-content: center;
+                padding-right: 0;
+                padding-left: 0;
+            }
+
+            .logout-link {
+                justify-content: center;
+                padding: 0;
+            }
+
+            .main-wrapper,
+            body.sidebar-collapsed .main-wrapper {
+                margin-left: var(--sidebar-collapsed);
+            }
+
+            body.sidebar-collapsed .sidebar {
+                width: var(--sidebar-collapsed);
+            }
+
+            body.sidebar-collapsed .sidebar-link .nav-text {
+                display: none;
+            }
+
+            .analytics-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .welcome-banner {
+                grid-template-columns: minmax(0, 1fr) minmax(200px, 0.7fr);
+            }
+        }
+
+        /* =====================================================
+           RESPONSIVE: MOBILE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+            .sidebar,
+            body.sidebar-collapsed .sidebar {
+                width: 280px;
+                max-width: 85vw;
+                padding: 24px 17px 17px;
+                transform: translateX(-105%);
+                box-shadow: none;
+            }
+
+            .sidebar.mobile-open,
+            body.sidebar-collapsed .sidebar.mobile-open {
+                transform: translateX(0);
+                box-shadow: 20px 0 45px rgba(15, 23, 42, 0.12);
+            }
+
+            .brand {
+                justify-content: flex-start;
+                padding: 0 9px;
+            }
+
+            .brand-copy,
+            .sidebar-label,
+            .sidebar-link .nav-text,
+            .nav-count,
+            .sidebar-promo,
+            .admin-profile-copy,
+            .admin-profile > i,
+            .logout-text {
+                display: initial;
+            }
+
+            .sidebar-label {
+                display: block;
+            }
+
+            .sidebar-link {
+                justify-content: flex-start;
+                padding: 0 14px;
+            }
+
+            .sidebar-link i {
+                width: 20px;
+            }
+
+            .sidebar-link.active::before {
+                left: -18px;
+            }
+
+            .admin-profile {
+                justify-content: flex-start;
+                padding: 8px 5px 13px;
+            }
+
+            .logout-link {
+                justify-content: flex-start;
+                padding: 0 13px;
+            }
+
+            .main-wrapper,
+            body.sidebar-collapsed .main-wrapper {
+                margin-left: 0;
+            }
+
+            .mobile-menu-button {
+                display: grid;
+            }
+
+            .topbar {
+                min-height: 72px;
+                gap: 10px;
+                padding: 12px 15px;
+            }
+
+            .topbar-left {
+                gap: 10px;
+            }
+
+            .page-heading h1 {
+                font-size: 16px;
+            }
+
+            .page-heading p {
+                display: none;
+            }
+
+            .topbar-right {
+                gap: 7px;
+            }
+
+            .search-box {
+                display: none;
+            }
+
+            .topbar-avatar {
+                padding: 0;
+            }
+
+            .topbar-avatar img {
+                width: 35px;
+                height: 35px;
+            }
+
+            .topbar-avatar-copy,
+            .topbar-avatar .fa-chevron-down {
+                display: none;
+            }
+
+            .icon-button {
+                width: 37px;
+                height: 37px;
+            }
+
+            .main-content {
+                padding: 19px 14px 32px;
+            }
+
+            .welcome-banner {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 17px;
+                padding: 23px 20px;
+            }
+
+            .welcome-content h2 {
+                font-size: 25px;
+            }
+
+            .welcome-content p {
+                font-size: 11px;
+            }
+
+            .welcome-image-wrap {
+                justify-content: flex-start;
+            }
+
+            .welcome-image {
+                max-width: 100%;
+                height: 175px;
+            }
+
+            .floating-note {
+                right: 8px;
+                bottom: 8px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 11px;
+            }
+
+            .stat-card {
+                padding: 14px;
+            }
+
+            .stat-icon {
+                width: 36px;
+                height: 36px;
+                border-radius: 11px;
+                font-size: 14px;
+            }
+
+            .stat-top {
+                margin-bottom: 14px;
+            }
+
+            .stat-value {
+                font-size: 24px;
+            }
+
+            .stat-change {
+                font-size: 8px;
+            }
+
+            .section-block {
+                margin-top: 25px;
+            }
+
+            .section-heading {
+                align-items: flex-start;
+            }
+
+            .section-heading h2 {
+                font-size: 15px;
+            }
+
+            .section-heading p {
+                max-width: 250px;
+                font-size: 10px;
+                line-height: 1.6;
+            }
+
+            .chart-panel {
+                padding: 16px;
+            }
+
+            .chart-canvas {
+                height: 225px;
+            }
+
+            .chart-canvas.doughnut {
+                height: 220px;
+            }
+
+            .table-panel-header {
+                align-items: flex-start;
+                padding: 17px;
+            }
+
+            .course-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .course-image-wrap {
+                height: 185px;
+            }
+
+            .report-summary {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .page-intro {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 14px;
+            }
+
+            .page-intro h2 {
+                font-size: 21px;
+            }
+
+            .page-intro p {
+                font-size: 11px;
+            }
+
+            .page-intro .primary-btn {
+                align-self: flex-start;
+            }
+
+            .filter-toolbar {
+                padding: 12px;
+            }
+
+            .filter-search {
+                min-width: 100%;
+            }
+
+            .filter-select {
+                min-width: 0;
+                flex: 1;
+            }
+
+            .test-card {
+                padding: 16px;
+            }
+
+            .panel {
+                padding: 16px;
+            }
+
+            .dropdown-panel {
+                position: fixed;
+                top: 75px;
+                right: 12px;
+                width: min(300px, calc(100vw - 24px));
+            }
+        }
+
+        @media (max-width: 380px) {
+            .main-content {
+                padding-right: 10px;
+                padding-left: 10px;
+            }
+
+            .topbar {
+                padding-right: 10px;
+                padding-left: 10px;
+            }
+
+            .stats-grid {
+                gap: 8px;
+            }
+
+            .stat-card {
+                padding: 11px;
+            }
+
+            .stat-value {
+                font-size: 21px;
+            }
+
+            .stat-label {
+                font-size: 10px;
+            }
+
+            .welcome-content h2 {
+                font-size: 22px;
+            }
+
+            .welcome-actions .primary-btn,
+            .welcome-actions .secondary-btn {
+                flex: 1;
+                padding: 0 10px;
+                font-size: 10px;
+            }
+        }
+
+        /* Reduce motion when requested */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MOBILE OVERLAY -->
+    <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <a href="index.html" class="brand" aria-label="SKILLPREP Dashboard">
+            <div class="brand-logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <div class="brand-copy">
+                <div class="brand-name">SKILL<span>PREP</span></div>
+                <div class="brand-subtitle">LEARNING PLATFORM</div>
+            </div>
+        </a>
+
+        <div class="sidebar-label">MAIN MENU</div>
+
+        <!-- EXACTLY FIVE MAIN SIDEBAR SECTIONS -->
+        <nav class="sidebar-nav" aria-label="Admin navigation">
+
+            <a href="#dashboard" class="sidebar-link active" data-view="dashboard">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span class="nav-text">Dashboard</span>
+            </a>
+
+            <a href="#students" class="sidebar-link" data-view="students">
+                <i class="fa-solid fa-users"></i>
+                <span class="nav-text">Students</span>
+                <span class="nav-count">24</span>
+            </a>
+
+            <a href="#courses" class="sidebar-link" data-view="courses">
+                <i class="fa-solid fa-book-open"></i>
+                <span class="nav-text">Courses</span>
+            </a>
+
+            <a href="#mock-tests" class="sidebar-link" data-view="mock-tests">
+                <i class="fa-solid fa-file-circle-check"></i>
+                <span class="nav-text">Mock Tests</span>
+            </a>
+
+            <a href="#reports" class="sidebar-link" data-view="reports">
+                <i class="fa-solid fa-chart-line"></i>
+                <span class="nav-text">Reports</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-spacer"></div>
+
+        <div class="sidebar-promo">
+            <div class="sidebar-promo-icon">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+
+            <h4>Learning Insights</h4>
+
+            <p>
+                Review student engagement, course progress, and learning performance.
+            </p>
+
+            <a href="404.html">
+                View Insights
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="sidebar-bottom">
+
+            <div class="admin-profile">
+
+                <div class="admin-avatar">
+                    <!-- REPLACE ADMIN IMAGE HERE -->
+                    <img
+                        src="assets/images/admin-profile.webp"
+                        alt="Admin profile"
+                        loading="lazy"
+                    >
+                </div>
+
+                <div class="admin-profile-copy">
+                    <strong>Ajith Kumar</strong>
+                    <span>Administrator</span>
+                </div>
+
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+
+            </div>
+
+            <a href="404.html" class="logout-link">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span class="logout-text">Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- =====================================================
+         MAIN WRAPPER
+    ====================================================== -->
+
+    <div class="main-wrapper">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    type="button"
+                    class="icon-button"
+                    id="sidebarCollapse"
+                    aria-label="Collapse sidebar"
+                    title="Collapse sidebar"
+                >
+                    <i class="fa-solid fa-angles-left"></i>
+                </button>
+
+                <button
+                    type="button"
+                    class="icon-button mobile-menu-button"
+                    id="mobileMenuButton"
+                    aria-label="Open navigation"
+                    aria-expanded="false"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div class="page-heading">
+                    <h1 id="topbarTitle">Admin Overview</h1>
+                    <p id="topbarSubtitle">Manage your learning platform from one place.</p>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <!-- GLOBAL SEARCH -->
+                <label class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input
+                        type="search"
+                        id="globalSearch"
+                        placeholder="Search students, courses..."
+                        aria-label="Search dashboard"
+                    >
+                    <span class="muted" style="font-size:10px;">/</span>
+                </label>
+
+                <!-- NOTIFICATIONS -->
+                <div class="notification-wrap">
+
+                    <button
+                        type="button"
+                        class="icon-button"
+                        id="notificationButton"
+                        aria-label="Notifications"
+                        aria-expanded="false"
+                    >
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="notification-dot"></span>
+                    </button>
+
+                    <div class="dropdown-panel" id="notificationDropdown">
+
+                        <div class="dropdown-title">
+                            Notifications
+                        </div>
+
+                        <a href="404.html" class="dropdown-item-link">
+                            <i class="fa-solid fa-user-plus"></i>
+                            <span>
+                                <strong>New student enrollment</strong><br>
+                                A student joined Web Development.
+                            </span>
+                        </a>
+
+                        <a href="404.html" class="dropdown-item-link">
+                            <i class="fa-solid fa-file-circle-check"></i>
+                            <span>
+                                <strong>Mock test activity</strong><br>
+                                New assessment activity is available.
+                            </span>
+                        </a>
+
+                        <a href="404.html" class="dropdown-item-link">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <span>
+                                <strong>Weekly report</strong><br>
+                                Review the latest learning statistics.
+                            </span>
+                        </a>
+
+                        <a href="404.html" class="text-link" style="margin-top:12px;">
+                            View all notifications
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <!-- ADMIN PROFILE DROPDOWN -->
+                <div class="profile-wrap">
+
+                    <button
+                        type="button"
+                        class="topbar-avatar"
+                        id="profileButton"
+                        aria-expanded="false"
+                        aria-label="Open profile menu"
+                    >
+                        <!-- REPLACE TOPBAR PROFILE IMAGE HERE -->
+                        <img
+                            src="assets/images/admin-profile.webp"
+                            alt="Ajith Kumar"
+                            loading="lazy"
+                        >
+
+                        <span class="topbar-avatar-copy">
+                            <strong>Ajith Kumar</strong>
+                            <small>Super Admin</small>
+                        </span>
+
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+
+                    <div class="dropdown-panel" id="profileDropdown">
+
+                        <div class="dropdown-title">
+                            Account Menu
+                        </div>
+
+                        <a href="404.html" class="dropdown-item-link">
+                            <i class="fa-regular fa-user"></i>
+                            My Profile
+                        </a>
+
+                        <a href="404.html" class="dropdown-item-link">
+                            <i class="fa-solid fa-gear"></i>
+                            Account Settings
+                        </a>
+
+                        <a href="404.html" class="dropdown-item-link">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            Logout
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- =================================================
+                 VIEW 1: DASHBOARD
+            ================================================== -->
+
+            <section class="page-view active" id="dashboardView">
+
+                <!-- WELCOME BANNER -->
+                <section class="welcome-banner">
+
+                    <div class="welcome-content">
+
+                        <div class="welcome-eyebrow">
+                            <i class="fa-solid fa-sparkles"></i>
+                            YOUR LEARNING PLATFORM
+                        </div>
+
+                        <h2>
+                            Welcome back, <span>Ajith!</span>
+                        </h2>
+
+                        <p>
+                            Here's what's happening across SKILLPREP.
+                            Track student growth, manage courses, and
+                            make learning more effective every day.
+                        </p>
+
+                        <div class="welcome-actions">
+
+                            <a href="404.html" class="primary-btn">
+                                <i class="fa-solid fa-plus"></i>
+                                Add New Course
+                            </a>
+
+                            <a href="404.html" class="secondary-btn">
+                                <i class="fa-solid fa-file-arrow-down"></i>
+                                Download Report
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="welcome-image-wrap">
+
+                        <!-- REPLACE DASHBOARD HERO IMAGE HERE -->
+                        <img
+                            class="welcome-image"
+                            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=85"
+                            alt="Students learning digital skills"
+                            loading="lazy"
+                        >
+
+                        <div class="floating-note">
+
+                            <div class="floating-note-icon">
+                                <i class="fa-solid fa-arrow-trend-up"></i>
+                            </div>
+
+                            <div>
+                                <strong>Learning is growing!</strong>
+                                <small>Engagement is up this week</small>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- STATISTICS -->
+                <section class="section-block">
+
+                    <div class="section-heading">
+                        <div>
+                            <h2>Platform Overview</h2>
+                            <p>A quick look at your learning platform's performance.</p>
+                        </div>
+
+                        <span class="soft-badge green">
+                            <i class="fa-solid fa-circle"></i>
+                            Demo Data
+                        </span>
+                    </div>
+
+                    <div class="stats-grid">
+
+                        <article class="stat-card" data-search="students total users enrollment">
+
+                            <div class="stat-top">
+                                <div class="stat-icon blue">
+                                    <i class="fa-solid fa-users"></i>
+                                </div>
+
+                                <span class="stat-change">
+                                    <i class="fa-solid fa-arrow-up"></i>
+                                    12.8%
+                                </span>
+                            </div>
+
+                            <div class="stat-label">Total Students</div>
+                            <div class="stat-value">2,480</div>
+
+                            <div class="stat-foot">
+                                <span>Compared with last month</span>
+                                <span>+284</span>
+                            </div>
+
+                            <div class="mini-progress">
+                                <span style="width:78%"></span>
+                            </div>
+
+                        </article>
+
+                        <article class="stat-card" data-search="courses learning content">
+
+                            <div class="stat-top">
+                                <div class="stat-icon purple">
+                                    <i class="fa-solid fa-book-open"></i>
+                                </div>
+
+                                <span class="stat-change">
+                                    <i class="fa-solid fa-arrow-up"></i>
+                                    8.4%
+                                </span>
+                            </div>
+
+                            <div class="stat-label">Active Courses</div>
+                            <div class="stat-value">36</div>
+
+                            <div class="stat-foot">
+                                <span>Across all learning paths</span>
+                                <span>8 new</span>
+                            </div>
+
+                            <div class="mini-progress">
+                                <span style="width:65%;background:linear-gradient(90deg,#7c3aed,#a78bfa)"></span>
+                            </div>
+
+                        </article>
+
+                        <article class="stat-card" data-search="mock tests assessments exams">
+
+                            <div class="stat-top">
+                                <div class="stat-icon orange">
+                                    <i class="fa-solid fa-file-circle-check"></i>
+                                </div>
+
+                                <span class="stat-change">
+                                    <i class="fa-solid fa-arrow-up"></i>
+                                    18.2%
+                                </span>
+                            </div>
+
+                            <div class="stat-label">Mock Tests</div>
+                            <div class="stat-value">124</div>
+
+                            <div class="stat-foot">
+                                <span>Assessments available</span>
+                                <span>+16</span>
+                            </div>
+
+                            <div class="mini-progress">
+                                <span style="width:72%;background:linear-gradient(90deg,#f59e0b,#fbbf24)"></span>
+                            </div>
+
+                        </article>
+
+                        <article class="stat-card" data-search="completion learning success">
+
+                            <div class="stat-top">
+                                <div class="stat-icon green">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                </div>
+
+                                <span class="stat-change">
+                                    <i class="fa-solid fa-arrow-up"></i>
+                                    5.6%
+                                </span>
+                            </div>
+
+                            <div class="stat-label">Completion Rate</div>
+                            <div class="stat-value">78.4%</div>
+
+                            <div class="stat-foot">
+                                <span>Average course completion</span>
+                                <span>Good</span>
+                            </div>
+
+                            <div class="mini-progress">
+                                <span style="width:78.4%;background:linear-gradient(90deg,#16a34a,#4ade80)"></span>
+                            </div>
+
+                        </article>
+
+                    </div>
+
+                </section>
+
+                <!-- ANALYTICS CHARTS -->
+                <section class="section-block">
+
+                    <div class="section-heading">
+                        <div>
+                            <h2>Learning Analytics</h2>
+                            <p>Understand activity and course distribution at a glance.</p>
+                        </div>
+
+                        <a href="404.html" class="text-link">
+                            Full Analytics
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="analytics-grid">
+
+                        <!-- ACTIVITY CHART -->
+                        <div class="chart-panel">
+
+                            <div class="chart-header">
+
+                                <div>
+                                    <h3>Student Activity</h3>
+                                    <p>Weekly student engagement overview</p>
+                                </div>
+
+                                <select class="chart-select" id="activityPeriod" aria-label="Activity period">
+                                    <option value="week">This Week</option>
+                                    <option value="month">This Month</option>
+                                </select>
+
+                            </div>
+
+                            <div class="chart-canvas">
+                                <canvas id="activityChart" aria-label="Student activity chart"></canvas>
+                            </div>
+
+                            <div class="chart-legend">
+                                <div class="legend-item">
+                                    <span class="legend-dot" style="background:#2563eb"></span>
+                                    Active Students
+                                </div>
+
+                                <div class="legend-item">
+                                    <span class="legend-dot" style="background:#a5b4fc"></span>
+                                    Completed Lessons
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- COURSE DISTRIBUTION -->
+                        <div class="chart-panel">
+
+                            <div class="chart-header">
+                                <div>
+                                    <h3>Course Distribution</h3>
+                                    <p>Enrollment by learning category</p>
+                                </div>
+
+                                <span class="soft-badge">2,480 Students</span>
+                            </div>
+
+                            <div class="chart-canvas doughnut">
+                                <canvas id="distributionChart" aria-label="Course distribution chart"></canvas>
+                            </div>
+
+                            <div class="course-distribution">
+
+                                <div class="distribution-row">
+                                    <strong>
+                                        <i class="fa-solid fa-circle text-blue" style="font-size:8px;"></i>
+                                        Competitive Exams
+                                    </strong>
+                                    <span>42%</span>
+
+                                    <div class="mini-progress">
+                                        <span style="width:42%;background:#2563eb"></span>
+                                    </div>
+                                </div>
+
+                                <div class="distribution-row">
+                                    <strong>
+                                        <i class="fa-solid fa-circle" style="font-size:8px;color:#8b5cf6"></i>
+                                        UI/UX Design
+                                    </strong>
+                                    <span>28%</span>
+
+                                    <div class="mini-progress">
+                                        <span style="width:28%;background:#8b5cf6"></span>
+                                    </div>
+                                </div>
+
+                                <div class="distribution-row">
+                                    <strong>
+                                        <i class="fa-solid fa-circle" style="font-size:8px;color:#f59e0b"></i>
+                                        Web Development
+                                    </strong>
+                                    <span>30%</span>
+
+                                    <div class="mini-progress">
+                                        <span style="width:30%;background:#f59e0b"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- RECENT STUDENTS -->
+                <section class="section-block">
+
+                    <div class="section-heading">
+                        <div>
+                            <h2>Recent Student Enrollments</h2>
+                            <p>Recently added learners across the platform.</p>
+                        </div>
+
+                        <button type="button" class="text-link" data-goto="students">
+                            View All Students
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <div class="table-panel">
+
+                        <div class="table-panel-header">
+
+                            <div>
+                                <h3 class="panel-title">Latest Enrollments</h3>
+                                <p class="panel-subtitle">A sample of recent student activity.</p>
+                            </div>
+
+                            <a href="404.html" class="secondary-btn">
+                                <i class="fa-solid fa-download"></i>
+                                Export
+                            </a>
+
+                        </div>
+
+                        <div class="table-responsive">
+
+                            <table class="admin-table searchable-table" id="recentStudentsTable">
+
+                                <thead>
+                                    <tr>
+                                        <th>STUDENT</th>
+                                        <th>COURSE</th>
+                                        <th>ENROLLED DATE</th>
+                                        <th>STATUS</th>
+                                        <th>ACTION</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    <tr data-search="priya sharma ui ux design student">
+                                        <td>
+                                            <div class="student-cell">
+                                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Priya Sharma" loading="lazy">
+                                                <div>
+                                                    <strong>Priya Sharma</strong>
+                                                    <small>priya@example.com</small>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td>UI/UX Design</td>
+                                        <td>15 Oct 2026</td>
+                                        <td><span class="status-pill">Active</span></td>
+                                        <td>
+                                            <a href="404.html" class="table-action" aria-label="View Priya">
+                                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr data-search="rahul kumar web development student">
+                                        <td>
+                                            <div class="student-cell">
+                                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Rahul Kumar" loading="lazy">
+                                                <div>
+                                                    <strong>Rahul Kumar</strong>
+                                                    <small>rahul@example.com</small>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td>Web Development</td>
+                                        <td>14 Oct 2026</td>
+                                        <td><span class="status-pill">Active</span></td>
+                                        <td>
+                                            <a href="404.html" class="table-action" aria-label="View Rahul">
+                                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr data-search="meena devi tnpsc exam preparation">
+                                        <td>
+                                            <div class="student-cell">
+                                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" alt="Meena Devi" loading="lazy">
+                                                <div>
+                                                    <strong>Meena Devi</strong>
+                                                    <small>meena@example.com</small>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td>TNPSC Preparation</td>
+                                        <td>13 Oct 2026</td>
+                                        <td><span class="status-pill">Active</span></td>
+                                        <td>
+                                            <a href="404.html" class="table-action" aria-label="View Meena">
+                                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr data-search="arun prakash javascript development">
+                                        <td>
+                                            <div class="student-cell">
+                                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80" alt="Arun Prakash" loading="lazy">
+                                                <div>
+                                                    <strong>Arun Prakash</strong>
+                                                    <small>arun@example.com</small>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td>JavaScript</td>
+                                        <td>12 Oct 2026</td>
+                                        <td><span class="status-pill pending">Pending</span></td>
+                                        <td>
+                                            <a href="404.html" class="table-action" aria-label="View Arun">
+                                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr data-search="sneha r UI UX figma design">
+                                        <td>
+                                            <div class="student-cell">
+                                                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80" alt="Sneha R" loading="lazy">
+                                                <div>
+                                                    <strong>Sneha R</strong>
+                                                    <small>sneha@example.com</small>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td>Figma for Beginners</td>
+                                        <td>11 Oct 2026</td>
+                                        <td><span class="status-pill">Active</span></td>
+                                        <td>
+                                            <a href="404.html" class="table-action" aria-label="View Sneha">
+                                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- POPULAR COURSES -->
+                <section class="section-block">
+
+                    <div class="section-heading">
+
+                        <div>
+                            <h2>Popular Courses</h2>
+                            <p>Explore the most enrolled learning paths.</p>
+                        </div>
+
+                        <button type="button" class="text-link" data-goto="courses">
+                            Manage Courses
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+
+                    <div class="course-grid">
+
+                        <article class="course-card" data-search="ui ux design fundamentals creative design figma">
+
+                            <div class="course-image-wrap">
+                                <img
+                                    src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=800&q=85"
+                                    alt="UI UX design workspace"
+                                    loading="lazy"
+                                >
+                                <span class="course-image-badge">DESIGN</span>
+                            </div>
+
+                            <div class="course-card-body">
+
+                                <span class="soft-badge purple">Creative Skills</span>
+
+                                <h3>UI/UX Design Fundamentals</h3>
+
+                                <p>Learn user-centered design, wireframes, visual hierarchy, and practical interface design.</p>
+
+                                <div class="course-meta">
+                                    <span><i class="fa-solid fa-users"></i> 680 students</span>
+                                    <span><i class="fa-regular fa-clock"></i> 8 weeks</span>
+                                </div>
+
+                                <div class="course-card-footer">
+                                    <strong>4.9 <i class="fa-solid fa-star" style="color:#f59e0b;font-size:10px;"></i></strong>
+
+                                    <a href="404.html" class="primary-btn">
+                                        Manage Course
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </article>
+
+                        <article class="course-card" data-search="frontend web development html css javascript">
+
+                            <div class="course-image-wrap">
+                                <img
+                                    src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=85"
+                                    alt="Web development coding workspace"
+                                    loading="lazy"
+                                >
+                                <span class="course-image-badge">DEVELOPMENT</span>
+                            </div>
+
+                            <div class="course-card-body">
+
+                                <span class="soft-badge">Technical Skills</span>
+
+                                <h3>Frontend Web Development</h3>
+
+                                <p>Build responsive websites using HTML, CSS, JavaScript, and modern frontend techniques.</p>
+
+                                <div class="course-meta">
+                                    <span><i class="fa-solid fa-users"></i> 920 students</span>
+                                    <span><i class="fa-regular fa-clock"></i> 12 weeks</span>
+                                </div>
+
+                                <div class="course-card-footer">
+                                    <strong>4.8 <i class="fa-solid fa-star" style="color:#f59e0b;font-size:10px;"></i></strong>
+
+                                    <a href="404.html" class="primary-btn">
+                                        Manage Course
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </article>
+
+                        <article class="course-card" data-search="tnpsc competitive exams general studies">
+
+                            <div class="course-image-wrap">
+                                <img
+                                    src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=85"
+                                    alt="Competitive exam study notes"
+                                    loading="lazy"
+                                >
+                                <span class="course-image-badge">EXAM PREP</span>
+                            </div>
+
+                            <div class="course-card-body">
+
+                                <span class="soft-badge orange">Exam Preparation</span>
+
+                                <h3>TNPSC Exam Preparation</h3>
+
+                                <p>Organize general studies, aptitude practice, revision, and mock assessment resources.</p>
+
+                                <div class="course-meta">
+                                    <span><i class="fa-solid fa-users"></i> 1,140 students</span>
+                                    <span><i class="fa-regular fa-clock"></i> 16 weeks</span>
+                                </div>
+
+                                <div class="course-card-footer">
+                                    <strong>4.9 <i class="fa-solid fa-star" style="color:#f59e0b;font-size:10px;"></i></strong>
+
+                                    <a href="404.html" class="primary-btn">
+                                        Manage Course
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+            <!-- =================================================
+                 VIEW 2: STUDENTS
+            ================================================== -->
+
+            <section class="page-view" id="studentsView">
+
+                <div class="page-intro">
+                    <div>
+                        <h2>Student Management</h2>
+                        <p>Review learner records, enrollment status, and learning categories.</p>
+                    </div>
+
+                    <a href="404.html" class="primary-btn">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Add Student
+                    </a>
+                </div>
+
+                <div class="stats-grid">
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <div class="stat-icon blue"><i class="fa-solid fa-users"></i></div>
+                            <span class="stat-change">+12.8%</span>
+                        </div>
+                        <div class="stat-label">Total Students</div>
+                        <div class="stat-value">2,480</div>
+                        <div class="stat-foot"><span>All registered learners</span></div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <div class="stat-icon green"><i class="fa-solid fa-user-check"></i></div>
+                            <span class="stat-change">+8.2%</span>
+                        </div>
+                        <div class="stat-label">Active Students</div>
+                        <div class="stat-value">2,104</div>
+                        <div class="stat-foot"><span>Currently learning</span></div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <div class="stat-icon orange"><i class="fa-solid fa-user-clock"></i></div>
+                        </div>
+                        <div class="stat-label">Pending Review</div>
+                        <div class="stat-value">126</div>
+                        <div class="stat-foot"><span>Sample pending records</span></div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <div class="stat-icon purple"><i class="fa-solid fa-user-graduate"></i></div>
+                        </div>
+                        <div class="stat-label">Completed Learning</div>
+                        <div class="stat-value">684</div>
+                        <div class="stat-foot"><span>Sample learner milestone</span></div>
+                    </article>
+
+                </div>
+
+                <div class="section-block">
+
+                    <div class="filter-toolbar">
+
+                        <label class="filter-search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="search" id="studentSearch" placeholder="Search by name, email, course...">
+                        </label>
+
+                        <select class="filter-select" id="studentStatusFilter" aria-label="Filter students by status">
+                            <option value="all">All Statuses</option>
+                            <option value="active">Active</option>
+                            <option value="pending">Pending</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+
+                        <select class="filter-select" id="studentCourseFilter" aria-label="Filter by course">
+                            <option value="all">All Courses</option>
+                            <option value="design">UI/UX Design</option>
+                            <option value="development">Web Development</option>
+                            <option value="exam">Competitive Exams</option>
+                        </select>
+
+                        <a href="404.html" class="secondary-btn">
+                            <i class="fa-solid fa-download"></i>
+                            Export
+                        </a>
+
+                    </div>
+
+                    <div class="table-panel">
+
+                        <div class="table-panel-header">
+                            <div>
+                                <h3 class="panel-title">All Students</h3>
+                                <p class="panel-subtitle">
+                                    <span id="studentCount">8</span> sample student records
+                                </p>
+                            </div>
+
+                            <span class="soft-badge">Student Directory</span>
+                        </div>
+
+                        <div class="table-responsive">
+
+                            <table class="admin-table" id="studentsTable">
+
+                                <thead>
+                                    <tr>
+                                        <th>STUDENT</th>
+                                        <th>ENROLLED COURSE</th>
+                                        <th>JOINED DATE</th>
+                                        <th>PROGRESS</th>
+                                        <th>STATUS</th>
+                                        <th>ACTION</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    <tr data-status="active" data-category="design" data-search="priya sharma ui ux design priya@example.com">
+                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Priya Sharma" loading="lazy"><div><strong>Priya Sharma</strong><small>priya@example.com</small></div></div></td>
+                                        <td>UI/UX Design</td>
+                                        <td>15 Oct 2026</td>
+                                        <td><strong>72%</strong></td>
+                                        <td><span class="status-pill">Active</span></td>
+                                        <td><a href="404.html" class="table-action" aria-label="View student"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                                    </tr>
+
+                                    <tr data-status="active" data-category="development" data-search="rahul kumar frontend web development rahul@example.com">
+                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Rahul Kumar" loading="lazy"><div><strong>Rahul Kumar</strong><small>rahul@example.com</small></div></div></td>
+                                        <td>Web Development</td>
+                                        <td>14 Oct 2026</td>
+                                        <td><strong>64%</strong></td>
+                                        <td><span class="status-pill">Active</span></td>
+                                        <td><a href="404.html" class="table-action" aria-label="View student"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                                    </tr>
+
+                                    <tr data-status="active" data-category="exam" data-search="meena devi tnpsc competitive exams meena@example.com">
+                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" alt="Meena Devi" loading="lazy"><div><strong>Meena Devi</strong><small>meena@example.com</small></div></div></td>
+                                        <td>TNPSC Preparation</td>
+                                        <td>13 Oct 2026</td>
+                                        <td><strong>86%</strong></td>
+                                        <td><span class="status-pill">Active</span></td>
+                                        <td><a href="404.html" class="table-action" aria-label="View student"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                                    </tr>
+
+                                    <tr data-status="pending" data-category="development" data-search="arun prakash javascript arun@example.com">
+                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80" alt="Arun Prakash" loading="lazy"><div><strong>Arun Prakash</strong><small>arun@example.com</small></div></div></td>
+                                        <td>JavaScript</td>
+                                        <td>12 Oct 2026</td>
+                                        <td><strong>21%</strong></td>
+                                        <td><span class="status-pill pending">Pending</span></td>
+                                        <td><a href="404.html" class="table-action" aria-label="View student"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                                    </tr>
+
+                                    <tr data-status="active" data-category="design" data-search="sneha r figma design sneha@example.com">
+                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80" alt="Sneha R" loading="lazy"><div><strong>Sneha R</strong><small>sneha@example.com</small></div></div></td>
+                                        <td>Figma for Beginners</td>
+                                        <td>11 Oct 2026</td>
+                                        <td><strong>48%</strong></td>
+                                        <td><span class="status-pill">Active</span></td>
+                                        <td><a href="404.html" class="table-action" aria-label="View student"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                                    </tr>
+
+                                    <tr data-status="inactive" data-category="exam" data-search="vignesh raj ssc competitive exams vignesh@example.com">
+                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Vignesh Raj" loading="lazy"><div><strong>Vignesh Raj</strong><small>vignesh@example.com</small></div></div></td>
+                                        <td>SSC Preparation</td>
+                                        <td>10 Oct 2026</td>
+                                        <td><strong>18%</strong></td>
+                                        <td><span class="status-pill inactive">Inactive</span></td>
+                                        <td><a href="404.html" class="table-action" aria-label="View student"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                                    </tr>
+
+                                    <tr data-status="active" data-category="development" data-search="karthik s react frontend karthik@example.com">
+                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&w=120&q=80" alt="Karthik S" loading="lazy"><div><strong>Karthik S</strong><small>karthik@example.com</small></div></div></td>
+                                        <td>React.js</td>
+                                        <td>09 Oct 2026</td>
+                                        <td><strong>57%</strong></td>
+                                        <td><span class="status-pill">Active</span></td>
+                                        <td><a href="404.html" class="table-action" aria-label="View student"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                                    </tr>
+
+                                    <tr data-status="active" data-category="exam" data-search="divya lakshmi general studies divya@example.com">
+                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=120&q=80" alt="Divya Lakshmi" loading="lazy"><div><strong>Divya Lakshmi</strong><small>divya@example.com</small></div></div></td>
+                                        <td>General Studies</td>
+                                        <td>08 Oct 2026</td>
+                                        <td><strong>91%</strong></td>
+                                        <td><span class="status-pill">Active</span></td>
+                                        <td><a href="404.html" class="table-action" aria-label="View student"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                        <div class="empty-state" id="studentEmpty">
+                            <i class="fa-solid fa-users-slash"></i>
+                            <h3>No students found</h3>
+                            <p>Try changing your search or filters.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =================================================
+                 VIEW 3: COURSES
+            ================================================== -->
+
+            <section class="page-view" id="coursesView">
+
+                <div class="page-intro">
+
+                    <div>
+                        <h2>Course Management</h2>
+                        <p>Manage courses across competitive exams, UI/UX design, and web development.</p>
+                    </div>
+
+                    <a href="404.html" class="primary-btn">
+                        <i class="fa-solid fa-plus"></i>
+                        Create Course
+                    </a>
+
+                </div>
+
+                <div class="stats-grid">
+
+                    <article class="stat-card">
+                        <div class="stat-top"><div class="stat-icon blue"><i class="fa-solid fa-book-open"></i></div></div>
+                        <div class="stat-label">Total Courses</div>
+                        <div class="stat-value">36</div>
+                        <div class="stat-foot"><span>Across all categories</span></div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top"><div class="stat-icon green"><i class="fa-solid fa-circle-check"></i></div></div>
+                        <div class="stat-label">Published Courses</div>
+                        <div class="stat-value">28</div>
+                        <div class="stat-foot"><span>Available to learners</span></div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top"><div class="stat-icon orange"><i class="fa-solid fa-file-pen"></i></div></div>
+                        <div class="stat-label">Draft Courses</div>
+                        <div class="stat-value">8</div>
+                        <div class="stat-foot"><span>Sample draft records</span></div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top"><div class="stat-icon purple"><i class="fa-solid fa-user-graduate"></i></div></div>
+                        <div class="stat-label">Total Enrollments</div>
+                        <div class="stat-value">6.8K</div>
+                        <div class="stat-foot"><span>Across learning paths</span></div>
+                    </article>
+
+                </div>
+
+                <div class="section-block">
+
+                    <div class="filter-toolbar">
+
+                        <label class="filter-search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="search" id="courseSearch" placeholder="Search course title or category...">
+                        </label>
+
+                        <select class="filter-select" id="courseCategoryFilter" aria-label="Filter course category">
+                            <option value="all">All Categories</option>
+                            <option value="exam">Competitive Exams</option>
+                            <option value="design">UI/UX Design</option>
+                            <option value="development">Web Development</option>
+                        </select>
+
+                        <select class="filter-select" id="courseStatusFilter" aria-label="Filter course status">
+                            <option value="all">All Statuses</option>
+                            <option value="published">Published</option>
+                            <option value="draft">Draft</option>
+                        </select>
+
+                    </div>
+
+                    <div class="section-heading">
+                        <div>
+                            <h2>All Courses</h2>
+                            <p>Sample course catalog for the SKILLPREP learning platform.</p>
+                        </div>
+
+                        <span class="soft-badge" id="courseCount">9 Courses</span>
+                    </div>
+
+                    <div class="course-grid" id="managementCourseGrid">
+
+                        <article class="course-card searchable-course" data-category="design" data-status="published" data-search="ui ux design fundamentals figma creative">
+                            <div class="course-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=800&q=85" alt="UI UX design workspace" loading="lazy">
+                                <span class="course-image-badge">PUBLISHED</span>
+                            </div>
+                            <div class="course-card-body">
+                                <span class="soft-badge purple">UI/UX Design</span>
+                                <h3>UI/UX Design Fundamentals</h3>
+                                <p>Build a foundation in user research, wireframes, visual design, and usability.</p>
+                                <div class="course-meta"><span><i class="fa-solid fa-users"></i> 680 learners</span><span><i class="fa-regular fa-clock"></i> 8 weeks</span></div>
+                                <div class="course-card-footer"><strong>4.9 <i class="fa-solid fa-star" style="color:#f59e0b;font-size:10px;"></i></strong><a href="404.html" class="primary-btn">Manage <i class="fa-solid fa-arrow-right"></i></a></div>
+                            </div>
+                        </article>
+
+                        <article class="course-card searchable-course" data-category="design" data-status="published" data-search="figma for beginners prototyping design">
+                            <div class="course-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?auto=format&fit=crop&w=800&q=85" alt="Creative design workspace" loading="lazy">
+                                <span class="course-image-badge">PUBLISHED</span>
+                            </div>
+                            <div class="course-card-body">
+                                <span class="soft-badge purple">UI/UX Design</span>
+                                <h3>Figma for Beginners</h3>
+                                <p>Explore design tools, components, auto layout, and clickable prototypes.</p>
+                                <div class="course-meta"><span><i class="fa-solid fa-users"></i> 420 learners</span><span><i class="fa-regular fa-clock"></i> 6 weeks</span></div>
+                                <div class="course-card-footer"><strong>4.8 <i class="fa-solid fa-star" style="color:#f59e0b;font-size:10px;"></i></strong><a href="404.html" class="primary-btn">Manage <i class="fa-solid fa-arrow-right"></i></a></div>
+                            </div>
+                        </article>
+
+                        <article class="course-card searchable-course" data-category="development" data-status="published" data-search="frontend web development html css javascript">
+                            <div class="course-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=85" alt="Frontend development workspace" loading="lazy">
+                                <span class="course-image-badge">PUBLISHED</span>
+                            </div>
+                            <div class="course-card-body">
+                                <span class="soft-badge">Web Development</span>
+                                <h3>Frontend Web Development</h3>
+                                <p>Learn HTML, CSS, JavaScript, responsive layouts, and real-world web projects.</p>
+                                <div class="course-meta"><span><i class="fa-solid fa-users"></i> 920 learners</span><span><i class="fa-regular fa-clock"></i> 12 weeks</span></div>
+                                <div class="course-card-footer"><strong>4.8 <i class="fa-solid fa-star" style="color:#f59e0b;font-size:10px;"></i></strong><a href="404.html" class="primary-btn">Manage <i class="fa-solid fa-arrow-right"></i></a></div>
+                            </div>
+                        </article>
+
+                        <article class="course-card searchable-course" data-category="development" data-status="published" data-search="javascript fundamentals programming">
+                            <div class="course-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=85" alt="JavaScript coding screen" loading="lazy">
+                                <span class="course-image-badge">PUBLISHED</span>
+                            </div>
+                            <div class="course-card-body">
+                                <span class="soft-badge">Web Development</span>
+                                <h3>JavaScript Fundamentals</h3>
+                                <p>Understand variables, functions, arrays, DOM manipulation, and browser events.</p>
+                                <div class="course-meta"><span><i class="fa-solid fa-users"></i> 510 learners</span><span><i class="fa-regular fa-clock"></i> 7 weeks</span></div>
+                                <div class="course-card-footer"><strong>4.7 <i class="fa-solid fa-star" style="color:#f59e0b;font-size:10px;"></i></strong><a href="404.html" class="primary-btn">Manage <i class="fa-solid fa-arrow-right"></i></a></div>
+                            </div>
+                        </article>
+
+                        <article class="course-card searchable-course" data-category="exam" data-status="published" data-search="tnpsc group iv competitive exam general studies">
+                            <div class="course-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=85" alt="TNPSC exam preparation study notes" loading="lazy">
+                                <span class="course-image-badge">PUBLISHED</span>
+                            </div>
+                            <div class="course-card-body">
+                                <span class="soft-badge orange">Competitive Exams</span>
+                                <h3>TNPSC Group IV Preparation</h3>
+                                <p>Study general studies, aptitude, revision methods, and practice assessments.</p>
+                                <div class="course-meta"><span><i class="fa-solid fa-users"></i> 1,140 learners</span><span><i class="fa-regular fa-clock"></i> 16 weeks</span></div>
+                                <div class="course-card-footer"><strong>4.9 <i class="fa-solid fa-star" style="color:#f59e0b;font-size:10px;"></i></strong><a href="404.html" class="primary-btn">Manage <i class="fa-solid fa-arrow-right"></i></a></div>
+                            </div>
+                        </article>
+
+                        <article class="course-card searchable-course" data-category="exam" data-status="published" data-search="upsc civil services general studies">
+                            <div class="course-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=85" alt="Books and study materials" loading="lazy">
+                                <span class="course-image-badge">PUBLISHED</span>
+                            </div>
+                            <div class="course-card-body">
+                                <span class="soft-badge orange">Competitive Exams</span>
+                                <h3>UPSC Civil Services Foundation</h3>
+                                <p>Explore a structured foundation in general studies and organized revision.</p>
+                                <div class="course-meta"><span><i class="fa-solid fa-users"></i> 760 learners</span><span><i class="fa-regular fa-clock"></i> 20 weeks</span></div>
+                                <div class="course-card-footer"><strong>4.8 <i class="fa-solid fa-star" style="color:#f59e0b;font-size:10px;"></i></strong><a href="404.html" class="primary-btn">Manage <i class="fa-solid fa-arrow-right"></i></a></div>
+                            </div>
+                        </article>
+
+                        <article class="course-card searchable-course" data-category="development" data-status="draft" data-search="react js components hooks frontend">
+                            <div class="course-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=85" alt="Frontend programming code" loading="lazy">
+                                <span class="course-image-badge" style="color:#b45309;">DRAFT</span>
+                            </div>
+                            <div class="course-card-body">
+                                <span class="soft-badge">Web Development</span>
+                                <h3>React.js Fundamentals</h3>
+                                <p>Learn reusable components, props, state, hooks, and modern UI patterns.</p>
+                                <div class="course-meta"><span><i class="fa-solid fa-users"></i> 310 learners</span><span><i class="fa-regular fa-clock"></i> 8 weeks</span></div>
+                                <div class="course-card-footer"><strong>4.7 <i class="fa-solid fa-star" style="color:#f59e0b;font-size:10px;"></i></strong><a href="404.html" class="primary-btn">Manage <i class="fa-solid fa-arrow-right"></i></a></div>
+                            </div>
+                        </article>
+
+                        <article class="course-card searchable-course" data-category="design" data-status="draft" data-search="design systems responsive interface">
+                            <div class="course-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=85" alt="Digital design portfolio" loading="lazy">
+                                <span class="course-image-badge" style="color:#b45309;">DRAFT</span>
+                            </div>
+                            <div class="course-card-body">
+                                <span class="soft-badge purple">UI/UX Design</span>
+                                <h3>Design Systems & Responsive UI</h3>
+                                <p>Build reusable design components, typography systems, and responsive patterns.</p>
+                                <div class="course-meta"><span><i class="fa-solid fa-users"></i> 185 learners</span><span><i class="fa-regular fa-clock"></i> 5 weeks</span></div>
+                                <div class="course-card-footer"><strong>4.6 <i class="fa-solid fa-star" style="color:#f59e0b;font-size:10px;"></i></strong><a href="404.html" class="primary-btn">Manage <i class="fa-solid fa-arrow-right"></i></a></div>
+                            </div>
+                        </article>
+
+                        <article class="course-card searchable-course" data-category="exam" data-status="draft" data-search="quantitative aptitude reasoning exam">
+                            <div class="course-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=85" alt="Classroom learning" loading="lazy">
+                                <span class="course-image-badge" style="color:#b45309;">DRAFT</span>
+                            </div>
+                            <div class="course-card-body">
+                                <span class="soft-badge orange">Competitive Exams</span>
+                                <h3>Quantitative Aptitude</h3>
+                                <p>Practice arithmetic, percentages, ratios, logical problem solving, and revision.</p>
+                                <div class="course-meta"><span><i class="fa-solid fa-users"></i> 590 learners</span><span><i class="fa-regular fa-clock"></i> 9 weeks</span></div>
+                                <div class="course-card-footer"><strong>4.7 <i class="fa-solid fa-star" style="color:#f59e0b;font-size:10px;"></i></strong><a href="404.html" class="primary-btn">Manage <i class="fa-solid fa-arrow-right"></i></a></div>
+                            </div>
+                        </article>
+
+                    </div>
+
+                    <div class="empty-state" id="courseEmpty">
+                        <i class="fa-solid fa-book-open"></i>
+                        <h3>No courses found</h3>
+                        <p>Try another keyword or change your filters.</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =================================================
+                 VIEW 4: MOCK TESTS
+            ================================================== -->
+
+            <section class="page-view" id="mock-testsView">
+
+                <div class="page-intro">
+
+                    <div>
+                        <h2>Mock Test Management</h2>
+                        <p>Review assessment categories, test activity, and sample student results.</p>
+                    </div>
+
+                    <a href="404.html" class="primary-btn">
+                        <i class="fa-solid fa-plus"></i>
+                        Create Mock Test
+                    </a>
+
+                </div>
+
+                <div class="stats-grid">
+
+                    <article class="stat-card">
+                        <div class="stat-top"><div class="stat-icon blue"><i class="fa-solid fa-file-circle-check"></i></div></div>
+                        <div class="stat-label">Available Tests</div>
+                        <div class="stat-value">36</div>
+                        <div class="stat-foot"><span>Across all subjects</span></div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top"><div class="stat-icon green"><i class="fa-solid fa-check-double"></i></div></div>
+                        <div class="stat-label">Completed Attempts</div>
+                        <div class="stat-value">1,842</div>
+                        <div class="stat-foot"><span>Sample attempt count</span></div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top"><div class="stat-icon purple"><i class="fa-solid fa-bullseye"></i></div></div>
+                        <div class="stat-label">Average Score</div>
+                        <div class="stat-value">78%</div>
+                        <div class="stat-foot"><span>Sample performance</span></div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top"><div class="stat-icon orange"><i class="fa-solid fa-trophy"></i></div></div>
+                        <div class="stat-label">Best Accuracy</div>
+                        <div class="stat-value">94%</div>
+                        <div class="stat-foot"><span>Sample highest accuracy</span></div>
+                    </article>
+
+                </div>
+
+                <div class="section-block">
+
+                    <div class="filter-toolbar">
+
+                        <label class="filter-search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="search" id="testSearch" placeholder="Search mock tests...">
+                        </label>
+
+                        <select class="filter-select" id="testCategoryFilter" aria-label="Filter tests by category">
+                            <option value="all">All Categories</option>
+                            <option value="exam">Competitive Exams</option>
+                            <option value="design">UI/UX Design</option>
+                            <option value="development">Web Development</option>
+                        </select>
+
+                        <select class="filter-select" id="testDifficultyFilter" aria-label="Filter tests by difficulty">
+                            <option value="all">All Levels</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+
+                    </div>
+
+                    <div class="section-heading">
+                        <div>
+                            <h2>Available Assessments</h2>
+                            <p>Static sample tests for exam preparation and technical skills.</p>
+                        </div>
+                        <span class="soft-badge" id="testCount">10 Tests</span>
+                    </div>
+
+                    <div class="course-grid" id="testGrid">
+
+                        <article class="test-card searchable-test" data-category="exam" data-difficulty="intermediate" data-search="tnpsc general studies practice">
+                            <div class="test-card-top">
+                                <div class="test-icon"><i class="fa-solid fa-landmark"></i></div>
+                                <span class="soft-badge orange">Intermediate</span>
+                            </div>
+                            <h3>TNPSC General Studies Practice</h3>
+                            <p>Practice general studies topics using a structured sample assessment.</p>
+                            <div class="test-meta"><span><i class="fa-solid fa-list-ol"></i> 50 Questions</span><span><i class="fa-regular fa-clock"></i> 60 Min</span><span><i class="fa-solid fa-award"></i> 100 Marks</span></div>
+                            <a href="404.html" class="primary-btn">Start Test <i class="fa-solid fa-arrow-right"></i></a>
+                        </article>
+
+                        <article class="test-card searchable-test" data-category="exam" data-difficulty="intermediate" data-search="ssc quantitative aptitude percentages">
+                            <div class="test-card-top">
+                                <div class="test-icon" style="background:#f5f3ff;color:#7c3aed;"><i class="fa-solid fa-calculator"></i></div>
+                                <span class="soft-badge purple">Intermediate</span>
+                            </div>
+                            <h3>SSC Quantitative Aptitude</h3>
+                            <p>Review arithmetic, percentages, ratios, averages, and numerical reasoning.</p>
+                            <div class="test-meta"><span><i class="fa-solid fa-list-ol"></i> 30 Questions</span><span><i class="fa-regular fa-clock"></i> 45 Min</span><span><i class="fa-solid fa-award"></i> 90 Marks</span></div>
+                            <a href="404.html" class="primary-btn">Start Test <i class="fa-solid fa-arrow-right"></i></a>
+                        </article>
+
+                        <article class="test-card searchable-test" data-category="exam" data-difficulty="beginner" data-search="logical reasoning assessment">
+                            <div class="test-card-top">
+                                <div class="test-icon" style="background:#fffbeb;color:#d97706;"><i class="fa-solid fa-brain"></i></div>
+                                <span class="soft-badge green">Beginner</span>
+                            </div>
+                            <h3>Logical Reasoning Assessment</h3>
+                            <p>Try sample pattern recognition, sequences, and logical problem-solving questions.</p>
+                            <div class="test-meta"><span><i class="fa-solid fa-list-ol"></i> 25 Questions</span><span><i class="fa-regular fa-clock"></i> 30 Min</span><span><i class="fa-solid fa-award"></i> 50 Marks</span></div>
+                            <a href="404.html" class="primary-btn">Start Test <i class="fa-solid fa-arrow-right"></i></a>
+                        </article>
+
+                        <article class="test-card searchable-test" data-category="exam" data-difficulty="beginner" data-search="indian polity quiz constitution">
+                            <div class="test-card-top">
+                                <div class="test-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                                <span class="soft-badge green">Beginner</span>
+                            </div>
+                            <h3>Indian Polity Quiz</h3>
+                            <p>Test your foundational understanding of constitutional topics and governance.</p>
+                            <div class="test-meta"><span><i class="fa-solid fa-list-ol"></i> 25 Questions</span><span><i class="fa-regular fa-clock"></i> 30 Min</span><span><i class="fa-solid fa-award"></i> 50 Marks</span></div>
+                            <a href="404.html" class="primary-btn">Start Test <i class="fa-solid fa-arrow-right"></i></a>
+                        </article>
+
+                        <article class="test-card searchable-test" data-category="exam" data-difficulty="intermediate" data-search="english language grammar vocabulary">
+                            <div class="test-card-top">
+                                <div class="test-icon" style="background:#fdf2f8;color:#db2777;"><i class="fa-solid fa-language"></i></div>
+                                <span class="soft-badge purple">Intermediate</span>
+                            </div>
+                            <h3>English Language Test</h3>
+                            <p>Practice grammar, vocabulary, sentence structure, and reading comprehension.</p>
+                            <div class="test-meta"><span><i class="fa-solid fa-list-ol"></i> 40 Questions</span><span><i class="fa-regular fa-clock"></i> 40 Min</span><span><i class="fa-solid fa-award"></i> 80 Marks</span></div>
+                            <a href="404.html" class="primary-btn">Start Test <i class="fa-solid fa-arrow-right"></i></a>
+                        </article>
+
+                        <article class="test-card searchable-test" data-category="design" data-difficulty="beginner" data-search="ui ux fundamentals design principles">
+                            <div class="test-card-top">
+                                <div class="test-icon" style="background:#f5f3ff;color:#7c3aed;"><i class="fa-solid fa-pen-ruler"></i></div>
+                                <span class="soft-badge green">Beginner</span>
+                            </div>
+                            <h3>UI/UX Design Fundamentals</h3>
+                            <p>Review usability, visual hierarchy, accessibility, and user-centered design.</p>
+                            <div class="test-meta"><span><i class="fa-solid fa-list-ol"></i> 25 Questions</span><span><i class="fa-regular fa-clock"></i> 30 Min</span><span><i class="fa-solid fa-award"></i> 50 Marks</span></div>
+                            <a href="404.html" class="primary-btn">Start Test <i class="fa-solid fa-arrow-right"></i></a>
+                        </article>
+
+                        <article class="test-card searchable-test" data-category="design" data-difficulty="intermediate" data-search="figma tools assessment components prototype">
+                            <div class="test-card-top">
+                                <div class="test-icon" style="background:#fdf2f8;color:#db2777;"><i class="fa-brands fa-figma"></i></div>
+                                <span class="soft-badge purple">Intermediate</span>
+                            </div>
+                            <h3>Figma Tools Assessment</h3>
+                            <p>Check your understanding of components, auto layout, and prototyping concepts.</p>
+                            <div class="test-meta"><span><i class="fa-solid fa-list-ol"></i> 20 Questions</span><span><i class="fa-regular fa-clock"></i> 25 Min</span><span><i class="fa-solid fa-award"></i> 40 Marks</span></div>
+                            <a href="404.html" class="primary-btn">Start Test <i class="fa-solid fa-arrow-right"></i></a>
+                        </article>
+
+                        <article class="test-card searchable-test" data-category="development" data-difficulty="beginner" data-search="html css knowledge test">
+                            <div class="test-card-top">
+                                <div class="test-icon" style="background:#fff7ed;color:#ea580c;"><i class="fa-brands fa-html5"></i></div>
+                                <span class="soft-badge green">Beginner</span>
+                            </div>
+                            <h3>HTML & CSS Knowledge Test</h3>
+                            <p>Review semantic HTML, CSS selectors, layout, responsive design, and styling.</p>
+                            <div class="test-meta"><span><i class="fa-solid fa-list-ol"></i> 30 Questions</span><span><i class="fa-regular fa-clock"></i> 35 Min</span><span><i class="fa-solid fa-award"></i> 60 Marks</span></div>
+                            <a href="404.html" class="primary-btn">Start Test <i class="fa-solid fa-arrow-right"></i></a>
+                        </article>
+
+                        <article class="test-card searchable-test" data-category="development" data-difficulty="intermediate" data-search="javascript fundamentals dom events">
+                            <div class="test-card-top">
+                                <div class="test-icon" style="background:#fffbeb;color:#ca8a04;"><i class="fa-brands fa-js"></i></div>
+                                <span class="soft-badge purple">Intermediate</span>
+                            </div>
+                            <h3>JavaScript Fundamentals</h3>
+                            <p>Practice variables, functions, arrays, events, and DOM fundamentals.</p>
+                            <div class="test-meta"><span><i class="fa-solid fa-list-ol"></i> 30 Questions</span><span><i class="fa-regular fa-clock"></i> 40 Min</span><span><i class="fa-solid fa-award"></i> 60 Marks</span></div>
+                            <a href="404.html" class="primary-btn">Start Test <i class="fa-solid fa-arrow-right"></i></a>
+                        </article>
+
+                        <article class="test-card searchable-test" data-category="development" data-difficulty="advanced" data-search="react js components hooks">
+                            <div class="test-card-top">
+                                <div class="test-icon" style="background:#ecfeff;color:#0891b2;"><i class="fa-brands fa-react"></i></div>
+                                <span class="soft-badge red">Advanced</span>
+                            </div>
+                            <h3>React.js Basics</h3>
+                            <p>Review component concepts, props, state, hooks, and reusable UI patterns.</p>
+                            <div class="test-meta"><span><i class="fa-solid fa-list-ol"></i> 25 Questions</span><span><i class="fa-regular fa-clock"></i> 35 Min</span><span><i class="fa-solid fa-award"></i> 50 Marks</span></div>
+                            <a href="404.html" class="primary-btn">Start Test <i class="fa-solid fa-arrow-right"></i></a>
+                        </article>
+
+                    </div>
+
+                    <div class="empty-state" id="testEmpty">
+                        <i class="fa-solid fa-file-circle-question"></i>
+                        <h3>No mock tests found</h3>
+                        <p>Try another search term or difficulty level.</p>
+                    </div>
+
+                </div>
+
+                <!-- RECENT TEST RESULTS -->
+                <section class="section-block">
+
+                    <div class="section-heading">
+                        <div>
+                            <h2>Recent Test Results</h2>
+                            <p>Sample results for assessment reporting.</p>
+                        </div>
+
+                        <a href="404.html" class="text-link">
+                            View All Results
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="table-panel">
+
+                        <div class="table-responsive">
+
+                            <table class="admin-table">
+
+                                <thead>
+                                    <tr>
+                                        <th>STUDENT</th>
+                                        <th>TEST</th>
+                                        <th>ATTEMPT DATE</th>
+                                        <th>SCORE</th>
+                                        <th>ACCURACY</th>
+                                        <th>STATUS</th>
+                                        <th>ACTION</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    <tr>
+                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Priya Sharma" loading="lazy"><div><strong>Priya Sharma</strong><small>priya@example.com</small></div></div></td>
+                                        <td>UI/UX Fundamentals</td>
+                                        <td>15 Oct 2026</td>
+                                        <td><strong>46/50</strong></td>
+                                        <td>92%</td>
+                                        <td><span class="status-pill">Completed</span></td>
+                                        <td><a href="404.html" class="table-action" aria-label="Review result"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Rahul Kumar" loading="lazy"><div><strong>Rahul Kumar</strong><small>rahul@example.com</small></div></div></td>
+                                        <td>HTML & CSS Test</td>
+                                        <td>14 Oct 2026</td>
+                                        <td><strong>42/50</strong></td>
+                                        <td>84%</td>
+                                        <td><span class="status-pill">Completed</span></td>
+                                        <td><a href="404.html" class="table-action" aria-label="Review result"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" alt="Meena Devi" loading="lazy"><div><strong>Meena Devi</strong><small>meena@example.com</small></div></div></td>
+                                        <td>TNPSC General Studies</td>
+                                        <td>13 Oct 2026</td>
+                                        <td><strong>88/100</strong></td>
+                                        <td>88%</td>
+                                        <td><span class="status-pill">Completed</span></td>
+                                        <td><a href="404.html" class="table-action" aria-label="Review result"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80" alt="Arun Prakash" loading="lazy"><div><strong>Arun Prakash</strong><small>arun@example.com</small></div></div></td>
+                                        <td>JavaScript Fundamentals</td>
+                                        <td>12 Oct 2026</td>
+                                        <td><strong>34/50</strong></td>
+                                        <td>68%</td>
+                                        <td><span class="status-pill pending">Needs Review</span></td>
+                                        <td><a href="404.html" class="table-action" aria-label="Review result"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80" alt="Sneha R" loading="lazy"><div><strong>Sneha R</strong><small>sneha@example.com</small></div></div></td>
+                                        <td>Figma Tools Assessment</td>
+                                        <td>11 Oct 2026</td>
+                                        <td><strong>36/40</strong></td>
+                                        <td>90%</td>
+                                        <td><span class="status-pill">Completed</span></td>
+                                        <td><a href="404.html" class="table-action" aria-label="Review result"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Vignesh Raj" loading="lazy"><div><strong>Vignesh Raj</strong><small>vignesh@example.com</small></div></div></td>
+                                        <td>Quantitative Aptitude</td>
+                                        <td>10 Oct 2026</td>
+                                        <td><strong>39/50</strong></td>
+                                        <td>78%</td>
+                                        <td><span class="status-pill">Completed</span></td>
+                                        <td><a href="404.html" class="table-action" aria-label="Review result"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+            <!-- =================================================
+                 VIEW 5: REPORTS
+            ================================================== -->
+
+            <section class="page-view" id="reportsView">
+
+                <div class="page-intro">
+
+                    <div>
+                        <h2>Reports & Analytics</h2>
+                        <p>Monitor learning engagement, course completion, and assessment performance.</p>
+                    </div>
+
+                    <a href="404.html" class="primary-btn">
+                        <i class="fa-solid fa-file-export"></i>
+                        Export Reports
+                    </a>
+
+                </div>
+
+                <div class="report-summary">
+
+                    <article class="report-summary-card">
+                        <div class="stat-icon blue">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div>
+                            <span>Active Learners</span>
+                            <strong>2,104</strong>
+                        </div>
+                    </article>
+
+                    <article class="report-summary-card">
+                        <div class="stat-icon purple">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                        <div>
+                            <span>Lessons Completed</span>
+                            <strong>18,642</strong>
+                        </div>
+                    </article>
+
+                    <article class="report-summary-card">
+                        <div class="stat-icon green">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <div>
+                            <span>Average Completion</span>
+                            <strong>78.4%</strong>
+                        </div>
+                    </article>
+
+                </div>
+
+                <div class="section-block">
+
+                    <div class="analytics-grid">
+
+                        <div class="chart-panel">
+
+                            <div class="chart-header">
+                                <div>
+                                    <h3>Weekly Learning Activity</h3>
+                                    <p>Illustrative hours recorded across the week.</p>
+                                </div>
+                                <span class="soft-badge">Static Data</span>
+                            </div>
+
+                            <div class="chart-canvas">
+                                <canvas id="weeklyReportChart" aria-label="Weekly learning report"></canvas>
+                            </div>
+
+                        </div>
+
+                        <div class="chart-panel">
+
+                            <div class="chart-header">
+                                <div>
+                                    <h3>Assessment Performance</h3>
+                                    <p>Sample assessment answer distribution.</p>
+                                </div>
+                            </div>
+
+                            <div class="chart-canvas doughnut">
+                                <canvas id="performanceChart" aria-label="Assessment performance chart"></canvas>
+                            </div>
+
+                            <div class="chart-legend">
+                                <div class="legend-item">
+                                    <span class="legend-dot" style="background:#16a34a"></span>
+                                    Correct Answers
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot" style="background:#fca5a5"></span>
+                                    Incorrect Answers
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="section-block">
+
+                    <div class="analytics-grid">
+
+                        <div class="panel">
+
+                            <h3 class="panel-title">Learning Path Progress</h3>
+                            <p class="panel-subtitle">Sample completion across core learning categories.</p>
+
+                            <div class="progress-subject">
+                                <div class="progress-subject-header">
+                                    <span><i class="fa-solid fa-landmark text-blue me-2"></i>Competitive Exams</span>
+                                    <span>68%</span>
+                                </div>
+                                <div class="large-progress"><span style="width:68%"></span></div>
+                            </div>
+
+                            <div class="progress-subject">
+                                <div class="progress-subject-header">
+                                    <span><i class="fa-solid fa-pen-ruler me-2" style="color:#7c3aed"></i>UI/UX Design</span>
+                                    <span>45%</span>
+                                </div>
+                                <div class="large-progress"><span style="width:45%;background:linear-gradient(90deg,#7c3aed,#a78bfa)"></span></div>
+                            </div>
+
+                            <div class="progress-subject">
+                                <div class="progress-subject-header">
+                                    <span><i class="fa-solid fa-code me-2" style="color:#f59e0b"></i>Web Development</span>
+                                    <span>72%</span>
+                                </div>
+                                <div class="large-progress"><span style="width:72%;background:linear-gradient(90deg,#f59e0b,#fbbf24)"></span></div>
+                            </div>
+
+                            <div class="progress-subject">
+                                <div class="progress-subject-header">
+                                    <span><i class="fa-brands fa-js me-2" style="color:#16a34a"></i>JavaScript</span>
+                                    <span>61%</span>
+                                </div>
+                                <div class="large-progress"><span style="width:61%;background:linear-gradient(90deg,#16a34a,#4ade80)"></span></div>
+                            </div>
+
+                        </div>
+
+                        <div class="panel">
+
+                            <h3 class="panel-title">Performance Insights</h3>
+                            <p class="panel-subtitle">Illustrative areas of strength and improvement.</p>
+
+                            <div style="display:flex;gap:13px;margin-top:23px;">
+                                <div class="stat-icon green" style="flex-shrink:0;">
+                                    <i class="fa-solid fa-arrow-trend-up"></i>
+                                </div>
+                                <div>
+                                    <strong style="display:block;color:var(--navy);font-size:12px;">Strong learner engagement</strong>
+                                    <p style="margin:5px 0 0;color:var(--muted);font-size:10px;line-height:1.8;">
+                                        Weekly activity shows consistent participation across learning categories.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div style="display:flex;gap:13px;margin-top:23px;">
+                                <div class="stat-icon purple" style="flex-shrink:0;">
+                                    <i class="fa-solid fa-pen-ruler"></i>
+                                </div>
+                                <div>
+                                    <strong style="display:block;color:var(--navy);font-size:12px;">Design learning opportunity</strong>
+                                    <p style="margin:5px 0 0;color:var(--muted);font-size:10px;line-height:1.8;">
+                                        More project-based practice can help learners strengthen their design skills.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div style="display:flex;gap:13px;margin-top:23px;">
+                                <div class="stat-icon orange" style="flex-shrink:0;">
+                                    <i class="fa-solid fa-bullseye"></i>
+                                </div>
+                                <div>
+                                    <strong style="display:block;color:var(--navy);font-size:12px;">Assessment improvement</strong>
+                                    <p style="margin:5px 0 0;color:var(--muted);font-size:10px;line-height:1.8;">
+                                        Review practice-test results to identify topics that need more revision.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="section-block">
+
+                    <div class="section-heading">
+                        <div>
+                            <h2>Recent Activity Report</h2>
+                            <p>Sample learning platform events.</p>
+                        </div>
+                    </div>
+
+                    <div class="table-panel">
+
+                        <div class="table-responsive">
+
+                            <table class="admin-table">
+
+                                <thead>
+                                    <tr>
+                                        <th>ACTIVITY</th>
+                                        <th>CATEGORY</th>
+                                        <th>DATE</th>
+                                        <th>STATUS</th>
+                                        <th>ACTION</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    <tr>
+                                        <td><strong>New student enrollment</strong></td>
+                                        <td>Students</td>
+                                        <td>15 Oct 2026</td>
+                                        <td><span class="status-pill">Recorded</span></td>
+                                        <td><a href="404.html" class="table-action" aria-label="View activity"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><strong>UI/UX course progress update</strong></td>
+                                        <td>Courses</td>
+                                        <td>14 Oct 2026</td>
+                                        <td><span class="status-pill">Recorded</span></td>
+                                        <td><a href="404.html" class="table-action" aria-label="View activity"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><strong>Mock test assessment completed</strong></td>
+                                        <td>Assessments</td>
+                                        <td>13 Oct 2026</td>
+                                        <td><span class="status-pill">Recorded</span></td>
+                                        <td><a href="404.html" class="table-action" aria-label="View activity"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><strong>Web development learning milestone</strong></td>
+                                        <td>Learning</td>
+                                        <td>12 Oct 2026</td>
+                                        <td><span class="status-pill">Recorded</span></td>
+                                        <td><a href="404.html" class="table-action" aria-label="View activity"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =================================================
+               ELEMENT REFERENCES
+            ================================================= */
+
+            const body = document.body;
+            const sidebar = document.getElementById("sidebar");
+            const overlay = document.getElementById("sidebarOverlay");
+
+            const mobileMenuButton = document.getElementById("mobileMenuButton");
+            const sidebarCollapse = document.getElementById("sidebarCollapse");
+
+            const sidebarLinks = document.querySelectorAll(".sidebar-link");
+            const pageViews = document.querySelectorAll(".page-view");
+
+            const topbarTitle = document.getElementById("topbarTitle");
+            const topbarSubtitle = document.getElementById("topbarSubtitle");
+
+            const notificationButton = document.getElementById("notificationButton");
+            const notificationDropdown = document.getElementById("notificationDropdown");
+
+            const profileButton = document.getElementById("profileButton");
+            const profileDropdown = document.getElementById("profileDropdown");
+
+            /* =================================================
+               PAGE VIEW NAVIGATION
+            ================================================= */
+
+            const pageInformation = {
+                dashboard: {
+                    title: "Admin Overview",
+                    subtitle: "Manage your learning platform from one place."
+                },
+
+                students: {
+                    title: "Student Management",
+                    subtitle: "Manage student records and learning activity."
+                },
+
+                courses: {
+                    title: "Course Management",
+                    subtitle: "Organize your courses and learning resources."
+                },
+
+                "mock-tests": {
+                    title: "Mock Test Management",
+                    subtitle: "Review assessments and sample test performance."
+                },
+
+                reports: {
+                    title: "Reports & Analytics",
+                    subtitle: "Explore learning engagement and performance."
+                }
+            };
+
+            function closeMobileSidebar() {
+                sidebar.classList.remove("mobile-open");
+                overlay.classList.remove("show");
+
+                mobileMenuButton.setAttribute("aria-expanded", "false");
+                mobileMenuButton.innerHTML = '<i class="fa-solid fa-bars"></i>';
+
+                body.style.overflow = "";
+            }
+
+            function showView(viewName, updateAddress = true) {
+
+                const validViews = [
+                    "dashboard",
+                    "students",
+                    "courses",
+                    "mock-tests",
+                    "reports"
+                ];
+
+                if (!validViews.includes(viewName)) {
+                    viewName = "dashboard";
+                }
+
+                pageViews.forEach(function (view) {
+                    view.classList.remove("active");
+                });
+
+                const selectedView = document.getElementById(viewName + "View");
+
+                if (selectedView) {
+                    selectedView.classList.add("active");
+                }
+
+                sidebarLinks.forEach(function (link) {
+
+                    const isActive = link.dataset.view === viewName;
+
+                    link.classList.toggle("active", isActive);
+
+                    if (isActive) {
+                        link.setAttribute("aria-current", "page");
+                    } else {
+                        link.removeAttribute("aria-current");
+                    }
+
+                });
+
+                const info = pageInformation[viewName];
+
+                if (info) {
+                    topbarTitle.textContent = info.title;
+                    topbarSubtitle.textContent = info.subtitle;
+                }
+
+                if (updateAddress) {
+                    history.replaceState(null, "", "#" + viewName);
+                }
+
+                closeMobileSidebar();
+                closeDropdowns();
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+                if (viewName === "reports") {
+                    setTimeout(resizeCharts, 100);
+                }
+
+                if (viewName === "dashboard") {
+                    setTimeout(resizeCharts, 100);
+                }
+
+            }
+
+            sidebarLinks.forEach(function (link) {
+
+                link.addEventListener("click", function (event) {
+
+                    event.preventDefault();
+
+                    const viewName = link.dataset.view;
+
+                    if (viewName) {
+                        showView(viewName);
+                    }
+
+                });
+
+            });
+
+            /* Dashboard shortcut links */
+            document.querySelectorAll("[data-goto]").forEach(function (button) {
+
+                button.addEventListener("click", function () {
+
+                    const targetView = button.dataset.goto;
+
+                    if (targetView) {
+                        showView(targetView);
+                    }
+
+                });
+
+            });
+
+            /* Browser hash navigation */
+            function loadHashView() {
+
+                const requestedView = window.location.hash
+                    .replace("#", "")
+                    .trim();
+
+                if (pageInformation[requestedView]) {
+                    showView(requestedView, false);
+                } else {
+                    showView("dashboard", false);
+                }
+
+            }
+
+            window.addEventListener("hashchange", loadHashView);
+
+            /* =================================================
+               DESKTOP SIDEBAR COLLAPSE
+            ================================================= */
+
+            sidebarCollapse.addEventListener("click", function () {
+
+                if (window.innerWidth <= 700) {
+                    return;
+                }
+
+                body.classList.toggle("sidebar-collapsed");
+
+                const collapsed = body.classList.contains("sidebar-collapsed");
+
+                sidebarCollapse.setAttribute(
+                    "aria-label",
+                    collapsed ? "Expand sidebar" : "Collapse sidebar"
+                );
+
+                sidebarCollapse.setAttribute(
+                    "title",
+                    collapsed ? "Expand sidebar" : "Collapse sidebar"
+                );
+
+                sidebarCollapse.innerHTML = collapsed
+                    ? '<i class="fa-solid fa-angles-right"></i>'
+                    : '<i class="fa-solid fa-angles-left"></i>';
+
+            });
+
+            /* =================================================
+               MOBILE SIDEBAR
+            ================================================= */
+
+            mobileMenuButton.addEventListener("click", function () {
+
+                const isOpen = sidebar.classList.contains("mobile-open");
+
+                if (isOpen) {
+
+                    closeMobileSidebar();
+
+                } else {
+
+                    sidebar.classList.add("mobile-open");
+                    overlay.classList.add("show");
+
+                    mobileMenuButton.setAttribute("aria-expanded", "true");
+                    mobileMenuButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+
+                    body.style.overflow = "hidden";
+
+                }
+
+            });
+
+            overlay.addEventListener("click", closeMobileSidebar);
+
+            document.addEventListener("keydown", function (event) {
+
+                if (event.key === "Escape") {
+                    closeMobileSidebar();
+                    closeDropdowns();
+                }
+
+            });
+
+            window.addEventListener("resize", function () {
+
+                if (window.innerWidth > 700) {
+                    closeMobileSidebar();
+                }
+
+            });
+
+            /* =================================================
+               DROPDOWNS
+            ================================================= */
+
+            function closeDropdowns() {
+
+                notificationDropdown.classList.remove("show");
+                profileDropdown.classList.remove("show");
+
+                notificationButton.setAttribute("aria-expanded", "false");
+                profileButton.setAttribute("aria-expanded", "false");
+
+            }
+
+            notificationButton.addEventListener("click", function (event) {
+
+                event.stopPropagation();
+
+                const shouldOpen = !notificationDropdown.classList.contains("show");
+
+                closeDropdowns();
+
+                if (shouldOpen) {
+                    notificationDropdown.classList.add("show");
+                    notificationButton.setAttribute("aria-expanded", "true");
+                }
+
+            });
+
+            profileButton.addEventListener("click", function (event) {
+
+                event.stopPropagation();
+
+                const shouldOpen = !profileDropdown.classList.contains("show");
+
+                closeDropdowns();
+
+                if (shouldOpen) {
+                    profileDropdown.classList.add("show");
+                    profileButton.setAttribute("aria-expanded", "true");
+                }
+
+            });
+
+            document.addEventListener("click", function (event) {
+
+                if (
+                    !notificationDropdown.contains(event.target) &&
+                    !notificationButton.contains(event.target) &&
+                    !profileDropdown.contains(event.target) &&
+                    !profileButton.contains(event.target)
+                ) {
+                    closeDropdowns();
+                }
+
+            });
+
+            /* =================================================
+               GLOBAL SEARCH
+               Filters visible students and courses.
+            ================================================= */
+
+            const globalSearch = document.getElementById("globalSearch");
+
+            globalSearch.addEventListener("input", function () {
+
+                const query = globalSearch.value.trim().toLowerCase();
+
+                if (!query) {
+
+                    document.querySelectorAll(".searchable-table tbody tr")
+                        .forEach(function (row) {
+                            row.style.display = "";
+                        });
+
+                    document.querySelectorAll(".searchable-course")
+                        .forEach(function (card) {
+                            card.style.display = "";
+                        });
+
+                    return;
+                }
+
+                document.querySelectorAll(".searchable-table tbody tr")
+                    .forEach(function (row) {
+
+                        const searchText = (
+                            row.innerText + " " +
+                            (row.dataset.search || "")
+                        ).toLowerCase();
+
+                        row.style.display = searchText.includes(query) ? "" : "none";
+
+                    });
+
+                document.querySelectorAll(".searchable-course")
+                    .forEach(function (card) {
+
+                        const searchText = (
+                            card.innerText + " " +
+                            (card.dataset.search || "")
+                        ).toLowerCase();
+
+                        card.style.display = searchText.includes(query) ? "" : "none";
+
+                    });
+
+                if (query) {
+                    showView("students");
+                    globalSearch.focus();
+                }
+
+            });
+
+            /* =================================================
+               STUDENT FILTERS
+            ================================================= */
+
+            const studentSearch = document.getElementById("studentSearch");
+            const studentStatusFilter = document.getElementById("studentStatusFilter");
+            const studentCourseFilter = document.getElementById("studentCourseFilter");
+
+            const studentRows = Array.from(
+                document.querySelectorAll("#studentsTable tbody tr")
+            );
+
+            const studentCount = document.getElementById("studentCount");
+            const studentEmpty = document.getElementById("studentEmpty");
+
+            function filterStudents() {
+
+                const query = studentSearch.value.trim().toLowerCase();
+                const status = studentStatusFilter.value;
+                const category = studentCourseFilter.value;
+
+                let visibleCount = 0;
+
+                studentRows.forEach(function (row) {
+
+                    const searchText = (
+                        row.innerText + " " +
+                        (row.dataset.search || "")
+                    ).toLowerCase();
+
+                    const matchesSearch = searchText.includes(query);
+
+                    const matchesStatus =
+                        status === "all" ||
+                        row.dataset.status === status;
+
+                    const matchesCategory =
+                        category === "all" ||
+                        row.dataset.category === category;
+
+                    const show =
+                        matchesSearch &&
+                        matchesStatus &&
+                        matchesCategory;
+
+                    row.style.display = show ? "" : "none";
+
+                    if (show) {
+                        visibleCount++;
+                    }
+
+                });
+
+                studentCount.textContent = visibleCount;
+
+                studentEmpty.style.display =
+                    visibleCount === 0 ? "block" : "none";
+
+            }
+
+            studentSearch.addEventListener("input", filterStudents);
+            studentStatusFilter.addEventListener("change", filterStudents);
+            studentCourseFilter.addEventListener("change", filterStudents);
+
+            /* =================================================
+               COURSE FILTERS
+            ================================================= */
+
+            const courseSearch = document.getElementById("courseSearch");
+            const courseCategoryFilter = document.getElementById("courseCategoryFilter");
+            const courseStatusFilter = document.getElementById("courseStatusFilter");
+
+            const managementCourses = Array.from(
+                document.querySelectorAll(".searchable-course")
+            );
+
+            const courseCount = document.getElementById("courseCount");
+            const courseEmpty = document.getElementById("courseEmpty");
+
+            function filterCourses() {
+
+                const query = courseSearch.value.trim().toLowerCase();
+                const category = courseCategoryFilter.value;
+                const status = courseStatusFilter.value;
+
+                let visibleCount = 0;
+
+                managementCourses.forEach(function (card) {
+
+                    const searchText = (
+                        card.innerText + " " +
+                        (card.dataset.search || "")
+                    ).toLowerCase();
+
+                    const matchesSearch = searchText.includes(query);
+
+                    const matchesCategory =
+                        category === "all" ||
+                        card.dataset.category === category;
+
+                    const matchesStatus =
+                        status === "all" ||
+                        card.dataset.status === status;
+
+                    const show =
+                        matchesSearch &&
+                        matchesCategory &&
+                        matchesStatus;
+
+                    card.style.display = show ? "" : "none";
+
+                    if (show) {
+                        visibleCount++;
+                    }
+
+                });
+
+                courseCount.textContent =
+                    visibleCount + (visibleCount === 1 ? " Course" : " Courses");
+
+                courseEmpty.style.display =
+                    visibleCount === 0 ? "block" : "none";
+
+            }
+
+            courseSearch.addEventListener("input", filterCourses);
+            courseCategoryFilter.addEventListener("change", filterCourses);
+            courseStatusFilter.addEventListener("change", filterCourses);
+
+            /* =================================================
+               MOCK TEST FILTERS
+            ================================================= */
+
+            const testSearch = document.getElementById("testSearch");
+            const testCategoryFilter = document.getElementById("testCategoryFilter");
+            const testDifficultyFilter = document.getElementById("testDifficultyFilter");
+
+            const testCards = Array.from(
+                document.querySelectorAll(".searchable-test")
+            );
+
+            const testCount = document.getElementById("testCount");
+            const testEmpty = document.getElementById("testEmpty");
+
+            function filterTests() {
+
+                const query = testSearch.value.trim().toLowerCase();
+                const category = testCategoryFilter.value;
+                const difficulty = testDifficultyFilter.value;
+
+                let visibleCount = 0;
+
+                testCards.forEach(function (card) {
+
+                    const searchText = (
+                        card.innerText + " " +
+                        (card.dataset.search || "")
+                    ).toLowerCase();
+
+                    const matchesSearch = searchText.includes(query);
+
+                    const matchesCategory =
+                        category === "all" ||
+                        card.dataset.category === category;
+
+                    const matchesDifficulty =
+                        difficulty === "all" ||
+                        card.dataset.difficulty === difficulty;
+
+                    const show =
+                        matchesSearch &&
+                        matchesCategory &&
+                        matchesDifficulty;
+
+                    card.style.display = show ? "" : "none";
+
+                    if (show) {
+                        visibleCount++;
+                    }
+
+                });
+
+                testCount.textContent =
+                    visibleCount + (visibleCount === 1 ? " Test" : " Tests");
+
+                testEmpty.style.display =
+                    visibleCount === 0 ? "block" : "none";
+
+            }
+
+            testSearch.addEventListener("input", filterTests);
+            testCategoryFilter.addEventListener("change", filterTests);
+            testDifficultyFilter.addEventListener("change", filterTests);
+
+            /* =================================================
+               CHART DEFAULTS
+            ================================================= */
+
+            if (window.Chart) {
+
+                Chart.defaults.font.family = "'DM Sans', sans-serif";
+                Chart.defaults.font.size = 10;
+                Chart.defaults.color = "#64748b";
+
+                Chart.defaults.plugins.legend.display = false;
+
+                Chart.defaults.plugins.tooltip.backgroundColor = "#172554";
+                Chart.defaults.plugins.tooltip.padding = 12;
+                Chart.defaults.plugins.tooltip.cornerRadius = 9;
+
+            }
+
+            const activityCanvas = document.getElementById("activityChart");
+            const distributionCanvas = document.getElementById("distributionChart");
+            const weeklyReportCanvas = document.getElementById("weeklyReportChart");
+            const performanceCanvas = document.getElementById("performanceChart");
+
+            let activityChart = null;
+            let distributionChart = null;
+            let weeklyReportChart = null;
+            let performanceChart = null;
+
+            /* =================================================
+               ACTIVITY LINE CHART
+            ================================================= */
+
+            function buildActivityChart(period = "week") {
+
+                if (!window.Chart || !activityCanvas) {
+                    return;
+                }
+
+                const labels = period === "month"
+                    ? ["Week 1", "Week 2", "Week 3", "Week 4"]
+                    : ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+                const activeStudents = period === "month"
+                    ? [380, 450, 520, 610]
+                    : [120, 165, 145, 210, 185, 260, 230];
+
+                const completedLessons = period === "month"
+                    ? [250, 320, 390, 440]
+                    : [80, 110, 95, 150, 125, 180, 160];
+
+                if (activityChart) {
+                    activityChart.destroy();
+                }
+
+                const context = activityCanvas.getContext("2d");
+
+                const gradientBlue = context.createLinearGradient(0, 0, 0, 260);
+                gradientBlue.addColorStop(0, "rgba(37, 99, 235, 0.18)");
+                gradientBlue.addColorStop(1, "rgba(37, 99, 235, 0.00)");
+
+                activityChart = new Chart(activityCanvas, {
+
+                    type: "line",
+
+                    data: {
+                        labels: labels,
+
+                        datasets: [
+
+                            {
+                                label: "Active Students",
+                                data: activeStudents,
+                                borderColor: "#2563eb",
+                                backgroundColor: gradientBlue,
+                                fill: true,
+                                borderWidth: 2.5,
+                                tension: 0.4,
+                                pointRadius: 3,
+                                pointHoverRadius: 5,
+                                pointBackgroundColor: "#2563eb"
+                            },
+
+                            {
+                                label: "Completed Lessons",
+                                data: completedLessons,
+                                borderColor: "#a5b4fc",
+                                backgroundColor: "transparent",
+                                borderWidth: 2.5,
+                                tension: 0.4,
+                                pointRadius: 3,
+                                pointHoverRadius: 5,
+                                pointBackgroundColor: "#a5b4fc"
+                            }
+
+                        ]
+                    },
+
+                    options: {
+
+                        responsive: true,
+                        maintainAspectRatio: false,
+
+                        interaction: {
+                            intersect: false,
+                            mode: "index"
+                        },
+
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+
+                        scales: {
+
+                            x: {
+                                grid: {
+                                    display: false
+                                },
+                                border: {
+                                    display: false
+                                },
+                                ticks: {
+                                    color: "#94a3b8"
+                                }
+                            },
+
+                            y: {
+                                beginAtZero: true,
+                                border: {
+                                    display: false,
+                                    dash: [4, 4]
+                                },
+                                grid: {
+                                    color: "#f1f5f9",
+                                    drawTicks: false
+                                },
+                                ticks: {
+                                    padding: 10
+                                }
+                            }
+
+                        }
+
+                    }
+
+                });
+
+            }
+
+            /* =================================================
+               DISTRIBUTION DOUGHNUT CHART
+            ================================================= */
+
+            function buildDistributionChart() {
+
+                if (!window.Chart || !distributionCanvas) {
+                    return;
+                }
+
+                if (distributionChart) {
+                    distributionChart.destroy();
+                }
+
+                distributionChart = new Chart(distributionCanvas, {
+
+                    type: "doughnut",
+
+                    data: {
+
+                        labels: [
+                            "Competitive Exams",
+                            "UI/UX Design",
+                            "Web Development"
+                        ],
+
+                        datasets: [{
+                            data: [42, 28, 30],
+                            backgroundColor: [
+                                "#2563eb",
+                                "#8b5cf6",
+                                "#f59e0b"
+                            ],
+                            borderWidth: 0,
+                            hoverOffset: 6,
+                            spacing: 4,
+                            borderRadius: 5
+                        }]
+
+                    },
+
+                    options: {
+
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        cutout: "72%",
+
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        return context.label + ": " + context.raw + "%";
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+
+                });
+
+            }
+
+            /* =================================================
+               WEEKLY REPORT BAR CHART
+            ================================================= */
+
+            function buildWeeklyReportChart() {
+
+                if (!window.Chart || !weeklyReportCanvas) {
+                    return;
+                }
+
+                if (weeklyReportChart) {
+                    weeklyReportChart.destroy();
+                }
+
+                weeklyReportChart = new Chart(weeklyReportCanvas, {
+
+                    type: "bar",
+
+                    data: {
+
+                        labels: [
+                            "Monday",
+                            "Tuesday",
+                            "Wednesday",
+                            "Thursday",
+                            "Friday",
+                            "Saturday",
+                            "Sunday"
+                        ],
+
+                        datasets: [{
+                            label: "Learning Hours",
+                            data: [2, 3.5, 4, 2.5, 3, 5, 4],
+                            backgroundColor: [
+                                "#bfdbfe",
+                                "#93c5fd",
+                                "#60a5fa",
+                                "#93c5fd",
+                                "#60a5fa",
+                                "#2563eb",
+                                "#3b82f6"
+                            ],
+                            borderRadius: 7,
+                            borderSkipped: false,
+                            maxBarThickness: 32
+                        }]
+
+                    },
+
+                    options: {
+
+                        responsive: true,
+                        maintainAspectRatio: false,
+
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+
+                        scales: {
+
+                            x: {
+                                grid: {
+                                    display: false
+                                },
+                                border: {
+                                    display: false
+                                }
+                            },
+
+                            y: {
+                                beginAtZero: true,
+                                max: 6,
+                                border: {
+                                    display: false
+                                },
+                                grid: {
+                                    color: "#f1f5f9"
+                                },
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
+
+                        }
+
+                    }
+
+                });
+
+            }
+
+            /* =================================================
+               PERFORMANCE DOUGHNUT
+            ================================================= */
+
+            function buildPerformanceChart() {
+
+                if (!window.Chart || !performanceCanvas) {
+                    return;
+                }
+
+                if (performanceChart) {
+                    performanceChart.destroy();
+                }
+
+                performanceChart = new Chart(performanceCanvas, {
+
+                    type: "doughnut",
+
+                    data: {
+
+                        labels: [
+                            "Correct Answers",
+                            "Incorrect Answers"
+                        ],
+
+                        datasets: [{
+                            data: [78, 22],
+                            backgroundColor: [
+                                "#16a34a",
+                                "#fca5a5"
+                            ],
+                            borderWidth: 0,
+                            spacing: 4,
+                            borderRadius: 5
+                        }]
+
+                    },
+
+                    options: {
+
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        cutout: "72%",
+
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+
+                    }
+
+                });
+
+            }
+
+            /* =================================================
+               CHART RESIZING
+            ================================================= */
+
+            function resizeCharts() {
+
+                [
+                    activityChart,
+                    distributionChart,
+                    weeklyReportChart,
+                    performanceChart
+                ].forEach(function (chart) {
+
+                    if (chart) {
+                        chart.resize();
+                    }
+
+                });
+
+            }
+
+            /* Activity period selector */
+            const activityPeriod = document.getElementById("activityPeriod");
+
+            activityPeriod.addEventListener("change", function () {
+                buildActivityChart(activityPeriod.value);
+            });
+
+            /* =================================================
+               IMAGE FALLBACK HANDLING
+            ================================================= */
+
+            document.querySelectorAll("img").forEach(function (img) {
+
+                img.addEventListener("error", function () {
+
+                    if (img.dataset.fallbackApplied === "true") {
+                        return;
+                    }
+
+                    img.dataset.fallbackApplied = "true";
+                    img.classList.add("image-failed");
+
+                    /*
+                     * If a replaceable local image is missing,
+                     * use a neutral inline SVG placeholder.
+                     * No additional image file is required.
+                     */
+                    img.src =
+                        "data:image/svg+xml;charset=UTF-8," +
+                        encodeURIComponent(
+                            '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="360" viewBox="0 0 600 360">' +
+                            '<rect width="600" height="360" fill="#f1f5f9"/>' +
+                            '<rect x="235" y="105" width="130" height="95" rx="18" fill="#e2e8f0"/>' +
+                            '<path d="M260 175l27-30 20 20 17-18 17 28z" fill="#94a3b8"/>' +
+                            '<circle cx="287" cy="132" r="9" fill="#94a3b8"/>' +
+                            '<text x="300" y="235" font-size="18" font-family="Arial" text-anchor="middle" fill="#64748b">Image Preview</text>' +
+                            '</svg>'
+                        );
+
+                });
+
+            });
+
+            /* =================================================
+               KEYBOARD SHORTCUT
+            ================================================= */
+
+            document.addEventListener("keydown", function (event) {
+
+                const target = event.target;
+
+                const typing =
+                    target instanceof HTMLInputElement ||
+                    target instanceof HTMLTextAreaElement ||
+                    target instanceof HTMLSelectElement;
+
+                if (event.key === "/" && !typing) {
+                    event.preventDefault();
+                    globalSearch.focus();
+                }
+
+            });
+
+            /* =================================================
+               INITIALIZE
+            ================================================= */
+
+            buildActivityChart("week");
+            buildDistributionChart();
+            buildWeeklyReportChart();
+            buildPerformanceChart();
+
+            loadHashView();
+
+        });
+    </script>
+
+</body>
+</html>

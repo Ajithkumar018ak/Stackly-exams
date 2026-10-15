@@ -1,0 +1,4628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Discover Courses | ACHIEVE Academy</title>
+
+    <meta name="description"
+        content="Discover your next skill, explore professional courses, and build your future with ACHIEVE Academy.">
+
+    <meta name="theme-color" content="#080d1d">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Result Page CSS -->
+    <link rel="stylesheet" href="css/result.css">
+
+
+      <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+     ACHIEVE ACADEMY 3D PRELOADER
+========================================= -->
+
+<div class="academy-preloader" id="academyPreloader">
+
+    <div class="preloader-background"></div>
+
+    <!-- BACKGROUND PARTICLES -->
+
+    <div class="preloader-particles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+
+    <!-- TOP BRAND -->
+
+    <div class="preloader-brand">
+
+        <div class="preloader-brand-icon">A</div>
+
+        <div>
+            <strong>ACHIEVE</strong>
+            <span>ACADEMY</span>
+        </div>
+
+    </div>
+
+
+    <!-- 3D SCENE -->
+
+    <div class="preloader-scene" id="preloaderScene">
+
+
+        <!-- BOOK -->
+
+        <div class="book-assembly" id="bookAssembly">
+
+            <div class="book-shadow"></div>
+
+            <div class="book-3d">
+
+                <!-- BACK COVER -->
+
+                <div class="book-back-cover"></div>
+
+
+                <!-- PAGES -->
+
+                <div class="book-pages">
+
+                    <div class="page page-1"></div>
+                    <div class="page page-2"></div>
+                    <div class="page page-3"></div>
+                    <div class="page page-4"></div>
+                    <div class="page page-5"></div>
+
+                </div>
+
+
+                <!-- LEFT PAGE -->
+
+                <div class="book-left-page">
+
+                    <div class="page-decoration"></div>
+
+                    <div class="page-lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT PAGE -->
+
+                <div class="book-right-page">
+
+                    <div class="page-title">YOUR FUTURE</div>
+
+                    <div class="page-gold-line"></div>
+
+                    <div class="page-lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                </div>
+
+
+                <!-- FRONT COVER -->
+
+                <div class="book-cover" id="bookCover">
+
+                    <div class="cover-border"></div>
+
+                    <div class="cover-emblem">A</div>
+
+                    <div class="cover-title">
+                        ACHIEVE
+                    </div>
+
+                    <div class="cover-subtitle">
+                        ACADEMY
+                    </div>
+
+                    <div class="cover-divider"></div>
+
+                    <div class="cover-caption">
+                        LEARN · PRACTISE · SUCCEED
+                    </div>
+
+                </div>
+
+
+                <!-- BOOK SPINE -->
+
+                <div class="book-spine"></div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 3D PEN -->
+
+        <div class="pen-assembly" id="penAssembly">
+
+            <div class="pen-body">
+
+                <div class="pen-clip"></div>
+
+                <div class="pen-band"></div>
+
+                <div class="pen-tip"></div>
+
+                <div class="pen-highlight"></div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- COFFEE CUP -->
+
+        <div class="cup-assembly" id="cupAssembly">
+
+            <div class="cup-handle"></div>
+
+            <div class="coffee-cup">
+
+                <div class="cup-rim"></div>
+
+                <div class="coffee-surface">
+
+                    <div class="coffee-swirl"></div>
+
+                </div>
+
+                <div class="cup-logo">A</div>
+
+                <div class="cup-bottom"></div>
+
+            </div>
+
+            <div class="cup-shadow"></div>
+
+            <!-- STEAM -->
+
+            <div class="coffee-steam">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+        </div>
+
+
+        <!-- GOLD LIGHT -->
+
+        <div class="preloader-glow"></div>
+
+
+    </div>
+
+
+    <!-- LOADING TEXT -->
+
+    <div class="preloader-information">
+
+        <span class="preloader-eyebrow">
+            YOUR JOURNEY BEGINS HERE
+        </span>
+
+        <h2 id="preloaderMessage">
+            Preparing Your Future
+        </h2>
+
+        <div class="preloader-progress">
+
+            <div class="preloader-progress-fill"
+                 id="preloaderProgress"></div>
+
+        </div>
+
+        <div class="preloader-bottom">
+
+            <span>ACHIEVE ACADEMY</span>
+
+            <span id="preloaderPercentage">00%</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- =========================================
+     ACHIEVE ACADEMY — HEADER NAVIGATION
+========================================= -->
+
+<header class="site-header" id="siteHeader">
+
+    <div class="container nav-container">
+
+        <!-- LOGO -->
+        <a href="index.html"
+           class="brand-logo"
+           aria-label="Achieve Academy Home">
+
+            <img src="assets/logo.webp"
+                 alt="Achieve Academy Logo">
+
+        </a>
+
+
+        <!-- MOBILE MENU TOGGLE -->
+        <button class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-controls="mainNav"
+                aria-expanded="false">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+
+        <!-- NAVIGATION -->
+        <nav class="main-nav" id="mainNav">
+
+            <!-- HOME -->
+            <a href="index.html" >
+                Home
+            </a>
+
+            <!-- ABOUT -->
+            <a href="about.html">
+                About Us
+            </a>
+
+            <!-- COURSES -->
+            <a href="courses.html">
+                Courses
+            </a>
+
+            <!-- RESULTS -->
+            <a href="results.html"  class="active">
+                Results
+            </a>
+
+            <!-- CONTACT -->
+            <a href="contact.html">
+                Contact
+            </a>
+
+            <!-- LOGIN -->
+            <button class="btn btn-outline login-trigger"
+                    type="button">
+
+                Login
+
+            </button>
+
+            <!-- JOIN NOW -->
+            <a href="contact.html#admission"
+               class="btn btn-primary nav-cta">
+
+                Join Now <span aria-hidden="true">↗</span>
+
+            </a>
+
+        </nav>
+
+    </div>
+
+
+    <!-- SCROLL PROGRESS -->
+    <div class="scroll-progress"
+         id="scrollProgress">
+    </div>
+
+</header>
+
+
+<!-- =========================================
+     MOBILE NAVIGATION OVERLAY
+========================================= -->
+
+<div class="mobile-nav-overlay"
+     id="mobileNavOverlay"
+     aria-hidden="true">
+</div>
+
+
+
+    
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="results-page">
+
+
+        <!-- =================================================
+             01. DISCOVERY HERO
+        ================================================== -->
+
+        <section class="discovery-hero">
+
+            <div class="hero-background-grid"></div>
+
+            <div class="hero-orb hero-orb-one"></div>
+
+            <div class="hero-orb hero-orb-two"></div>
+
+            <div class="page-container">
+
+                <div class="discovery-hero-grid">
+
+                    <div class="discovery-content">
+
+                        <div class="eyebrow">
+
+                            <span class="eyebrow-dot"></span>
+
+                            <span>YOUR NEXT CHAPTER STARTS HERE</span>
+
+                        </div>
+
+                        <h1>
+
+                            Find the skill
+                            <br>
+
+                            that changes
+
+                            <span class="gradient-text">
+                                everything.
+                            </span>
+
+                        </h1>
+
+                        <p class="hero-description">
+
+                            Explore expertly designed courses, discover new
+                            possibilities, and turn your curiosity into a
+                            skill that moves your future forward.
+
+                        </p>
+
+                        <div class="hero-search-wrapper">
+
+                            <form
+                                class="hero-search"
+                                id="courseSearchForm"
+                                action="result.html"
+                                method="get">
+
+                                <i class="fa-solid fa-magnifying-glass"></i>
+
+                                <input
+                                    type="search"
+                                    id="courseSearchInput"
+                                    name="q"
+                                    placeholder="What do you want to learn?"
+                                    aria-label="Search courses">
+
+                                <button type="submit">
+                                    Search
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+
+                            </form>
+
+                            <div class="search-suggestions">
+
+                                <span>Popular:</span>
+
+                                <a href="#development">Web Development</a>
+
+                                <a href="#design">UI/UX Design</a>
+
+                                <a href="#data-science">Data Science</a>
+
+                            </div>
+
+                        </div>
+
+                        <div class="hero-social-proof">
+
+                            <div class="hero-avatar-stack">
+
+                                <img
+                                    src="assets/m1.webp"
+                                    alt="Student"
+                                    loading="lazy">
+
+                                <img
+                                    src="assets/f1.webp"
+                                    alt="Student"
+                                    loading="lazy">
+
+                                <img
+                                    src="assets/m1.webp"
+                                    alt="Student"
+                                    loading="lazy">
+
+                                <span class="avatar-count">
+                                    +
+                                </span>
+
+                            </div>
+
+                            <div class="hero-proof-copy">
+
+                                <div class="proof-stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+
+                                <p>
+                                    Learn alongside a growing community
+                                    of learners.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="discovery-visual">
+
+                        <div class="visual-orbit orbit-large"></div>
+
+                        <div class="visual-orbit orbit-small"></div>
+
+                        <div class="visual-main-image">
+
+                            <img
+                                src="assets/r1.webp"
+                                alt="Student learning with a laptop"
+                                fetchpriority="high">
+
+                            <div class="visual-image-overlay"></div>
+
+                            <div class="visual-image-caption">
+
+                                <span class="caption-label">
+                                    LEARN WITHOUT LIMITS
+                                </span>
+
+                                <h3>
+                                    Make your
+                                    <br>
+                                    next move count.
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="floating-learning-card">
+
+                            <div class="floating-card-icon">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+
+                            <div class="floating-card-copy">
+
+                                <span>YOUR NEXT MILESTONE</span>
+
+                                <strong>New skills. New opportunities.</strong>
+
+                            </div>
+
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        </div>
+
+
+                        <div class="floating-rating-card">
+
+                            <div class="rating-icon">
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+
+                            <div>
+
+                                <strong>Learn with confidence</strong>
+
+                                <span>Expert-led learning paths</span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="floating-icon floating-code">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+
+                        <div class="floating-icon floating-bulb">
+                            <i class="fa-regular fa-lightbulb"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="hero-bottom-line"></div>
+
+        </section>
+
+
+        <!-- =================================================
+             02. QUICK DISCOVERY CATEGORIES
+        ================================================== -->
+
+        <section class="quick-categories section-space">
+
+            <div class="page-container">
+
+                <div class="section-heading-row">
+
+                    <div class="section-heading">
+
+                        <span class="section-label">
+                            EXPLORE YOUR INTERESTS
+                        </span>
+
+                        <h2>
+                            Where will you
+                            <span class="gradient-text">begin?</span>
+                        </h2>
+
+                        <p>
+                            Choose an area that inspires you and discover
+                            the skills you need to grow.
+                        </p>
+
+                    </div>
+
+                    <a href="404.html" class="text-link">
+
+                        Explore all courses
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+
+                <div class="quick-category-grid">
+
+                    <a
+                        href="#development"
+                        class="quick-category-card category-development">
+
+                        <div class="quick-category-icon">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+
+                        <div class="quick-category-copy">
+
+                            <h3>Development</h3>
+
+                            <p>Build digital experiences.</p>
+
+                        </div>
+
+                        <span class="category-arrow">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="#design"
+                        class="quick-category-card category-design">
+
+                        <div class="quick-category-icon">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                        </div>
+
+                        <div class="quick-category-copy">
+
+                            <h3>UI/UX Design</h3>
+
+                            <p>Design with purpose.</p>
+
+                        </div>
+
+                        <span class="category-arrow">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="#data-science"
+                        class="quick-category-card category-data">
+
+                        <div class="quick-category-icon">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+
+                        <div class="quick-category-copy">
+
+                            <h3>Data Science</h3>
+
+                            <p>Discover insights.</p>
+
+                        </div>
+
+                        <span class="category-arrow">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="#business"
+                        class="quick-category-card category-business">
+
+                        <div class="quick-category-icon">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+
+                        <div class="quick-category-copy">
+
+                            <h3>Business</h3>
+
+                            <p>Turn ideas into action.</p>
+
+                        </div>
+
+                        <span class="category-arrow">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             03. SEARCH RESULTS AND FILTERS
+        ================================================== -->
+
+        <section class="search-results-section section-space" id="allResults">
+
+            <div class="page-container">
+
+                <div class="results-layout">
+
+                    <!-- RESULTS MAIN COLUMN -->
+
+                    <div class="results-main">
+
+                        <div class="results-title-row">
+
+                            <div>
+
+                                <span class="section-label">
+                                    THE LEARNING COLLECTION
+                                </span>
+
+                                <h2>
+                                    Discover your next
+                                    <span class="gradient-text">skill.</span>
+                                </h2>
+
+                                <p class="results-description">
+                                    Handpicked courses to help you build
+                                    practical, career-ready skills.
+                                </p>
+
+                            </div>
+
+                            <div class="results-total">
+
+                                <span class="results-total-number"
+                                    id="resultCount">12</span>
+
+                                <span>Courses<br>to explore</span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- FILTER BAR -->
+
+                        <div class="results-toolbar">
+
+                            <div class="filter-tabs" id="filterTabs">
+
+                                <button
+                                    type="button"
+                                    class="filter-tab active"
+                                    data-filter="all">
+
+                                    All Courses
+
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="filter-tab"
+                                    data-filter="development">
+
+                                    Development
+
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="filter-tab"
+                                    data-filter="design">
+
+                                    Design
+
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="filter-tab"
+                                    data-filter="data-science">
+
+                                    Data Science
+
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="filter-tab"
+                                    data-filter="business">
+
+                                    Business
+
+                                </button>
+
+                            </div>
+
+                            <label class="sort-control">
+
+                                <span>Sort by</span>
+
+                                <select id="courseSort" aria-label="Sort courses">
+
+                                    <option value="featured">
+                                        Featured
+                                    </option>
+
+                                    <option value="price-low">
+                                        Price: Low to High
+                                    </option>
+
+                                    <option value="price-high">
+                                        Price: High to Low
+                                    </option>
+
+                                    <option value="rating">
+                                        Highest Rated
+                                    </option>
+
+                                </select>
+
+                            </label>
+
+                        </div>
+
+
+                        <!-- COURSE GRID -->
+
+                        <div class="results-course-grid" id="resultsCourseGrid">
+
+
+                            <!-- COURSE 01 -->
+
+                            <article
+                                class="result-course-card"
+                                data-category="development"
+                                data-price="2499"
+                                data-rating="4.9">
+
+                                <div class="result-course-image">
+
+                                    <img
+                                        src="assets/r2.webp"
+                                        alt="Full Stack Web Development"
+                                        loading="lazy">
+
+                                    <span class="result-course-badge badge-popular">
+                                        POPULAR
+                                    </span>
+
+                                    <button
+                                        type="button"
+                                        class="result-bookmark"
+                                        aria-label="Bookmark Full Stack Web Development"
+                                        aria-pressed="false">
+
+                                        <i class="fa-regular fa-bookmark"></i>
+
+                                    </button>
+
+                                    <span class="image-course-category">
+                                        DEVELOPMENT
+                                    </span>
+
+                                </div>
+
+                                <div class="result-course-content">
+
+                                    <div class="result-course-meta">
+
+                                        <span>
+                                            <i class="fa-solid fa-star"></i>
+                                            4.9
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-regular fa-clock"></i>
+                                            12 weeks
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-solid fa-user-group"></i>
+                                            2.4k learners
+                                        </span>
+
+                                    </div>
+
+                                    <h3>
+                                        <a href="404.html">
+                                            Complete Full Stack Web Development
+                                        </a>
+                                    </h3>
+
+                                    <p>
+                                        Master modern frontend and backend
+                                        fundamentals through practical projects.
+                                    </p>
+
+                                    <div class="result-instructor">
+
+                                        <img
+                                            src="assets/c5.webp"
+                                            alt="Course instructor"
+                                            loading="lazy">
+
+                                        <div>
+
+                                            <span>Instructor</span>
+
+                                            <strong>Alex Morgan</strong>
+
+                                        </div>
+
+                                        <span class="level-tag">
+                                            Beginner
+                                        </span>
+
+                                    </div>
+
+                                    <div class="result-course-footer">
+
+                                        <div class="result-price">
+
+                                            <strong>₹2,499</strong>
+
+                                            <del>₹4,999</del>
+
+                                        </div>
+
+                                        <a href="404.html" class="result-course-link"
+                                            aria-label="View Full Stack Development course">
+
+                                            <i class="fa-solid fa-arrow-right"></i>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- COURSE 02 -->
+
+                            <article
+                                class="result-course-card"
+                                data-category="design"
+                                data-price="1999"
+                                data-rating="4.8">
+
+                                <div class="result-course-image">
+
+                                    <img
+                                        src="assets/r3.webp"
+                                        alt="UI UX Design Masterclass"
+                                        loading="lazy">
+
+                                    <span class="result-course-badge badge-new">
+                                        NEW
+                                    </span>
+
+                                    <button
+                                        type="button"
+                                        class="result-bookmark"
+                                        aria-label="Bookmark UI UX Design"
+                                        aria-pressed="false">
+
+                                        <i class="fa-regular fa-bookmark"></i>
+
+                                    </button>
+
+                                    <span class="image-course-category">
+                                        DESIGN
+                                    </span>
+
+                                </div>
+
+                                <div class="result-course-content">
+
+                                    <div class="result-course-meta">
+
+                                        <span>
+                                            <i class="fa-solid fa-star"></i>
+                                            4.8
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-regular fa-clock"></i>
+                                            8 weeks
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-solid fa-user-group"></i>
+                                            1.8k learners
+                                        </span>
+
+                                    </div>
+
+                                    <h3>
+                                        <a href="404.html">
+                                            UI/UX Design Masterclass
+                                        </a>
+                                    </h3>
+
+                                    <p>
+                                        Learn user research, wireframing,
+                                        prototyping, and interface design.
+                                    </p>
+
+                                    <div class="result-instructor">
+
+                                        <img
+                                            src="assets/c5.webp"
+                                            alt="Course instructor"
+                                            loading="lazy">
+
+                                        <div>
+
+                                            <span>Instructor</span>
+
+                                            <strong>Sophia Williams</strong>
+
+                                        </div>
+
+                                        <span class="level-tag">
+                                            Beginner
+                                        </span>
+
+                                    </div>
+
+                                    <div class="result-course-footer">
+
+                                        <div class="result-price">
+
+                                            <strong>₹1,999</strong>
+
+                                            <del>₹3,999</del>
+
+                                        </div>
+
+                                        <a href="404.html" class="result-course-link"
+                                            aria-label="View UI UX Design course">
+
+                                            <i class="fa-solid fa-arrow-right"></i>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- COURSE 03 -->
+
+                            <article
+                                class="result-course-card"
+                                data-category="data-science"
+                                data-price="2999"
+                                data-rating="4.9">
+
+                                <div class="result-course-image">
+
+                                    <img
+                                        src="assets/r4.webp"
+                                        alt="Data Science and Analytics"
+                                        loading="lazy">
+
+                                    <span class="result-course-badge badge-trending">
+                                        TRENDING
+                                    </span>
+
+                                    <button
+                                        type="button"
+                                        class="result-bookmark"
+                                        aria-label="Bookmark Data Science"
+                                        aria-pressed="false">
+
+                                        <i class="fa-regular fa-bookmark"></i>
+
+                                    </button>
+
+                                    <span class="image-course-category">
+                                        DATA SCIENCE
+                                    </span>
+
+                                </div>
+
+                                <div class="result-course-content">
+
+                                    <div class="result-course-meta">
+
+                                        <span>
+                                            <i class="fa-solid fa-star"></i>
+                                            4.9
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-regular fa-clock"></i>
+                                            14 weeks
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-solid fa-user-group"></i>
+                                            3.1k learners
+                                        </span>
+
+                                    </div>
+
+                                    <h3>
+                                        <a href="404.html">
+                                            Data Science & Analytics
+                                        </a>
+                                    </h3>
+
+                                    <p>
+                                        Understand data analysis, Python,
+                                        visualization, and essential statistics.
+                                    </p>
+
+                                    <div class="result-instructor">
+
+                                        <img
+                                            src="assets/c5.webp"
+                                            alt="Course instructor"
+                                            loading="lazy">
+
+                                        <div>
+
+                                            <span>Instructor</span>
+
+                                            <strong>Daniel Carter</strong>
+
+                                        </div>
+
+                                        <span class="level-tag">
+                                            Intermediate
+                                        </span>
+
+                                    </div>
+
+                                    <div class="result-course-footer">
+
+                                        <div class="result-price">
+
+                                            <strong>₹2,999</strong>
+
+                                            <del>₹5,999</del>
+
+                                        </div>
+
+                                        <a href="404.html" class="result-course-link"
+                                            aria-label="View Data Science course">
+
+                                            <i class="fa-solid fa-arrow-right"></i>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- COURSE 04 -->
+
+                            <article
+                                class="result-course-card"
+                                data-category="development"
+                                data-price="1799"
+                                data-rating="4.7">
+
+                                <div class="result-course-image">
+
+                                    <img
+                                        src="assets/r5.webp"
+                                        alt="Python Programming"
+                                        loading="lazy">
+
+                                    <button
+                                        type="button"
+                                        class="result-bookmark"
+                                        aria-label="Bookmark Python Programming"
+                                        aria-pressed="false">
+
+                                        <i class="fa-regular fa-bookmark"></i>
+
+                                    </button>
+
+                                    <span class="image-course-category">
+                                        DEVELOPMENT
+                                    </span>
+
+                                </div>
+
+                                <div class="result-course-content">
+
+                                    <div class="result-course-meta">
+
+                                        <span>
+                                            <i class="fa-solid fa-star"></i>
+                                            4.7
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-regular fa-clock"></i>
+                                            6 weeks
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-solid fa-user-group"></i>
+                                            1.6k learners
+                                        </span>
+
+                                    </div>
+
+                                    <h3>
+                                        <a href="404.html">
+                                            Python Programming Essentials
+                                        </a>
+                                    </h3>
+
+                                    <p>
+                                        Build a strong programming foundation
+                                        with Python and hands-on exercises.
+                                    </p>
+
+                                    <div class="result-instructor">
+
+                                        <img
+                                            src="assets/c5.webp"
+                                            alt="Course instructor"
+                                            loading="lazy">
+
+                                        <div>
+
+                                            <span>Instructor</span>
+
+                                            <strong>Ryan Mitchell</strong>
+
+                                        </div>
+
+                                        <span class="level-tag">
+                                            Beginner
+                                        </span>
+
+                                    </div>
+
+                                    <div class="result-course-footer">
+
+                                        <div class="result-price">
+
+                                            <strong>₹1,799</strong>
+
+                                            <del>₹3,499</del>
+
+                                        </div>
+
+                                        <a href="404.html" class="result-course-link"
+                                            aria-label="View Python Programming course">
+
+                                            <i class="fa-solid fa-arrow-right"></i>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- COURSE 05 -->
+
+                            <article
+                                class="result-course-card"
+                                data-category="design"
+                                data-price="1499"
+                                data-rating="4.8">
+
+                                <div class="result-course-image">
+
+                                    <img
+                                        src="assets/r6.webp"
+                                        alt="Graphic Design Fundamentals"
+                                        loading="lazy">
+
+                                    <button
+                                        type="button"
+                                        class="result-bookmark"
+                                        aria-label="Bookmark Graphic Design"
+                                        aria-pressed="false">
+
+                                        <i class="fa-regular fa-bookmark"></i>
+
+                                    </button>
+
+                                    <span class="image-course-category">
+                                        DESIGN
+                                    </span>
+
+                                </div>
+
+                                <div class="result-course-content">
+
+                                    <div class="result-course-meta">
+
+                                        <span>
+                                            <i class="fa-solid fa-star"></i>
+                                            4.8
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-regular fa-clock"></i>
+                                            5 weeks
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-solid fa-user-group"></i>
+                                            980 learners
+                                        </span>
+
+                                    </div>
+
+                                    <h3>
+                                        <a href="404.html">
+                                            Graphic Design Fundamentals
+                                        </a>
+                                    </h3>
+
+                                    <p>
+                                        Explore typography, composition,
+                                        visual storytelling, and branding.
+                                    </p>
+
+                                    <div class="result-instructor">
+
+                                        <img
+                                            src="assets/c5.webp"
+                                            alt="Course instructor"
+                                            loading="lazy">
+
+                                        <div>
+
+                                            <span>Instructor</span>
+
+                                            <strong>Emma Wilson</strong>
+
+                                        </div>
+
+                                        <span class="level-tag">
+                                            Beginner
+                                        </span>
+
+                                    </div>
+
+                                    <div class="result-course-footer">
+
+                                        <div class="result-price">
+
+                                            <strong>₹1,499</strong>
+
+                                            <del>₹2,999</del>
+
+                                        </div>
+
+                                        <a href="404.html" class="result-course-link"
+                                            aria-label="View Graphic Design course">
+
+                                            <i class="fa-solid fa-arrow-right"></i>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- COURSE 06 -->
+
+                            <article
+                                class="result-course-card"
+                                data-category="business"
+                                data-price="2299"
+                                data-rating="4.6">
+
+                                <div class="result-course-image">
+
+                                    <img
+                                        src="assets/r7.webp"
+                                        alt="Digital Marketing Strategy"
+                                        loading="lazy">
+
+                                    <button
+                                        type="button"
+                                        class="result-bookmark"
+                                        aria-label="Bookmark Digital Marketing"
+                                        aria-pressed="false">
+
+                                        <i class="fa-regular fa-bookmark"></i>
+
+                                    </button>
+
+                                    <span class="image-course-category">
+                                        BUSINESS
+                                    </span>
+
+                                </div>
+
+                                <div class="result-course-content">
+
+                                    <div class="result-course-meta">
+
+                                        <span>
+                                            <i class="fa-solid fa-star"></i>
+                                            4.6
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-regular fa-clock"></i>
+                                            7 weeks
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-solid fa-user-group"></i>
+                                            1.2k learners
+                                        </span>
+
+                                    </div>
+
+                                    <h3>
+                                        <a href="404.html">
+                                            Digital Marketing Strategy
+                                        </a>
+                                    </h3>
+
+                                    <p>
+                                        Discover content marketing, SEO,
+                                        campaign planning, and analytics.
+                                    </p>
+
+                                    <div class="result-instructor">
+
+                                        <img
+                                            src="assets/c5.webp"
+                                            alt="Course instructor"
+                                            loading="lazy">
+
+                                        <div>
+
+                                            <span>Instructor</span>
+
+                                            <strong>Olivia Brooks</strong>
+
+                                        </div>
+
+                                        <span class="level-tag">
+                                            Intermediate
+                                        </span>
+
+                                    </div>
+
+                                    <div class="result-course-footer">
+
+                                        <div class="result-price">
+
+                                            <strong>₹2,299</strong>
+
+                                            <del>₹4,499</del>
+
+                                        </div>
+
+                                        <a href="404.html" class="result-course-link"
+                                            aria-label="View Digital Marketing course">
+
+                                            <i class="fa-solid fa-arrow-right"></i>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- COURSE 07 -->
+
+                            <article
+                                class="result-course-card"
+                                data-category="development"
+                                data-price="1999"
+                                data-rating="4.8">
+
+                                <div class="result-course-image">
+
+                                    <img
+                                        src="assets/r8.webp"
+                                        alt="React Frontend Development"
+                                        loading="lazy">
+
+                                    <span class="result-course-badge badge-popular">
+                                        POPULAR
+                                    </span>
+
+                                    <button
+                                        type="button"
+                                        class="result-bookmark"
+                                        aria-label="Bookmark React Development"
+                                        aria-pressed="false">
+
+                                        <i class="fa-regular fa-bookmark"></i>
+
+                                    </button>
+
+                                    <span class="image-course-category">
+                                        DEVELOPMENT
+                                    </span>
+
+                                </div>
+
+                                <div class="result-course-content">
+
+                                    <div class="result-course-meta">
+
+                                        <span>
+                                            <i class="fa-solid fa-star"></i>
+                                            4.8
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-regular fa-clock"></i>
+                                            9 weeks
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-solid fa-user-group"></i>
+                                            2.1k learners
+                                        </span>
+
+                                    </div>
+
+                                    <h3>
+                                        <a href="404.html">
+                                            Modern React Development
+                                        </a>
+                                    </h3>
+
+                                    <p>
+                                        Learn components, hooks, reusable UI,
+                                        and modern frontend architecture.
+                                    </p>
+
+                                    <div class="result-instructor">
+
+                                        <img
+                                            src="assets/c5.webp"
+                                            alt="Course instructor"
+                                            loading="lazy">
+
+                                        <div>
+
+                                            <span>Instructor</span>
+
+                                            <strong>Alex Morgan</strong>
+
+                                        </div>
+
+                                        <span class="level-tag">
+                                            Intermediate
+                                        </span>
+
+                                    </div>
+
+                                    <div class="result-course-footer">
+
+                                        <div class="result-price">
+
+                                            <strong>₹1,999</strong>
+
+                                            <del>₹3,999</del>
+
+                                        </div>
+
+                                        <a href="404.html" class="result-course-link"
+                                            aria-label="View React Development course">
+
+                                            <i class="fa-solid fa-arrow-right"></i>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- COURSE 08 -->
+
+                            <article
+                                class="result-course-card"
+                                data-category="data-science"
+                                data-price="2499"
+                                data-rating="4.7">
+
+                                <div class="result-course-image">
+
+                                    <img
+                                        src="assets/r9.webp"
+                                        alt="Machine Learning Foundations"
+                                        loading="lazy">
+
+                                    <button
+                                        type="button"
+                                        class="result-bookmark"
+                                        aria-label="Bookmark Machine Learning"
+                                        aria-pressed="false">
+
+                                        <i class="fa-regular fa-bookmark"></i>
+
+                                    </button>
+
+                                    <span class="image-course-category">
+                                        DATA SCIENCE
+                                    </span>
+
+                                </div>
+
+                                <div class="result-course-content">
+
+                                    <div class="result-course-meta">
+
+                                        <span>
+                                            <i class="fa-solid fa-star"></i>
+                                            4.7
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-regular fa-clock"></i>
+                                            10 weeks
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-solid fa-user-group"></i>
+                                            1.4k learners
+                                        </span>
+
+                                    </div>
+
+                                    <h3>
+                                        <a href="404.html">
+                                            Machine Learning Foundations
+                                        </a>
+                                    </h3>
+
+                                    <p>
+                                        Understand essential machine learning
+                                        concepts and practical workflows.
+                                    </p>
+
+                                    <div class="result-instructor">
+
+                                        <img
+                                            src="assets/c5.webp"
+                                            alt="Course instructor"
+                                            loading="lazy">
+
+                                        <div>
+
+                                            <span>Instructor</span>
+
+                                            <strong>Daniel Carter</strong>
+
+                                        </div>
+
+                                        <span class="level-tag">
+                                            Advanced
+                                        </span>
+
+                                    </div>
+
+                                    <div class="result-course-footer">
+
+                                        <div class="result-price">
+
+                                            <strong>₹2,499</strong>
+
+                                            <del>₹4,999</del>
+
+                                        </div>
+
+                                        <a href="404.html" class="result-course-link"
+                                            aria-label="View Machine Learning course">
+
+                                            <i class="fa-solid fa-arrow-right"></i>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- COURSE 09 -->
+
+                            <article
+                                class="result-course-card"
+                                data-category="business"
+                                data-price="1799"
+                                data-rating="4.7">
+
+                                <div class="result-course-image">
+
+                                    <img
+                                        src="assets/r10.webp"
+                                        alt="Project Management"
+                                        loading="lazy">
+
+                                    <button
+                                        type="button"
+                                        class="result-bookmark"
+                                        aria-label="Bookmark Project Management"
+                                        aria-pressed="false">
+
+                                        <i class="fa-regular fa-bookmark"></i>
+
+                                    </button>
+
+                                    <span class="image-course-category">
+                                        BUSINESS
+                                    </span>
+
+                                </div>
+
+                                <div class="result-course-content">
+
+                                    <div class="result-course-meta">
+
+                                        <span>
+                                            <i class="fa-solid fa-star"></i>
+                                            4.7
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-regular fa-clock"></i>
+                                            6 weeks
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-solid fa-user-group"></i>
+                                            870 learners
+                                        </span>
+
+                                    </div>
+
+                                    <h3>
+                                        <a href="404.html">
+                                            Project Management Essentials
+                                        </a>
+                                    </h3>
+
+                                    <p>
+                                        Build skills in planning, collaboration,
+                                        execution, and project delivery.
+                                    </p>
+
+                                    <div class="result-instructor">
+
+                                        <img
+                                            src="assets/c5.webp"
+                                            alt="Course instructor"
+                                            loading="lazy">
+
+                                        <div>
+
+                                            <span>Instructor</span>
+
+                                            <strong>Olivia Brooks</strong>
+
+                                        </div>
+
+                                        <span class="level-tag">
+                                            Beginner
+                                        </span>
+
+                                    </div>
+
+                                    <div class="result-course-footer">
+
+                                        <div class="result-price">
+
+                                            <strong>₹1,799</strong>
+
+                                            <del>₹3,499</del>
+
+                                        </div>
+
+                                        <a href="404.html" class="result-course-link"
+                                            aria-label="View Project Management course">
+
+                                            <i class="fa-solid fa-arrow-right"></i>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- COURSE 10 -->
+
+                            <article
+                                class="result-course-card"
+                                data-category="design"
+                                data-price="1899"
+                                data-rating="4.9">
+
+                                <div class="result-course-image">
+
+                                    <img
+                                        src="assets/r11.webp"
+                                        alt="Design Systems"
+                                        loading="lazy">
+
+                                    <span class="result-course-badge badge-new">
+                                        NEW
+                                    </span>
+
+                                    <button
+                                        type="button"
+                                        class="result-bookmark"
+                                        aria-label="Bookmark Design Systems"
+                                        aria-pressed="false">
+
+                                        <i class="fa-regular fa-bookmark"></i>
+
+                                    </button>
+
+                                    <span class="image-course-category">
+                                        DESIGN
+                                    </span>
+
+                                </div>
+
+                                <div class="result-course-content">
+
+                                    <div class="result-course-meta">
+
+                                        <span>
+                                            <i class="fa-solid fa-star"></i>
+                                            4.9
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-regular fa-clock"></i>
+                                            6 weeks
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-solid fa-user-group"></i>
+                                            760 learners
+                                        </span>
+
+                                    </div>
+
+                                    <h3>
+                                        <a href="404.html">
+                                            Design Systems & Components
+                                        </a>
+                                    </h3>
+
+                                    <p>
+                                        Create consistent interfaces with
+                                        reusable components and design tokens.
+                                    </p>
+
+                                    <div class="result-instructor">
+
+                                        <img
+                                            src="assets/c5.webp"
+                                            alt="Course instructor"
+                                            loading="lazy">
+
+                                        <div>
+
+                                            <span>Instructor</span>
+
+                                            <strong>Sophia Williams</strong>
+
+                                        </div>
+
+                                        <span class="level-tag">
+                                            Intermediate
+                                        </span>
+
+                                    </div>
+
+                                    <div class="result-course-footer">
+
+                                        <div class="result-price">
+
+                                            <strong>₹1,899</strong>
+
+                                            <del>₹3,799</del>
+
+                                        </div>
+
+                                        <a href="404.html" class="result-course-link"
+                                            aria-label="View Design Systems course">
+
+                                            <i class="fa-solid fa-arrow-right"></i>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- COURSE 11 -->
+
+                            <article
+                                class="result-course-card"
+                                data-category="development"
+                                data-price="2199"
+                                data-rating="4.8">
+
+                                <div class="result-course-image">
+
+                                    <img
+                                        src="assets/r12.webp"
+                                        alt="Cloud Computing Fundamentals"
+                                        loading="lazy">
+
+                                    <button
+                                        type="button"
+                                        class="result-bookmark"
+                                        aria-label="Bookmark Cloud Computing"
+                                        aria-pressed="false">
+
+                                        <i class="fa-regular fa-bookmark"></i>
+
+                                    </button>
+
+                                    <span class="image-course-category">
+                                        TECHNOLOGY
+                                    </span>
+
+                                </div>
+
+                                <div class="result-course-content">
+
+                                    <div class="result-course-meta">
+
+                                        <span>
+                                            <i class="fa-solid fa-star"></i>
+                                            4.8
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-regular fa-clock"></i>
+                                            8 weeks
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-solid fa-user-group"></i>
+                                            1.3k learners
+                                        </span>
+
+                                    </div>
+
+                                    <h3>
+                                        <a href="404.html">
+                                            Cloud Computing Fundamentals
+                                        </a>
+                                    </h3>
+
+                                    <p>
+                                        Explore cloud architecture, deployment,
+                                        infrastructure, and core concepts.
+                                    </p>
+
+                                    <div class="result-instructor">
+
+                                        <img
+                                            src="assets/c5.webp"
+                                            alt="Course instructor"
+                                            loading="lazy">
+
+                                        <div>
+
+                                            <span>Instructor</span>
+
+                                            <strong>Ryan Mitchell</strong>
+
+                                        </div>
+
+                                        <span class="level-tag">
+                                            Intermediate
+                                        </span>
+
+                                    </div>
+
+                                    <div class="result-course-footer">
+
+                                        <div class="result-price">
+
+                                            <strong>₹2,199</strong>
+
+                                            <del>₹4,299</del>
+
+                                        </div>
+
+                                        <a href="404.html" class="result-course-link"
+                                            aria-label="View Cloud Computing course">
+
+                                            <i class="fa-solid fa-arrow-right"></i>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- COURSE 12 -->
+
+                            <article
+                                class="result-course-card"
+                                data-category="business"
+                                data-price="1599"
+                                data-rating="4.6">
+
+                                <div class="result-course-image">
+
+                                    <img
+                                        src="assets/a4.webp"
+                                        alt="Professional Communication"
+                                        loading="lazy">
+
+                                    <button
+                                        type="button"
+                                        class="result-bookmark"
+                                        aria-label="Bookmark Professional Communication"
+                                        aria-pressed="false">
+
+                                        <i class="fa-regular fa-bookmark"></i>
+
+                                    </button>
+
+                                    <span class="image-course-category">
+                                        CAREER SKILLS
+                                    </span>
+
+                                </div>
+
+                                <div class="result-course-content">
+
+                                    <div class="result-course-meta">
+
+                                        <span>
+                                            <i class="fa-solid fa-star"></i>
+                                            4.6
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-regular fa-clock"></i>
+                                            4 weeks
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-solid fa-user-group"></i>
+                                            690 learners
+                                        </span>
+
+                                    </div>
+
+                                    <h3>
+                                        <a href="404.html">
+                                            Professional Communication Skills
+                                        </a>
+                                    </h3>
+
+                                    <p>
+                                        Improve workplace communication,
+                                        presentations, and collaboration.
+                                    </p>
+
+                                    <div class="result-instructor">
+
+                                        <img
+                                            src="assets/c5.webp"
+                                            alt="Course instructor"
+                                            loading="lazy">
+
+                                        <div>
+
+                                            <span>Instructor</span>
+
+                                            <strong>Emma Wilson</strong>
+
+                                        </div>
+
+                                        <span class="level-tag">
+                                            Beginner
+                                        </span>
+
+                                    </div>
+
+                                    <div class="result-course-footer">
+
+                                        <div class="result-price">
+
+                                            <strong>₹1,599</strong>
+
+                                            <del>₹2,999</del>
+
+                                        </div>
+
+                                        <a href="404.html" class="result-course-link"
+                                            aria-label="View Communication course">
+
+                                            <i class="fa-solid fa-arrow-right"></i>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+
+                        </div>
+
+
+                        <!-- EMPTY SEARCH STATE -->
+
+                        <div class="results-empty" id="resultsEmpty" hidden>
+
+                            <div class="empty-icon">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+
+                            <h3>No courses found</h3>
+
+                            <p>
+                                Try another search term or choose a different category.
+                            </p>
+
+                            <button
+                                type="button"
+                                id="resetSearchButton"
+                                class="empty-reset-button">
+
+                                Explore all courses
+
+                            </button>
+
+                        </div>
+
+
+                        <!-- RESULTS FOOTER -->
+
+                        <div class="results-grid-footer">
+
+                            <p>
+                                Showing
+                                <strong id="visibleCourseCount">12</strong>
+                                learning opportunities
+                            </p>
+
+                            <a href="404.html" class="view-all-link">
+
+                                View course catalogue
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SIDEBAR -->
+
+                    <aside class="results-sidebar">
+
+
+                        <!-- LEARNING PROFILE -->
+
+                        <div class="sidebar-panel learning-profile-panel">
+
+                            <div class="sidebar-panel-heading">
+
+                                <div>
+                                    <span class="section-label">YOUR JOURNEY</span>
+                                    <h3>Learn your way</h3>
+                                </div>
+
+                                <span class="sidebar-heading-icon">
+                                    <i class="fa-solid fa-compass"></i>
+                                </span>
+
+                            </div>
+
+                            <p>
+                                Every great career begins with a skill.
+                                Find a course that fits your ambitions.
+                            </p>
+
+                            <div class="journey-progress">
+
+                                <div class="journey-progress-top">
+
+                                    <span>Explore your interests</span>
+
+                                    <strong>01 / 03</strong>
+
+                                </div>
+
+                                <div class="journey-progress-track">
+                                    <span></span>
+                                </div>
+
+                            </div>
+
+                            <a href="#learning-paths" class="sidebar-primary-link">
+
+                                Find your path
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+
+                        <!-- POPULAR SKILLS -->
+
+                        <div class="sidebar-panel skills-panel">
+
+                            <div class="sidebar-panel-heading">
+
+                                <div>
+                                    <span class="section-label">IN DEMAND</span>
+                                    <h3>Popular skills</h3>
+                                </div>
+
+                                <i class="fa-solid fa-fire skills-heading-icon"></i>
+
+                            </div>
+
+                            <div class="popular-skill-list">
+
+                                <a href="#allResults" class="popular-skill">
+                                    <span class="skill-dot skill-dot-blue"></span>
+                                    <span>JavaScript</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+
+                                <a href="#allResults" class="popular-skill">
+                                    <span class="skill-dot skill-dot-violet"></span>
+                                    <span>UI/UX Design</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+
+                                <a href="#allResults" class="popular-skill">
+                                    <span class="skill-dot skill-dot-gold"></span>
+                                    <span>Python</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+
+                                <a href="#allResults" class="popular-skill">
+                                    <span class="skill-dot skill-dot-green"></span>
+                                    <span>Data Analytics</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+
+                                <a href="#allResults" class="popular-skill">
+                                    <span class="skill-dot skill-dot-pink"></span>
+                                    <span>Digital Marketing</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- FEATURED MENTOR -->
+
+                        <div class="sidebar-mentor-card">
+
+                            <img
+                                src="assets/c11.webp"
+                                alt="Featured learning mentor"
+                                loading="lazy">
+
+                            <div class="mentor-card-overlay"></div>
+
+                            <div class="mentor-card-content">
+
+                                <span class="mentor-badge">
+                                    <i class="fa-solid fa-sparkles"></i>
+                                    LEARN FROM EXPERTS
+                                </span>
+
+                                <h3>
+                                    Learn from people
+                                    who build the future.
+                                </h3>
+
+                                <p>
+                                    Discover practical lessons designed
+                                    to move your skills forward.
+                                </p>
+
+                                <a href="404.html" class="mentor-card-link">
+
+                                    Meet the mentors
+
+                                    <i class="fa-solid fa-arrow-right"></i>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- HELP PANEL -->
+
+                        <div class="sidebar-help-panel">
+
+                            <div class="help-icon">
+                                <i class="fa-regular fa-circle-question"></i>
+                            </div>
+
+                            <div class="help-copy">
+
+                                <h3>Need a little direction?</h3>
+
+                                <p>
+                                    Explore our learning collections to
+                                    find a topic that inspires you.
+                                </p>
+
+                                <a href="404.html">
+
+                                    Browse learning paths
+
+                                    <i class="fa-solid fa-arrow-right"></i>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+                    </aside>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             04. DEVELOPMENT COLLECTION
+        ================================================== -->
+
+        <section class="collection-section development-section" id="development">
+
+            <div class="page-container">
+
+                <div class="collection-heading">
+
+                    <div class="collection-heading-copy">
+
+                        <span class="section-label">
+                            BUILD SOMETHING REAL
+                        </span>
+
+                        <h2>
+                            The art of
+                            <span class="gradient-text">development.</span>
+                        </h2>
+
+                        <p>
+                            Turn ideas into websites, applications,
+                            and digital products with practical skills.
+                        </p>
+
+                    </div>
+
+                    <a href="404.html" class="collection-link">
+
+                        Explore development
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+
+                <div class="development-feature-grid">
+
+                    <article class="development-feature-card">
+
+                        <img
+                            src="assets/r13.webp"
+                            alt="Frontend development workspace"
+                            loading="lazy">
+
+                        <div class="development-card-overlay"></div>
+
+                        <div class="development-feature-content">
+
+                            <span class="development-card-label">
+                                START HERE
+                            </span>
+
+                            <h3>
+                                Bring your ideas
+                                to the screen.
+                            </h3>
+
+                            <p>
+                                Learn HTML, CSS, JavaScript, and
+                                the foundations of modern web design.
+                            </p>
+
+                            <a href="404.html" class="light-action-link">
+
+                                Explore frontend
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="development-mini-card">
+
+                        <div class="development-mini-image">
+
+                            <img
+                                src="assets/r14.webp"
+                                alt="Backend development"
+                                loading="lazy">
+
+                            <span class="mini-card-icon">
+                                <i class="fa-solid fa-server"></i>
+                            </span>
+
+                        </div>
+
+                        <div class="development-mini-content">
+
+                            <span class="section-label">
+                                SERVER SIDE
+                            </span>
+
+                            <h3>Backend Engineering</h3>
+
+                            <p>
+                                Understand application logic,
+                                databases, and server fundamentals.
+                            </p>
+
+                            <a href="404.html" class="dark-action-link">
+
+                                Discover courses
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="development-mini-card">
+
+                        <div class="development-mini-image">
+
+                            <img
+                                src="assets/c4.webp"
+                                alt="Full stack developer working"
+                                loading="lazy">
+
+                            <span class="mini-card-icon">
+                                <i class="fa-solid fa-layer-group"></i>
+                            </span>
+
+                        </div>
+
+                        <div class="development-mini-content">
+
+                            <span class="section-label">
+                                COMPLETE JOURNEY
+                            </span>
+
+                            <h3>Full Stack Skills</h3>
+
+                            <p>
+                                Connect frontend experiences with
+                                backend functionality.
+                            </p>
+
+                            <a href="404.html" class="dark-action-link">
+
+                                Explore full stack
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             05. DESIGN COLLECTION
+        ================================================== -->
+
+        <section class="collection-section design-section" id="design">
+
+            <div class="page-container">
+
+                <div class="design-collection-grid">
+
+                    <div class="design-collection-visual">
+
+                        <div class="design-image-main">
+
+                            <img
+                                src="assets/r15.webp"
+                                alt="Creative UI UX design workspace"
+                                loading="lazy">
+
+                        </div>
+
+                        <div class="design-image-secondary">
+
+                            <img
+                                src="assets/r16.webp"
+                                alt="Interface design detail"
+                                loading="lazy">
+
+                        </div>
+
+                        <div class="design-floating-note">
+
+                            <span class="design-note-icon">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </span>
+
+                            <div>
+
+                                <strong>Design with intention.</strong>
+
+                                <span>Think. Create. Refine.</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="design-collection-content">
+
+                        <span class="section-label">
+                            MAKE IDEAS VISIBLE
+                        </span>
+
+                        <h2>
+                            Create experiences
+                            people <span class="gradient-text">love.</span>
+                        </h2>
+
+                        <p>
+                            Great design is more than beautiful visuals.
+                            Learn to solve problems, understand people,
+                            and create meaningful digital experiences.
+                        </p>
+
+                        <div class="design-skill-list">
+
+                            <div class="design-skill-item">
+
+                                <span class="design-skill-icon">
+                                    <i class="fa-solid fa-bezier-curve"></i>
+                                </span>
+
+                                <div>
+
+                                    <h3>UI/UX Design</h3>
+
+                                    <p>
+                                        Design intuitive digital journeys
+                                        from research to prototype.
+                                    </p>
+
+                                </div>
+
+                                <a href="404.html" aria-label="Explore UI UX Design">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+
+                            </div>
+
+
+                            <div class="design-skill-item">
+
+                                <span class="design-skill-icon">
+                                    <i class="fa-solid fa-pen-nib"></i>
+                                </span>
+
+                                <div>
+
+                                    <h3>Visual Design</h3>
+
+                                    <p>
+                                        Develop your eye for typography,
+                                        colour, and composition.
+                                    </p>
+
+                                </div>
+
+                                <a href="404.html" aria-label="Explore Visual Design">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+
+                            </div>
+
+
+                            <div class="design-skill-item">
+
+                                <span class="design-skill-icon">
+                                    <i class="fa-solid fa-cubes"></i>
+                                </span>
+
+                                <div>
+
+                                    <h3>Design Systems</h3>
+
+                                    <p>
+                                        Build reusable components and
+                                        consistent interface patterns.
+                                    </p>
+
+                                </div>
+
+                                <a href="404.html" aria-label="Explore Design Systems">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                        <a href="404.html" class="design-primary-button">
+
+                            Explore creative courses
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             06. DATA SCIENCE COLLECTION
+        ================================================== -->
+
+        <section class="data-collection-section" id="data-science">
+
+            <div class="data-background-glow"></div>
+
+            <div class="page-container">
+
+                <div class="data-collection-heading">
+
+                    <span class="section-label">
+                        DISCOVER THE POWER OF DATA
+                    </span>
+
+                    <h2>
+                        Make sense of
+                        <span class="gradient-text">what matters.</span>
+                    </h2>
+
+                    <p>
+                        Learn to analyse information, recognise patterns,
+                        and transform data into meaningful decisions.
+                    </p>
+
+                </div>
+
+
+                <div class="data-collection-grid">
+
+                    <article class="data-feature-card">
+
+                        <div class="data-feature-top">
+
+                            <span class="data-feature-icon">
+                                <i class="fa-solid fa-chart-pie"></i>
+                            </span>
+
+                            <span class="data-feature-tag">
+                                DATA ANALYTICS
+                            </span>
+
+                        </div>
+
+                        <img
+                            src="assets/r17.webp"
+                            alt="Data analytics and visualisation"
+                            loading="lazy">
+
+                        <h3>Data Analytics</h3>
+
+                        <p>
+                            Understand datasets, build reports,
+                            and communicate insights with clarity.
+                        </p>
+
+                        <a href="404.html" class="data-course-link">
+
+                            Explore analytics
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </article>
+
+
+                    <article class="data-feature-card">
+
+                        <div class="data-feature-top">
+
+                            <span class="data-feature-icon">
+                                <i class="fa-solid fa-brain"></i>
+                            </span>
+
+                            <span class="data-feature-tag">
+                                MACHINE LEARNING
+                            </span>
+
+                        </div>
+
+                        <img
+                            src="assets/r18.webp"
+                            alt="Machine learning concepts"
+                            loading="lazy">
+
+                        <h3>Machine Learning</h3>
+
+                        <p>
+                            Explore predictive models, learning
+                            algorithms, and intelligent applications.
+                        </p>
+
+                        <a href="404.html" class="data-course-link">
+
+                            Explore machine learning
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </article>
+
+
+                    <article class="data-feature-card">
+
+                        <div class="data-feature-top">
+
+                            <span class="data-feature-icon">
+                                <i class="fa-brands fa-python"></i>
+                            </span>
+
+                            <span class="data-feature-tag">
+                                PYTHON
+                            </span>
+
+                        </div>
+
+                        <img
+                            src="assets/r19.webp"
+                            alt="Python programming workspace"
+                            loading="lazy">
+
+                        <h3>Python for Data</h3>
+
+                        <p>
+                            Develop practical Python skills for
+                            exploring and working with data.
+                        </p>
+
+                        <a href="404.html" class="data-course-link">
+
+                            Explore Python
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             07. BUSINESS AND CAREER SKILLS
+        ================================================== -->
+
+        <section class="business-section collection-section" id="business">
+
+            <div class="page-container">
+
+                <div class="business-section-grid">
+
+                    <div class="business-content">
+
+                        <span class="section-label">
+                            SKILLS BEYOND THE SCREEN
+                        </span>
+
+                        <h2>
+                            Grow your career
+                            with <span class="gradient-text">confidence.</span>
+                        </h2>
+
+                        <p>
+                            Build the communication, strategic thinking,
+                            and business skills that help you move
+                            forward in your professional journey.
+                        </p>
+
+                        <div class="business-benefits">
+
+                            <div>
+
+                                <i class="fa-solid fa-check"></i>
+
+                                <span>
+                                    Practical, real-world learning
+                                </span>
+
+                            </div>
+
+                            <div>
+
+                                <i class="fa-solid fa-check"></i>
+
+                                <span>
+                                    Skills you can apply at work
+                                </span>
+
+                            </div>
+
+                            <div>
+
+                                <i class="fa-solid fa-check"></i>
+
+                                <span>
+                                    A stronger professional foundation
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <a href="404.html" class="business-primary-button">
+
+                            Discover career skills
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="business-visual">
+
+                        <img
+                            src="assets/a5.webp"
+                            alt="Professional team collaborating"
+                            loading="lazy">
+
+                        <div class="business-image-shade"></div>
+
+                        <div class="business-visual-caption">
+
+                            <span>
+                                YOUR NEXT OPPORTUNITY
+                            </span>
+
+                            <h3>
+                                Invest in the person
+                                you're becoming.
+                            </h3>
+
+                        </div>
+
+                        <div class="business-floating-stat">
+
+                            <i class="fa-solid fa-bolt"></i>
+
+                            <div>
+
+                                <strong>Keep growing.</strong>
+
+                                <span>One skill at a time.</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             08. LEARNING PATHS
+        ================================================== -->
+
+        <section class="learning-paths-section section-space" id="learning-paths">
+
+            <div class="page-container">
+
+                <div class="section-heading-row">
+
+                    <div class="section-heading">
+
+                        <span class="section-label">
+                            A CLEARER WAY FORWARD
+                        </span>
+
+                        <h2>
+                            Follow a path.
+                            <span class="gradient-text">Build a future.</span>
+                        </h2>
+
+                        <p>
+                            Explore structured learning journeys
+                            designed around different goals.
+                        </p>
+
+                    </div>
+
+                    <a href="404.html" class="text-link">
+
+                        Explore all paths
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+
+                <div class="learning-path-grid">
+
+
+                    <article class="learning-path-card path-blue">
+
+                        <div class="path-card-top">
+
+                            <span class="path-number">01</span>
+
+                            <span class="path-icon">
+                                <i class="fa-solid fa-code"></i>
+                            </span>
+
+                        </div>
+
+                        <img
+                            src="assets/r20.webp"
+                            alt="Web developer learning path"
+                            loading="lazy">
+
+                        <div class="path-card-content">
+
+                            <span class="path-category">
+                                TECHNOLOGY
+                            </span>
+
+                            <h3>Become a Web Developer</h3>
+
+                            <p>
+                                Build a foundation in frontend development,
+                                then expand into full stack skills.
+                            </p>
+
+                            <div class="path-milestones">
+
+                                <span>HTML & CSS</span>
+
+                                <span>JavaScript</span>
+
+                                <span>Frontend</span>
+
+                            </div>
+
+                            <div class="path-card-bottom">
+
+                                <span>
+                                    <i class="fa-solid fa-book-open"></i>
+                                    4 learning stages
+                                </span>
+
+                                <a href="404.html" aria-label="Explore Web Developer path">
+
+                                    <i class="fa-solid fa-arrow-right"></i>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="learning-path-card path-violet">
+
+                        <div class="path-card-top">
+
+                            <span class="path-number">02</span>
+
+                            <span class="path-icon">
+                                <i class="fa-solid fa-pen-ruler"></i>
+                            </span>
+
+                        </div>
+
+                        <img
+                            src="assets/r21.webp"
+                            alt="UI UX designer learning path"
+                            loading="lazy">
+
+                        <div class="path-card-content">
+
+                            <span class="path-category">
+                                CREATIVE
+                            </span>
+
+                            <h3>Become a UI/UX Designer</h3>
+
+                            <p>
+                                Learn design fundamentals, user research,
+                                prototyping, and interface creation.
+                            </p>
+
+                            <div class="path-milestones">
+
+                                <span>Research</span>
+
+                                <span>Wireframes</span>
+
+                                <span>Prototypes</span>
+
+                            </div>
+
+                            <div class="path-card-bottom">
+
+                                <span>
+                                    <i class="fa-solid fa-book-open"></i>
+                                    4 learning stages
+                                </span>
+
+                                <a href="404.html" aria-label="Explore UI UX Designer path">
+
+                                    <i class="fa-solid fa-arrow-right"></i>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="learning-path-card path-gold">
+
+                        <div class="path-card-top">
+
+                            <span class="path-number">03</span>
+
+                            <span class="path-icon">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </span>
+
+                        </div>
+
+                        <img
+                            src="assets/r22.webp"
+                            alt="Data analyst learning path"
+                            loading="lazy">
+
+                        <div class="path-card-content">
+
+                            <span class="path-category">
+                                DATA & ANALYTICS
+                            </span>
+
+                            <h3>Become a Data Analyst</h3>
+
+                            <p>
+                                Develop the skills to understand datasets,
+                                uncover insights, and communicate findings.
+                            </p>
+
+                            <div class="path-milestones">
+
+                                <span>Python</span>
+
+                                <span>Analysis</span>
+
+                                <span>Insights</span>
+
+                            </div>
+
+                            <div class="path-card-bottom">
+
+                                <span>
+                                    <i class="fa-solid fa-book-open"></i>
+                                    4 learning stages
+                                </span>
+
+                                <a href="404.html" aria-label="Explore Data Analyst path">
+
+                                    <i class="fa-solid fa-arrow-right"></i>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             09. HOW LEARNING WORKS
+        ================================================== -->
+
+        <section class="learning-process-section">
+
+            <div class="page-container">
+
+                <div class="process-heading">
+
+                    <span class="section-label">
+                        SIMPLE BY DESIGN
+                    </span>
+
+                    <h2>
+                        From curious to
+                        <span class="gradient-text">confident.</span>
+                    </h2>
+
+                    <p>
+                        A simple approach to discovering and developing
+                        skills at your own pace.
+                    </p>
+
+                </div>
+
+
+                <div class="process-steps">
+
+                    <div class="process-line"></div>
+
+
+                    <article class="process-step">
+
+                        <span class="process-step-number">
+                            01
+                        </span>
+
+                        <div class="process-icon process-icon-blue">
+                            <i class="fa-solid fa-compass"></i>
+                        </div>
+
+                        <h3>Discover</h3>
+
+                        <p>
+                            Explore subjects and identify the skills
+                            that match your interests.
+                        </p>
+
+                    </article>
+
+
+                    <article class="process-step">
+
+                        <span class="process-step-number">
+                            02
+                        </span>
+
+                        <div class="process-icon process-icon-violet">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+
+                        <h3>Learn</h3>
+
+                        <p>
+                            Build your knowledge through structured
+                            lessons and practical exercises.
+                        </p>
+
+                    </article>
+
+
+                    <article class="process-step">
+
+                        <span class="process-step-number">
+                            03
+                        </span>
+
+                        <div class="process-icon process-icon-gold">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+
+                        <h3>Practice</h3>
+
+                        <p>
+                            Strengthen your understanding by applying
+                            concepts to projects.
+                        </p>
+
+                    </article>
+
+
+                    <article class="process-step">
+
+                        <span class="process-step-number">
+                            04
+                        </span>
+
+                        <div class="process-icon process-icon-green">
+                            <i class="fa-solid fa-rocket"></i>
+                        </div>
+
+                        <h3>Grow</h3>
+
+                        <p>
+                            Continue learning and prepare to use your
+                            skills in real-world situations.
+                        </p>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             10. FEATURED LEARNING SPOTLIGHT
+        ================================================== -->
+
+        <section class="spotlight-section section-space">
+
+            <div class="page-container">
+
+                <div class="spotlight-card">
+
+                    <div class="spotlight-background-orb"></div>
+
+                    <div class="spotlight-content">
+
+                        <span class="spotlight-badge">
+
+                            <i class="fa-solid fa-sparkles"></i>
+
+                            EDITOR'S SPOTLIGHT
+
+                        </span>
+
+                        <h2>
+                            Your next big idea
+                            deserves the right skills.
+                        </h2>
+
+                        <p>
+                            Explore learning opportunities that help
+                            you experiment, create, and build something
+                            you're proud of.
+                        </p>
+
+                        <div class="spotlight-features">
+
+                            <span>
+                                <i class="fa-solid fa-check-circle"></i>
+                                Practical learning
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-check-circle"></i>
+                                Project-focused lessons
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-check-circle"></i>
+                                Flexible exploration
+                            </span>
+
+                        </div>
+
+                        <a href="404.html" class="spotlight-button">
+
+                            Explore the collection
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="spotlight-visual">
+
+                        <div class="spotlight-image-main">
+
+                            <img
+                                src="assets/c11.webp"
+                                alt="Learner developing a new project"
+                                loading="lazy">
+
+                        </div>
+
+                        <div class="spotlight-mini-image">
+
+                            <img
+                                src="assets/c12.webp"
+                                alt="Creative learning workspace"
+                                loading="lazy">
+
+                        </div>
+
+                        <div class="spotlight-floating-icon">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             11. STUDENT VOICES
+        ================================================== -->
+
+        <section class="student-voices-section section-space">
+
+            <div class="page-container">
+
+                <div class="section-heading-row">
+
+                    <div class="section-heading">
+
+                        <span class="section-label">
+                            LEARNING IS PERSONAL
+                        </span>
+
+                        <h2>
+                            Every journey begins
+                            <span class="gradient-text">somewhere.</span>
+                        </h2>
+
+                        <p>
+                            Discover what motivated these learners
+                            to explore new skills.
+                        </p>
+
+                    </div>
+
+                    <div class="voices-heading-decoration">
+
+                        <i class="fa-solid fa-quote-right"></i>
+
+                    </div>
+
+                </div>
+
+
+                <div class="student-voices-grid">
+
+
+                    <article class="student-voice-card">
+
+                        <div class="voice-card-top">
+
+                            <span class="voice-quote-icon">
+                                <i class="fa-solid fa-quote-left"></i>
+                            </span>
+
+                            <div class="voice-stars">
+
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+
+                            </div>
+
+                        </div>
+
+                        <blockquote>
+                            "I wanted to understand how websites were built.
+                            Starting with the fundamentals helped me turn
+                            that curiosity into practical projects."
+                        </blockquote>
+
+                        <div class="voice-person">
+
+                            <img
+                                src="assets/a6.webp"
+                                alt="Student portrait"
+                                loading="lazy">
+
+                            <div>
+
+                                <strong>Arun Kumar</strong>
+
+                                <span>Web Development Learner</span>
+
+                            </div>
+
+                            <i class="fa-solid fa-code voice-person-icon"></i>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="student-voice-card voice-card-featured">
+
+                        <div class="voice-card-top">
+
+                            <span class="voice-quote-icon">
+                                <i class="fa-solid fa-quote-left"></i>
+                            </span>
+
+                            <div class="voice-stars">
+
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+
+                            </div>
+
+                        </div>
+
+                        <blockquote>
+                            "Exploring design taught me to think about
+                            the people using a product, not just how
+                            the interface looks."
+                        </blockquote>
+
+                        <div class="voice-person">
+
+                            <img
+                                src="assets/c1.webp"
+                                alt="Student portrait"
+                                loading="lazy">
+
+                            <div>
+
+                                <strong>Priya Sharma</strong>
+
+                                <span>UI/UX Design Learner</span>
+
+                            </div>
+
+                            <i class="fa-solid fa-pen-ruler voice-person-icon"></i>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="student-voice-card">
+
+                        <div class="voice-card-top">
+
+                            <span class="voice-quote-icon">
+                                <i class="fa-solid fa-quote-left"></i>
+                            </span>
+
+                            <div class="voice-stars">
+
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+
+                            </div>
+
+                        </div>
+
+                        <blockquote>
+                            "I became interested in understanding data.
+                            Learning the basics helped me see how
+                            information can support better decisions."
+                        </blockquote>
+
+                        <div class="voice-person">
+
+                            <img
+                                src="assets/a3.webp"
+                                alt="Student portrait"
+                                loading="lazy">
+
+                            <div>
+
+                                <strong>Rahul Nair</strong>
+
+                                <span>Data Science Learner</span>
+
+                            </div>
+
+                            <i class="fa-solid fa-chart-line voice-person-icon"></i>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             12. FAQ
+        ================================================== -->
+
+        <section class="faq-section section-space">
+
+            <div class="page-container">
+
+                <div class="faq-layout">
+
+                    <div class="faq-intro">
+
+                        <span class="section-label">
+                            GOOD TO KNOW
+                        </span>
+
+                        <h2>
+                            Questions before
+                            you <span class="gradient-text">begin?</span>
+                        </h2>
+
+                        <p>
+                            A few helpful answers to make exploring
+                            your next learning opportunity easier.
+                        </p>
+
+                        <div class="faq-help-card">
+
+                            <span class="faq-help-icon">
+                                <i class="fa-regular fa-comments"></i>
+                            </span>
+
+                            <div>
+
+                                <strong>Still exploring?</strong>
+
+                                <p>
+                                    Browse the full course collection
+                                    to find a topic that interests you.
+                                </p>
+
+                                <a href="404.html">
+
+                                    Browse courses
+
+                                    <i class="fa-solid fa-arrow-right"></i>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="faq-list">
+
+
+                        <details class="faq-item" open>
+
+                            <summary>
+
+                                How do I choose the right course?
+
+                                <span class="faq-toggle">
+                                    <i class="fa-solid fa-plus"></i>
+                                </span>
+
+                            </summary>
+
+                            <div class="faq-answer">
+
+                                Start with a subject that interests you.
+                                Consider your current experience, what
+                                you want to learn, and the projects you
+                                would like to build.
+
+                            </div>
+
+                        </details>
+
+
+                        <details class="faq-item">
+
+                            <summary>
+
+                                Can beginners explore these courses?
+
+                                <span class="faq-toggle">
+                                    <i class="fa-solid fa-plus"></i>
+                                </span>
+
+                            </summary>
+
+                            <div class="faq-answer">
+
+                                Yes. Look for courses marked Beginner
+                                to start with the fundamentals before
+                                moving into more advanced topics.
+
+                            </div>
+
+                        </details>
+
+
+                        <details class="faq-item">
+
+                            <summary>
+
+                                Which subjects can I discover?
+
+                                <span class="faq-toggle">
+                                    <i class="fa-solid fa-plus"></i>
+                                </span>
+
+                            </summary>
+
+                            <div class="faq-answer">
+
+                                Explore development, UI/UX design,
+                                data science, business, and professional
+                                skills. The available collection can
+                                be expanded as your learning goals grow.
+
+                            </div>
+
+                        </details>
+
+
+                        <details class="faq-item">
+
+                            <summary>
+
+                                How can I find a specific course?
+
+                                <span class="faq-toggle">
+                                    <i class="fa-solid fa-plus"></i>
+                                </span>
+
+                            </summary>
+
+                            <div class="faq-answer">
+
+                                Use the search bar near the top of
+                                the page or select a category to
+                                narrow down the available courses.
+
+                            </div>
+
+                        </details>
+
+
+                        <details class="faq-item">
+
+                            <summary>
+
+                                Do I need previous experience?
+
+                                <span class="faq-toggle">
+                                    <i class="fa-solid fa-plus"></i>
+                                </span>
+
+                            </summary>
+
+                            <div class="faq-answer">
+
+                                It depends on the course. Beginner
+                                courses introduce the basics, while
+                                intermediate and advanced courses
+                                may require prior knowledge.
+
+                            </div>
+
+                        </details>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             13. FINAL CTA
+        ================================================== -->
+
+        <section class="final-cta-section" id="startLearning">
+
+            <div class="cta-decoration cta-decoration-one"></div>
+
+            <div class="cta-decoration cta-decoration-two"></div>
+
+            <div class="page-container">
+
+                <div class="final-cta-card">
+
+                    <div class="final-cta-content">
+
+                        <span class="final-cta-label">
+
+                            <i class="fa-solid fa-sparkles"></i>
+
+                            YOUR NEXT CHAPTER AWAITS
+
+                        </span>
+
+                        <h2>
+                            Start with curiosity.
+                            <br>
+
+                            <span class="gradient-text">
+                                Grow with purpose.
+                            </span>
+                        </h2>
+
+                        <p>
+                            Find a subject that excites you and take
+                            the first step towards building something
+                            meaningful.
+                        </p>
+
+                        <div class="final-cta-actions">
+
+                            <a href="404.html" class="final-primary-button">
+
+                                Explore All Courses
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+                            <a href="404.html" class="final-secondary-button">
+
+                                Find a Course
+
+                                <i class="fa-solid fa-magnifying-glass"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="final-cta-visual">
+
+                        <img
+                            src="assets/h6.webp"
+                            alt="Student preparing for a new learning journey"
+                            loading="lazy">
+
+                        <div class="cta-image-frame"></div>
+
+                        <div class="cta-floating-symbol symbol-one">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+
+                        <div class="cta-floating-symbol symbol-two">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+
+                        <div class="cta-floating-symbol symbol-three">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+      <!-- =========================================================
+     ACHIEVE ACADEMY — FOOTER
+========================================================== -->
+
+<footer class="site-footer" id="siteFooter">
+
+    <!-- FOOTER MAIN CONTENT -->
+    <div class="container footer-grid">
+
+        <!-- BRAND COLUMN -->
+        <div class="footer-brand">
+
+         <a href="index.html"
+   class="brand-logo footer-logo"
+   aria-label="Achieve Academy Home">
+
+    <img src="assets/logo.webp" alt="Achieve Academy Logo">
+
+</a>
+
+            <p>
+                Helping aspirants prepare with purpose,
+                build confidence and move towards their goals.
+            </p>
+
+            <!-- SOCIAL LINKS -->
+            <div class="footer-socials">
+
+                <a href="404.html" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="404.html" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="404.html" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+
+                <a href="404.html" aria-label="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUICK LINKS -->
+        <div class="footer-column">
+
+            <h3>Quick Links</h3>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="about.html">
+                About Us
+            </a>
+
+            <a href="courses.html">
+                Our Courses
+            </a>
+
+            <a href="results.html">
+                Results &amp; Updates
+            </a>
+
+        </div>
+
+
+        <!-- EXPLORE -->
+        <div class="footer-column">
+
+            <h3>Explore</h3>
+
+            <a href="contact.html">
+                Contact Us
+            </a>
+
+            <a href="contact.html#admission">
+                Admissions
+            </a>
+
+            <button
+                type="button"
+                class="footer-login login-trigger">
+
+                Student Login
+
+            </button>
+
+        </div>
+
+
+        <!-- CONTACT AND SUBSCRIBE -->
+        <div class="footer-column footer-contact">
+
+            <h3>Get In Touch</h3>
+
+            <p class="footer-contact-description">
+                Have questions about our courses?
+                Connect with our academy team.
+            </p>
+
+
+            <!-- CONTACT DETAILS -->
+            <div class="footer-contact-list">
+
+                <!-- LOCATION -->
+                <div class="footer-contact-item">
+
+                    <span class="footer-contact-icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </span>
+
+                    <div>
+
+                        <strong>Our Location</strong>
+
+                        <p>
+                            Chennai, Tamil Nadu, India
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PHONE -->
+                <div class="footer-contact-item">
+
+                    <span class="footer-contact-icon">
+                        <i class="fa-solid fa-phone"></i>
+                    </span>
+
+                    <div>
+
+                        <strong>Call Us</strong>
+
+                        <a href="tel:+919876543210">
+                            +91 98765 43210
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EMAIL -->
+                <div class="footer-contact-item">
+
+                    <span class="footer-contact-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </span>
+
+                    <div>
+
+                        <strong>Email Us</strong>
+
+                        <a href="mailto:info@achieveacademy.in">
+                            info@achieveacademy.in
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTACT CTA -->
+            <a href="contact.html" class="footer-contact-link">
+
+                <span>Contact Our Academy Team</span>
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+
+            <!-- EMAIL SUBSCRIPTION -->
+            <div class="footer-subscribe">
+
+                <h4>
+                    <i class="fa-regular fa-paper-plane"></i>
+                    <span>Stay Updated</span>
+                </h4>
+
+                <p>
+                    Get course updates and preparation tips
+                    in your inbox.
+                </p>
+
+
+                <form
+                    class="footer-subscribe-form"
+                    action="404.html"
+                    method="get">
+
+                    <!-- EMAIL INPUT -->
+                    <div class="footer-email-field">
+
+                        <i class="fa-regular fa-envelope"></i>
+
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Enter your email address"
+                            aria-label="Enter your email address"
+                            autocomplete="email"
+                            required>
+
+                    </div>
+
+
+                    <!-- SUBSCRIBE BUTTON -->
+                    <button
+                        type="submit"
+                        class="footer-subscribe-btn">
+
+                        <span>Subscribe</span>
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </form>
+
+
+                <!-- PRIVACY NOTE -->
+                <span class="footer-subscribe-note">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <span>
+                        Stay informed. No unnecessary emails.
+                    </span>
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         FOOTER BOTTOM
+    ====================================================== -->
+
+    <div class="container footer-bottom">
+
+        <p>
+            &copy;
+            <span id="currentYear"></span>
+            ACHIEVE Academy. All rights reserved.
+        </p>
+
+        <a
+            href="#siteHeader"
+            class="back-to-top"
+            id="backToTop">
+
+            <span>Back to Top</span>
+
+            <i class="fa-solid fa-arrow-up"></i>
+
+        </a>
+
+    </div>
+
+
+    <!-- DECORATIVE CURVE -->
+    <div
+        class="footer-bottom-curve"
+        aria-hidden="true">
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     ACHIEVE ACADEMY LOGIN MODAL
+===================================================== -->
+
+<div class="modal-overlay" id="loginModal" aria-hidden="true">
+
+    <div class="login-modal"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="loginTitle">
+
+        <!-- CLOSE BUTTON -->
+        <button
+            type="button"
+            class="modal-close"
+            id="loginModalClose"
+            aria-label="Close login">
+            &times;
+        </button>
+
+
+        <!-- =================================================
+             LEFT: ACADEMY VISUAL
+        ================================================== -->
+
+        <div class="login-visual">
+
+            <img
+                src="assets/l1.webp"
+                alt="ACHIEVE Academy students preparing for competitive examinations"
+            >
+
+            <div class="login-visual-overlay"></div>
+
+
+            <div class="login-visual-content">
+
+                <span class="academy-eyebrow">
+                    ACHIEVE ACADEMY
+                </span>
+
+                <h3>
+                    Your dream.
+                    <br>
+                    Your dedication.
+                    <br>
+                    <span>Your government job.</span>
+                </h3>
+
+                <p class="login-visual-description">
+                    Start your preparation today.
+                    Turn your ambition into achievement.
+                </p>
+
+
+                <!-- EXAM BADGE -->
+                <div class="login-event-badge">
+
+                    <span class="live-dot"></span>
+
+                    <div>
+                        <strong>YOUR SUCCESS JOURNEY</strong>
+
+                        <small>
+                            Learn · Practise · Achieve
+                        </small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BOTTOM JOURNEY -->
+            <div class="login-visual-footer">
+
+                <span>LEARN</span>
+
+                <i></i>
+
+                <span>PRACTISE</span>
+
+                <i></i>
+
+                <span>SUCCEED</span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             RIGHT: LOGIN CONTENT
+        ================================================== -->
+
+        <div class="login-content">
+
+
+            <!-- HEADING -->
+            <div class="login-heading">
+
+                <span>WELCOME TO ACHIEVE</span>
+
+                <h2 id="loginTitle">
+                    Sign in to continue
+                </h2>
+
+                <p>
+                    Access your courses, mock tests, study materials
+                    and personalised learning dashboard.
+                </p>
+
+            </div>
+
+
+
+            <!-- LOGIN TABS -->
+            <div class="login-tabs">
+
+                <button
+                    type="button"
+                    class="login-tab active"
+                    data-login-tab="user">
+
+                    Student Login
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="login-tab"
+                    data-login-tab="admin">
+
+                    Admin Login
+
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 STUDENT LOGIN FORM
+            ================================================== -->
+
+            <form
+                class="login-form active"
+                id="userLoginForm"
+                data-login-form="user">
+
+                <!-- EMAIL -->
+                <label for="userEmail">
+                    Email Address
+                </label>
+
+                <div class="input-wrap">
+
+                    <span class="input-icon" aria-hidden="true">
+                        @
+                    </span>
+
+                    <input
+                        type="email"
+                        id="userEmail"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required>
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+                <label for="userPassword">
+                    Password
+                </label>
+
+                <div class="input-wrap">
+
+                    <span class="input-icon" aria-hidden="true">
+                        &#8226;
+                    </span>
+
+                    <input
+                        type="password"
+                        id="userPassword"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required>
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-password-toggle="userPassword"
+                        aria-label="Show password"
+                        aria-pressed="false">
+
+                        <span aria-hidden="true">&#9678;</span>
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- LOGIN OPTIONS -->
+                <div class="login-options">
+
+                    <label class="remember-option">
+
+                        <input
+                            type="checkbox"
+                            name="remember">
+
+                        <span>
+                            Remember me
+                        </span>
+
+                    </label>
+
+
+                    <a href="forgot-password.html">
+                        Forgot password?
+                    </a>
+
+                </div>
+
+
+
+                <!-- STUDENT LOGIN BUTTON -->
+                <button
+                    type="submit"
+                    class="login-submit">
+
+                    <span>
+                        Access My Dashboard
+                    </span>
+
+                    <span aria-hidden="true">
+                        &#8599;
+                    </span>
+
+                </button>
+
+
+
+                <!-- REGISTER -->
+                <p class="login-create">
+
+                    New to ACHIEVE?
+
+                    <a href="register.html">
+                        Join our academy
+                    </a>
+
+                </p>
+
+            </form>
+
+
+
+
+            <!-- =================================================
+                 ADMIN LOGIN FORM
+            ================================================== -->
+
+            <form
+                class="login-form"
+                id="adminLoginForm"
+                data-login-form="admin">
+
+                <!-- ADMIN EMAIL -->
+                <label for="adminEmail">
+                    Admin Email
+                </label>
+
+                <div class="input-wrap">
+
+                    <span class="input-icon" aria-hidden="true">
+                        @
+                    </span>
+
+                    <input
+                        type="email"
+                        id="adminEmail"
+                        name="email"
+                        placeholder="admin@achieveacademy.com"
+                        autocomplete="username"
+                        required>
+
+                </div>
+
+
+
+                <!-- ADMIN PASSWORD -->
+                <label for="adminPassword">
+                    Admin Password
+                </label>
+
+                <div class="input-wrap">
+
+                    <span class="input-icon" aria-hidden="true">
+                        &#35;
+                    </span>
+
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        name="password"
+                        placeholder="Enter admin password"
+                        autocomplete="current-password"
+                        required>
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-password-toggle="adminPassword"
+                        aria-label="Show password"
+                        aria-pressed="false">
+
+                        <span aria-hidden="true">&#9678;</span>
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- ADMIN OPTIONS -->
+                <div class="login-options">
+
+                    <label class="remember-option">
+
+                        <input
+                            type="checkbox"
+                            name="remember">
+
+                        <span>
+                            Remember me
+                        </span>
+
+                    </label>
+
+
+                    <a href="forgot-password.html">
+                        Forgot password?
+                    </a>
+
+                </div>
+
+
+
+                <!-- ADMIN LOGIN BUTTON -->
+                <button
+                    type="submit"
+                    class="login-submit admin-submit">
+
+                    <span>
+                        Open Admin Dashboard
+                    </span>
+
+                    <span aria-hidden="true">
+                        &#8599;
+                    </span>
+
+                </button>
+
+            </form>
+
+
+
+
+            <!-- =================================================
+                 SECURITY FOOTER
+            ================================================== -->
+
+            <div class="login-security">
+
+                <span class="security-icon" aria-hidden="true">
+                    &#10003;
+                </span>
+
+                <span>
+                    ACHIEVE Academy · Your future starts here
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+    <!-- Result Page JavaScript -->
+    <script src="js/main.js"></script>
+
+
+
+    <script src="js/result.js"></script>
+</body>
+
+</html>

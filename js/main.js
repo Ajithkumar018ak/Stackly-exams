@@ -342,49 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =====================================================
-       MOBILE NAVIGATION
-    ===================================================== */
-
-    if (menuToggle && mainNav) {
-
-        menuToggle.addEventListener("click", () => {
-
-            const isOpen = mainNav.classList.toggle("active");
-
-            menuToggle.classList.toggle("active", isOpen);
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                String(isOpen)
-            );
-
-            document.body.classList.toggle(
-                "nav-open",
-                isOpen
-            );
-
-        });
-
-
-        // Close mobile navigation after selecting a link
-        mainNav.querySelectorAll("a").forEach((link) => {
-
-            link.addEventListener("click", () => {
-
-                mainNav.classList.remove("active");
-
-                menuToggle.classList.remove("active");
-
-                menuToggle.setAttribute("aria-expanded", "false");
-
-                document.body.classList.remove("nav-open");
-
-            });
-
-        });
-
-    }
+    /* Mobile navigation is handled by the dedicated navigation controller below */
 
 
     /* =====================================================
@@ -1211,92 +1169,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /* =====================================================
-       3. MOBILE NAVIGATION
-    ===================================================== */
-
-    const menuToggle = document.getElementById("menuToggle");
-    const mainNav = document.getElementById("mainNav");
-
-    if (menuToggle && mainNav) {
-
-        function closeMenu() {
-
-            mainNav.classList.remove("active");
-
-            menuToggle.classList.remove("active");
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-            document.body.classList.remove("about-menu-open");
-
-        }
-
-
-        function openMenu() {
-
-            mainNav.classList.add("active");
-
-            menuToggle.classList.add("active");
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                "true"
-            );
-
-            document.body.classList.add("about-menu-open");
-
-        }
-
-
-        menuToggle.addEventListener("click", () => {
-
-            const isOpen =
-                menuToggle.getAttribute("aria-expanded") === "true";
-
-            if (isOpen) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
-
-        });
-
-
-        /* Close after selecting a navigation link */
-
-        mainNav.querySelectorAll("a").forEach((link) => {
-
-            link.addEventListener("click", closeMenu);
-
-        });
-
-
-        /* Close with Escape */
-
-        document.addEventListener("keydown", (event) => {
-
-            if (event.key === "Escape") {
-                closeMenu();
-            }
-
-        });
-
-
-        /* Restore desktop navigation after resizing */
-
-        window.addEventListener("resize", () => {
-
-            if (window.innerWidth > 768) {
-                closeMenu();
-            }
-
-        });
-
-    }
+    /* Mobile navigation is handled by the dedicated navigation controller below */
 
 
 
@@ -1322,5 +1195,820 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     }
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   ACHIEVE ACADEMY — COURSES PAGE JAVASCRIPT
+   File: js/courses.js
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+    "use strict";
+
+    /* =====================================================
+       1. COURSE FILTERING
+    ===================================================== */
+
+    const filterButtons = document.querySelectorAll(".course-filter");
+    const courseCards = document.querySelectorAll(".course-card");
+
+    filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const selectedFilter = (
+                button.dataset.filter ||
+                button.textContent.trim().toLowerCase()
+            ).toLowerCase();
+
+            // Active filter button
+            filterButtons.forEach((item) => {
+                item.classList.remove("active");
+                item.setAttribute("aria-pressed", "false");
+            });
+
+            button.classList.add("active");
+            button.setAttribute("aria-pressed", "true");
+
+            // Filter course cards
+            courseCards.forEach((card, index) => {
+                const category = (
+                    card.dataset.category || ""
+                ).toLowerCase();
+
+                const shouldShow =
+                    selectedFilter === "all" ||
+                    selectedFilter === "all courses" ||
+                    category === selectedFilter;
+
+                if (shouldShow) {
+                    card.hidden = false;
+
+                    card.style.animation = "none";
+                    void card.offsetWidth;
+
+                    card.style.animation =
+                        `courseCardReveal 0.45s ease ${Math.min(index * 0.06, 0.3)}s both`;
+                } else {
+                    card.hidden = true;
+                    card.style.animation = "none";
+                }
+            });
+
+            // Update visible course count if an element exists
+            const visibleCount = Array.from(courseCards).filter(
+                (card) => !card.hidden
+            ).length;
+
+            const countElement = document.querySelector(
+                "[data-course-count]"
+            );
+
+            if (countElement) {
+                countElement.textContent = visibleCount;
+            }
+        });
+    });
+
+
+    /* =====================================================
+       2. COURSE BOOKMARK BUTTONS
+       Static demo interaction — no storage used
+    ===================================================== */
+
+    const bookmarkButtons = document.querySelectorAll(
+        ".course-bookmark"
+    );
+
+    bookmarkButtons.forEach((button) => {
+        button.setAttribute("type", "button");
+
+        button.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const isBookmarked =
+                button.classList.toggle("is-bookmarked");
+
+            button.setAttribute(
+                "aria-pressed",
+                String(isBookmarked)
+            );
+
+            const icon = button.querySelector("i");
+
+            if (icon) {
+                icon.classList.toggle(
+                    "fa-solid",
+                    isBookmarked
+                );
+
+                icon.classList.toggle(
+                    "fa-regular",
+                    !isBookmarked
+                );
+            }
+
+            button.setAttribute(
+                "aria-label",
+                isBookmarked
+                    ? "Remove course from bookmarks"
+                    : "Add course to bookmarks"
+            );
+
+            showToast(
+                isBookmarked
+                    ? "Course added to your bookmarks!"
+                    : "Course removed from bookmarks."
+            );
+        });
+    });
+
+
+    /* =====================================================
+       3. SCROLL REVEAL ANIMATIONS
+    ===================================================== */
+
+    const revealElements = document.querySelectorAll(
+        ".reveal, .category-card, .course-card, " +
+        ".path-card, .experience-card, .testimonial-card, " +
+        ".benefit-item, .success-stat"
+    );
+
+    if ("IntersectionObserver" in window) {
+        const revealObserver = new IntersectionObserver(
+            (entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.12,
+                rootMargin: "0px 0px -35px 0px"
+            }
+        );
+
+        revealElements.forEach((element) => {
+            revealObserver.observe(element);
+        });
+    } else {
+        revealElements.forEach((element) => {
+            element.classList.add("is-visible");
+        });
+    }
+
+
+    /* =====================================================
+       4. ANIMATED SUCCESS COUNTERS
+    ===================================================== */
+
+    const counters = document.querySelectorAll(".counter");
+
+    function animateCounter(counter) {
+        if (counter.dataset.counted === "true") return;
+
+        counter.dataset.counted = "true";
+
+        const rawValue =
+            counter.dataset.target ||
+            counter.dataset.count ||
+            counter.textContent.trim();
+
+        const numericValue = Number(
+            String(rawValue).replace(/[^\d.]/g, "")
+        );
+
+        if (!Number.isFinite(numericValue)) return;
+
+        const duration = 1600;
+        const startTime = performance.now();
+
+        const originalText = counter.textContent.trim();
+
+        const suffixMatch = originalText.match(/[+%]$/);
+        const suffix = suffixMatch ? suffixMatch[0] : "";
+
+        function updateCounter(currentTime) {
+            const progress = Math.min(
+                (currentTime - startTime) / duration,
+                1
+            );
+
+            // Smooth ease-out animation
+            const easedProgress =
+                1 - Math.pow(1 - progress, 4);
+
+            const currentValue = Math.round(
+                numericValue * easedProgress
+            );
+
+            counter.textContent =
+                currentValue.toLocaleString("en-IN") + suffix;
+
+            if (progress < 1) {
+                requestAnimationFrame(updateCounter);
+            } else {
+                counter.textContent =
+                    numericValue.toLocaleString("en-IN") + suffix;
+            }
+        }
+
+        requestAnimationFrame(updateCounter);
+    }
+
+    if ("IntersectionObserver" in window) {
+        const counterObserver = new IntersectionObserver(
+            (entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.5 }
+        );
+
+        counters.forEach((counter) => {
+            counterObserver.observe(counter);
+        });
+    } else {
+        counters.forEach(animateCounter);
+    }
+
+
+    /* =====================================================
+       5. SMOOTH SCROLL FOR INTERNAL PAGE LINKS
+    ===================================================== */
+
+    const internalLinks = document.querySelectorAll(
+        '.courses-page a[href^="#"]'
+    );
+
+    internalLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+            const targetId = link.getAttribute("href");
+
+            if (!targetId || targetId === "#") return;
+
+            const target = document.querySelector(targetId);
+
+            if (!target) return;
+
+            event.preventDefault();
+
+            target.scrollIntoView({
+                behavior: window.matchMedia(
+                    "(prefers-reduced-motion: reduce)"
+                ).matches
+                    ? "auto"
+                    : "smooth",
+                block: "start"
+            });
+        });
+    });
+
+
+    /* =====================================================
+       6. COURSE CARD HOVER TILT
+       Desktop only — subtle 3D interaction
+    ===================================================== */
+
+    const supportsFinePointer = window.matchMedia(
+        "(hover: hover) and (pointer: fine)"
+    ).matches;
+
+    const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (supportsFinePointer && !prefersReducedMotion) {
+        courseCards.forEach((card) => {
+            card.addEventListener("mousemove", (event) => {
+                if (card.hidden) return;
+
+                const rect = card.getBoundingClientRect();
+
+                const mouseX =
+                    (event.clientX - rect.left) / rect.width;
+
+                const mouseY =
+                    (event.clientY - rect.top) / rect.height;
+
+                const rotateY = (mouseX - 0.5) * 4;
+                const rotateX = (0.5 - mouseY) * 4;
+
+                card.style.transform =
+                    `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+            });
+
+            card.addEventListener("mouseleave", () => {
+                card.style.transform = "";
+            });
+        });
+    }
+
+
+    /* =====================================================
+       7. HERO BOOK PARALLAX
+    ===================================================== */
+
+    const heroVisual = document.querySelector(".hero-visual");
+    const heroBook = document.querySelector(".hero-book");
+
+    if (
+        heroVisual &&
+        heroBook &&
+        supportsFinePointer &&
+        !prefersReducedMotion
+    ) {
+        heroVisual.addEventListener("mousemove", (event) => {
+            const rect = heroVisual.getBoundingClientRect();
+
+            const x =
+                (event.clientX - rect.left) / rect.width - 0.5;
+
+            const y =
+                (event.clientY - rect.top) / rect.height - 0.5;
+
+            heroBook.style.setProperty(
+                "--mouse-rotate-y",
+                `${x * 8}deg`
+            );
+
+            heroBook.style.setProperty(
+                "--mouse-rotate-x",
+                `${y * -5}deg`
+            );
+        });
+
+        heroVisual.addEventListener("mouseleave", () => {
+            heroBook.style.setProperty(
+                "--mouse-rotate-y",
+                "0deg"
+            );
+
+            heroBook.style.setProperty(
+                "--mouse-rotate-x",
+                "0deg"
+            );
+        });
+    }
+
+
+    /* =====================================================
+       8. HERO PARTICLES
+    ===================================================== */
+
+    const heroParticles = document.querySelectorAll(
+        ".hero-particle"
+    );
+
+    heroParticles.forEach((particle, index) => {
+        particle.style.setProperty(
+            "--particle-delay",
+            `${index * -1.4}s`
+        );
+    });
+
+
+    /* =====================================================
+       9. TOAST NOTIFICATION
+    ===================================================== */
+
+    let toastTimer;
+
+    function showToast(message) {
+        let toast = document.querySelector(
+            ".courses-toast"
+        );
+
+        if (!toast) {
+            toast = document.createElement("div");
+
+            toast.className = "courses-toast";
+            toast.setAttribute("role", "status");
+            toast.setAttribute("aria-live", "polite");
+
+            Object.assign(toast.style, {
+                position: "fixed",
+                bottom: "26px",
+                left: "50%",
+                transform: "translate(-50%, 20px)",
+                padding: "14px 22px",
+                borderRadius: "14px",
+                background: "#172344",
+                color: "#ffffff",
+                border: "1px solid rgba(145,173,255,0.3)",
+                boxShadow: "0 15px 40px rgba(0,0,0,0.3)",
+                fontSize: "14px",
+                fontWeight: "600",
+                zIndex: "9999",
+                opacity: "0",
+                pointerEvents: "none",
+                transition: "opacity 0.25s ease, transform 0.25s ease",
+                maxWidth: "calc(100vw - 32px)",
+                textAlign: "center"
+            });
+
+            document.body.appendChild(toast);
+        }
+
+        toast.textContent = message;
+        toast.style.opacity = "1";
+        toast.style.transform = "translate(-50%, 0)";
+
+        clearTimeout(toastTimer);
+
+        toastTimer = setTimeout(() => {
+            toast.style.opacity = "0";
+            toast.style.transform = "translate(-50%, 20px)";
+        }, 2400);
+    }
+
+
+    /* =====================================================
+       10. CURRENT YEAR
+       Updates the year if the page has this element
+    ===================================================== */
+
+    const yearElements = document.querySelectorAll(
+        "[data-current-year]"
+    );
+
+    yearElements.forEach((element) => {
+        element.textContent = new Date().getFullYear();
+    });
+
+
+    /* =====================================================
+       11. ACCESSIBILITY — REDUCED MOTION
+    ===================================================== */
+
+    if (prefersReducedMotion) {
+        document.documentElement.style.scrollBehavior = "auto";
+    }
+
+
+    /* =====================================================
+       12. INITIALIZE FILTER ACCESSIBILITY
+    ===================================================== */
+
+    filterButtons.forEach((button) => {
+        button.setAttribute(
+            "aria-pressed",
+            button.classList.contains("active") ? "true" : "false"
+        );
+    });
+
+    console.log("ACHIEVE Academy Courses page initialized.");
+});
+
+
+/* =========================================================
+   COURSE CARD REVEAL ANIMATION
+========================================================= */
+
+const courseAnimationStyle = document.createElement("style");
+
+courseAnimationStyle.textContent = `
+    @keyframes courseCardReveal {
+        from {
+            opacity: 0;
+            transform: translateY(14px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .course-card[hidden] {
+        display: none !important;
+    }
+
+    .course-bookmark.is-bookmarked {
+        color: #f1c879 !important;
+    }
+
+    .courses-page .reveal,
+    .courses-page .category-card,
+    .courses-page .course-card,
+    .courses-page .path-card,
+    .courses-page .experience-card,
+    .courses-page .testimonial-card,
+    .courses-page .benefit-item,
+    .courses-page .success-stat {
+        transition:
+            opacity 0.6s ease,
+            transform 0.6s ease,
+            border-color 0.3s ease,
+            background 0.3s ease;
+    }
+
+    .courses-page .reveal:not(.is-visible) {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .courses-page *,
+        .courses-page *::before,
+        .courses-page *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            scroll-behavior: auto !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+`;
+
+document.head.appendChild(courseAnimationStyle);
+
+
+
+
+
+
+
+
+/* ==========================================
+   ACHIEVE ACADEMY — ABOUT IMAGE CAROUSEL
+========================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const carousel = document.getElementById("aboutCarousel");
+
+    if (!carousel) return;
+
+    const slides = carousel.querySelectorAll(".about-carousel-image");
+
+    if (slides.length <= 1) return;
+
+    let currentIndex = 0;
+    let carouselInterval;
+
+    // Initialize carousel
+    function showSlide(index) {
+
+        slides.forEach((slide, i) => {
+
+            slide.classList.toggle("active", i === index);
+
+        });
+
+        currentIndex = index;
+
+    }
+
+    // Next slide
+    function nextSlide() {
+
+        const nextIndex = (currentIndex + 1) % slides.length;
+
+        showSlide(nextIndex);
+
+    }
+
+    // Start automatic slideshow
+    function startCarousel() {
+
+        stopCarousel();
+
+        carouselInterval = setInterval(nextSlide, 4000);
+
+    }
+
+    // Stop automatic slideshow
+    function stopCarousel() {
+
+        if (carouselInterval) {
+            clearInterval(carouselInterval);
+        }
+
+    }
+
+    // Start carousel
+    showSlide(0);
+    startCarousel();
+
+    // Pause when mouse enters carousel
+    carousel.addEventListener("mouseenter", stopCarousel);
+
+    // Resume when mouse leaves carousel
+    carousel.addEventListener("mouseleave", startCarousel);
+
+    // Pause when tab is inactive
+    document.addEventListener("visibilitychange", () => {
+
+        if (document.hidden) {
+            stopCarousel();
+        } else {
+            startCarousel();
+        }
+
+    });
+
+});
+
+
+
+
+
+/* ============================================
+   ACHIEVE ACADEMY
+   COMPLETE MOBILE NAVIGATION
+============================================ */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const header = document.getElementById("siteHeader");
+    const menuToggle = document.getElementById("menuToggle");
+    const mainNav = document.getElementById("mainNav");
+    const overlay = document.getElementById("mobileNavOverlay");
+
+    // Stop if required elements are missing
+    if (!menuToggle || !mainNav) {
+        return;
+    }
+
+    let isOpen = false;
+
+
+    /* ========================================
+       OPEN MOBILE MENU
+    ======================================== */
+
+    function openMenu() {
+
+        if (window.innerWidth > 900) return;
+
+        isOpen = true;
+
+        mainNav.classList.add("active");
+        if (overlay) {
+            overlay.classList.add("active");
+            overlay.setAttribute("aria-hidden", "false");
+        }
+        menuToggle.classList.add("active");
+
+        document.body.classList.add("menu-open");
+
+        menuToggle.setAttribute("aria-expanded", "true");
+        menuToggle.setAttribute(
+            "aria-label",
+            "Close navigation menu"
+        );
+
+    }
+
+
+    /* ========================================
+       CLOSE MOBILE MENU
+    ======================================== */
+
+    function closeMenu() {
+
+        isOpen = false;
+
+        mainNav.classList.remove("active");
+        if (overlay) {
+            overlay.classList.remove("active");
+            overlay.setAttribute("aria-hidden", "true");
+        }
+        menuToggle.classList.remove("active");
+
+        document.body.classList.remove("menu-open");
+        document.body.classList.remove("nav-open");
+        document.body.classList.remove("about-menu-open");
+
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute(
+            "aria-label",
+            "Open navigation menu"
+        );
+
+    }
+
+
+    /* ========================================
+       HAMBURGER CLICK
+    ======================================== */
+
+    menuToggle.addEventListener("click", function (event) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (isOpen) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+
+    });
+
+
+    /* ========================================
+       OVERLAY CLICK
+    ======================================== */
+
+    if (overlay) {
+        overlay.addEventListener("click", function () {
+            closeMenu();
+        });
+    }
+
+
+    /* ========================================
+       CLOSE AFTER LINK OR BUTTON CLICK
+    ======================================== */
+
+    mainNav.querySelectorAll("a, button").forEach(function (element) {
+
+        element.addEventListener("click", function () {
+
+            closeMenu();
+
+        });
+
+    });
+
+
+    /* ========================================
+       ESCAPE KEY
+    ======================================== */
+
+    document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape" && isOpen) {
+            closeMenu();
+        }
+
+    });
+
+
+    /* ========================================
+       RESET WHEN SWITCHING TO DESKTOP
+    ======================================== */
+
+    window.addEventListener("resize", function () {
+
+        if (window.innerWidth > 900 && isOpen) {
+            closeMenu();
+        }
+
+    });
+
+
+    /* ========================================
+       STICKY HEADER SCROLL EFFECT
+    ======================================== */
+
+    if (header) {
+
+        function updateHeader() {
+
+            header.classList.toggle(
+                "scrolled",
+                window.scrollY > 50
+            );
+
+        }
+
+        window.addEventListener("scroll", updateHeader, {
+            passive: true
+        });
+
+        updateHeader();
+
+    }
+
+
+    /* ========================================
+       INITIAL CLEAN STATE
+    ======================================== */
+
+    closeMenu();
 
 });
