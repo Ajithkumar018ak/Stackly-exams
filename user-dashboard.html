@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SKILLPREP | Learning Dashboard</title>
+    <title>USER  Dashboard</title>
 
     <meta name="description"
           content="SKILLPREP learning dashboard for competitive exam preparation, UI/UX design and web development.">
@@ -3084,6 +3084,63 @@
 
         }
 
+
+        .brand {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.brand-logo {
+    width: 150px;
+    height: 55px;
+    object-fit: contain;
+    display: block;
+}
+
+@media (max-width: 576px) {
+    .brand-logo {
+        width: 120px;
+        height: 45px;
+    }
+}
+
+/* SIDEBAR BOTTOM */
+.sidebar-bottom {
+    margin-top: auto;
+    padding: 18px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* LOGOUT BUTTON */
+.sidebar-logout {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+    color: #ff7777;
+    background: rgba(255, 77, 77, 0.08);
+    border: 1px solid rgba(255, 77, 77, 0.12);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.sidebar-logout i {
+    font-size: 16px;
+}
+
+.sidebar-logout:hover {
+    background: rgba(255, 77, 77, 0.16);
+    border-color: rgba(255, 77, 77, 0.3);
+    color: #ff5252;
+    transform: translateY(-2px);
+}
+
     </style>
 </head>
 
@@ -3104,18 +3161,9 @@
 
     <aside class="sidebar" id="sidebar">
 
-        <a href="index.html" class="brand">
-
-            <div class="brand-icon">
-                <i class="fa-solid fa-graduation-cap"></i>
-            </div>
-
-            <div class="brand-copy">
-                <strong>SKILLPREP</strong>
-                <span>LEARN. PRACTICE. GROW.</span>
-            </div>
-
-        </a>
+     <a href="user-dashboard.html" class="brand" aria-label="SKILLPREP Home">
+    <img src="assets/logo2.webp" alt="SKILLPREP Logo" class="brand-logo">
+</a>
 
 
         <div class="sidebar-caption">
@@ -3179,55 +3227,19 @@
         </nav>
 
 
-        <div class="sidebar-bottom">
+       <div class="sidebar-bottom">
 
-            <div class="sidebar-promo">
+    <a href="index.html" class="sidebar-logout">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Logout</span>
+    </a>
 
-                <div class="promo-icon">
-                    <i class="fa-solid fa-bolt"></i>
-                </div>
-
-                <strong>Keep your streak alive!</strong>
-
-                <p>
-                    Make time for learning every day
-                    and keep moving toward your goals.
-                </p>
-
-                <a href="404.html">
-                    View Learning Plan
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-
-            </div>
+</div>
 
 
-            <div class="sidebar-user">
+            
 
-                <img
-                    class="avatar"
-                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80"
-                    alt="Ajith Kumar profile photo"
-                    loading="lazy">
-
-                <div class="sidebar-user-info">
-
-                    <strong>Ajith Kumar</strong>
-                    <span>Premium Learner</span>
-
-                </div>
-
-                <a href="404.html"
-                   class="user-menu-link"
-                   aria-label="Account settings">
-
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
-
-                </a>
-
-            </div>
-
-        </div>
+     
 
     </aside>
 
@@ -3367,7 +3379,7 @@
                             loading="lazy">
 
                         <div>
-                            <strong>Ajith Kumar</strong>
+                            <strong>USER</strong>
                             <span>Premium Learner</span>
                         </div>
 
@@ -3427,7 +3439,7 @@
                     <div>
 
                         <h1>
-                            Welcome Back, Ajith! 👋
+                            Welcome Back, USER
                         </h1>
 
                         <p>
@@ -3508,7 +3520,7 @@
                     <div class="hero-visual">
 
                         <img
-                            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=85"
+                            src="assets/a6.webp"
                             alt="Student learning digital skills"
                             loading="lazy">
 
@@ -3774,7 +3786,7 @@
 
                         </div>
 
-                        <a href="#explore" class="section-link">
+                        <a href="404.html" class="section-link">
 
                             View All
 
@@ -3966,7 +3978,7 @@
                             <div class="course-image-wrap">
 
                                 <img
-                                    src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=700&q=80"
+                                    src="assets/u1.webp"
                                     alt="Indian polity study materials"
                                     loading="lazy">
 
@@ -4031,7 +4043,7 @@
                             <div class="course-image-wrap">
 
                                 <img
-                                    src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=700&q=80"
+                                    src="assets/u2.webp"
                                     alt="Quantitative aptitude study notes"
                                     loading="lazy">
 
@@ -4097,7 +4109,7 @@
                             <div class="course-image-wrap">
 
                                 <img
-                                    src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=700&q=80"
+                                    src="assets/u3.webp"
                                     alt="Creative UI UX design workspace"
                                     loading="lazy">
 
@@ -4163,7 +4175,7 @@
                             <div class="course-image-wrap">
 
                                 <img
-                                    src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=700&q=80"
+                                    src="assets/u4.webp"
                                     alt="Digital interface design practice"
                                     loading="lazy">
 
@@ -4229,7 +4241,7 @@
                             <div class="course-image-wrap">
 
                                 <img
-                                    src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80"
+                                    src="assets/u5.webp"
                                     alt="Web development coding workspace"
                                     loading="lazy">
 
@@ -4295,7 +4307,7 @@
                             <div class="course-image-wrap">
 
                                 <img
-                                    src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=700&q=80"
+                                    src="assets/u6.webp"
                                     alt="Programming code on a computer screen"
                                     loading="lazy">
 
@@ -4812,7 +4824,7 @@
                         <article class="recommend-card reveal">
 
                             <img
-                                src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=600&q=80"
+                                src="assets/r11.webp"
                                 alt="UI UX design workspace"
                                 loading="lazy">
 
@@ -4843,7 +4855,7 @@
                         <article class="recommend-card reveal">
 
                             <img
-                                src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=600&q=80"
+                                src="assets/r7.webp"
                                 alt="Digital design interface"
                                 loading="lazy">
 
@@ -4874,7 +4886,7 @@
                         <article class="recommend-card reveal">
 
                             <img
-                                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80"
+                                src="assets/r5.webp"
                                 alt="Frontend web development workspace"
                                 loading="lazy">
 
@@ -4905,7 +4917,7 @@
                         <article class="recommend-card reveal">
 
                             <img
-                                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80"
+                                src="assets/r3.webp"
                                 alt="JavaScript and React programming"
                                 loading="lazy">
 
@@ -5417,7 +5429,7 @@
                                  data-newest="10">
 
                             <img
-                                src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=700&q=80"
+                                src="assets/u1.webp"
                                 alt="UPSC study materials"
                                 loading="lazy">
 
@@ -5460,7 +5472,7 @@
                                  data-newest="9">
 
                             <img
-                                src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=700&q=80"
+                                src="assets/a6.webp"
                                 alt="TNPSC exam preparation notes"
                                 loading="lazy">
 
@@ -5503,7 +5515,7 @@
                                  data-newest="8">
 
                             <img
-                                src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=700&q=80"
+                                src="assets/c1.webp"
                                 alt="Competitive exam preparation books"
                                 loading="lazy">
 
@@ -5546,7 +5558,7 @@
                                  data-newest="7">
 
                             <img
-                                src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=700&q=80"
+                                src="assets/c2.webp"
                                 alt="Classroom learning environment"
                                 loading="lazy">
 
@@ -5589,7 +5601,7 @@
                                  data-newest="6">
 
                             <img
-                                src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=700&q=80"
+                                src="assets/a2.webp"
                                 alt="SSC exam preparation notebook"
                                 loading="lazy">
 
@@ -5632,7 +5644,7 @@
                                  data-newest="5">
 
                             <img
-                                src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=700&q=80"
+                                src="assets/c13.webp"
                                 alt="Banking exam study resources"
                                 loading="lazy">
 
@@ -5675,7 +5687,7 @@
                                  data-newest="4">
 
                             <img
-                                src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=700&q=80"
+                                src="assets/h5.webp"
                                 alt="Railway exam study notes"
                                 loading="lazy">
 
@@ -5718,7 +5730,7 @@
                                  data-newest="3">
 
                             <img
-                                src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=700&q=80"
+                                src="assets/h4.webp"
                                 alt="Classroom study for recruitment exams"
                                 loading="lazy">
 
@@ -5782,7 +5794,7 @@
                                  data-newest="20">
 
                             <img
-                                src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=700&q=80"
+                                src="assets/r6.webp"
                                 alt="UI UX design fundamentals"
                                 loading="lazy">
 
@@ -5822,7 +5834,7 @@
                                  data-newest="19">
 
                             <img
-                                src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=700&q=80"
+                                src="assets/h6.webp"
                                 alt="Collaborative user research"
                                 loading="lazy">
 
@@ -5862,7 +5874,7 @@
                                  data-newest="18">
 
                             <img
-                                src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=700&q=80"
+                                src="assets/r10.webp"
                                 alt="Information architecture design"
                                 loading="lazy">
 
@@ -5891,43 +5903,6 @@
                         </article>
 
 
-                        <article class="catalog-card reveal"
-                                 data-catalog-card
-                                 data-course-name="Wireframing User Flows"
-                                 data-category="UI/UX Design"
-                                 data-level="Beginner"
-                                 data-duration-hours="5"
-                                 data-popularity="91"
-                                 data-newest="17">
-
-                            <img
-                                src="https://images.unsplash.com/photo-1586717799252-bd134ad00e26?auto=format&fit=crop&w=700&q=80"
-                                alt="Wireframe and interface planning"
-                                loading="lazy">
-
-                            <div class="catalog-card-body">
-
-                                <h4>Wireframing & User Flows</h4>
-
-                                <p>
-                                    Plan page structure and map
-                                    task-oriented user journeys.
-                                </p>
-
-                                <div class="catalog-tags">
-                                    <span>Beginner</span>
-                                    <span>10 lessons</span>
-                                    <span>5 hours</span>
-                                </div>
-
-                                <a href="404.html" class="btn-small">
-                                    View Course
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </a>
-
-                            </div>
-
-                        </article>
 
 
                         <article class="catalog-card reveal"
@@ -5940,7 +5915,7 @@
                                  data-newest="16">
 
                             <img
-                                src="https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=700&q=80"
+                                src="assets/r15.webp"
                                 alt="Digital design workspace"
                                 loading="lazy">
 
@@ -5979,7 +5954,7 @@
                                  data-newest="15">
 
                             <img
-                                src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=700&q=80"
+                                src="assets/r21.webp"
                                 alt="High fidelity interface design"
                                 loading="lazy">
 
@@ -6018,7 +5993,7 @@
                                  data-newest="14">
 
                             <img
-                                src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=700&q=80"
+                                src="assets/r13.webp"
                                 alt="Interactive product prototype"
                                 loading="lazy">
 
@@ -6057,7 +6032,7 @@
                                  data-newest="13">
 
                             <img
-                                src="https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=700&q=80"
+                                src="assets/r19.webp"
                                 alt="Responsive design system"
                                 loading="lazy">
 
@@ -6117,7 +6092,7 @@
                                  data-newest="30">
 
                             <img
-                                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80"
+                                src="assets/r14.webp"
                                 alt="HTML web development workspace"
                                 loading="lazy">
 
@@ -6156,7 +6131,7 @@
                                  data-newest="29">
 
                             <img
-                                src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=700&q=80"
+                                src="assets/r13.webp"
                                 alt="Modern frontend website design"
                                 loading="lazy">
 
@@ -6195,7 +6170,7 @@
                                  data-newest="28">
 
                             <img
-                                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80"
+                                src="assets/r18.webp"
                                 alt="Responsive website development"
                                 loading="lazy">
 
@@ -6234,7 +6209,7 @@
                                  data-newest="27">
 
                             <img
-                                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=700&q=80"
+                                src="assets/r20.webp"
                                 alt="JavaScript programming code"
                                 loading="lazy">
 
@@ -6273,7 +6248,7 @@
                                  data-newest="26">
 
                             <img
-                                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=700&q=80"
+                                src="assets/r22.webp"
                                 alt="Computer programming components"
                                 loading="lazy">
 
@@ -6312,7 +6287,7 @@
                                  data-newest="25">
 
                             <img
-                                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80"
+                                src="assets/c5.webp"
                                 alt="Frontend development workspace"
                                 loading="lazy">
 
@@ -6351,7 +6326,7 @@
                                  data-newest="24">
 
                             <img
-                                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=700&q=80"
+                                src="assets/c4.webp"
                                 alt="React application development"
                                 loading="lazy">
 
@@ -6390,7 +6365,7 @@
                                  data-newest="23">
 
                             <img
-                                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=700&q=80"
+                                src="assets/c5.webp"
                                 alt="Component-based software development"
                                 loading="lazy">
 
@@ -6429,7 +6404,7 @@
                                  data-newest="22">
 
                             <img
-                                src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?auto=format&fit=crop&w=700&q=80"
+                                src="assets/c8.webp"
                                 alt="Developer working with source control"
                                 loading="lazy">
 
@@ -6468,7 +6443,7 @@
                                  data-newest="21">
 
                             <img
-                                src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=700&q=80"
+                                src="assets/c10.webp"
                                 alt="Frontend coding project"
                                 loading="lazy">
 
@@ -6521,7 +6496,7 @@
                         <article class="catalog-card reveal">
 
                             <img
-                                src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=700&q=80"
+                                src="assets/u7.webp"
                                 alt="Mobile banking application design"
                                 loading="lazy">
 
@@ -6553,7 +6528,7 @@
                         <article class="catalog-card reveal">
 
                             <img
-                                src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=700&q=80"
+                                src="assets/u8.webp"
                                 alt="Food delivery product experience"
                                 loading="lazy">
 
@@ -6585,7 +6560,7 @@
                         <article class="catalog-card reveal">
 
                             <img
-                                src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=80"
+                                src="assets/u9.webp"
                                 alt="E-commerce product visual inspiration"
                                 loading="lazy">
 
@@ -6617,7 +6592,7 @@
                         <article class="catalog-card reveal">
 
                             <img
-                                src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=700&q=80"
+                                src="assets/u10.webp"
                                 alt="Healthcare dashboard project inspiration"
                                 loading="lazy">
 
@@ -6649,7 +6624,7 @@
                         <article class="catalog-card reveal">
 
                             <img
-                                src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=700&q=80"
+                                src="assets/u11.webp"
                                 alt="Personal portfolio website project"
                                 loading="lazy">
 
@@ -6681,7 +6656,7 @@
                         <article class="catalog-card reveal">
 
                             <img
-                                src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=80"
+                                src="assets/u12.webp"
                                 alt="Responsive business website inspiration"
                                 loading="lazy">
 
@@ -6713,7 +6688,7 @@
                         <article class="catalog-card reveal">
 
                             <img
-                                src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=700&q=80"
+                                src="assets/u13.webp"
                                 alt="E-commerce product page development"
                                 loading="lazy">
 
@@ -6745,7 +6720,7 @@
                         <article class="catalog-card reveal">
 
                             <img
-                                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=700&q=80"
+                                src="assets/r5.webp"
                                 alt="React dashboard development project"
                                 loading="lazy">
 
@@ -8129,7 +8104,7 @@
                                  data-status="In Progress">
 
                             <img
-                                src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=700&q=80"
+                                src="assets/h5.webp"
                                 alt="TNPSC Group IV study books"
                                 loading="lazy">
 
@@ -8168,7 +8143,7 @@
                                  data-status="In Progress">
 
                             <img
-                                src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=700&q=80"
+                                src="assets/h6.webp"
                                 alt="General studies notes"
                                 loading="lazy">
 
@@ -8207,7 +8182,7 @@
                                  data-status="In Progress">
 
                             <img
-                                src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=700&q=80"
+                                src="assets/h1.webp"
                                 alt="Mathematics learning materials"
                                 loading="lazy">
 
@@ -8247,7 +8222,7 @@
                                  data-status="In Progress">
 
                             <img
-                                src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=700&q=80"
+                                src="assets/c12.webp"
                                 alt="UI UX design learning"
                                 loading="lazy">
 
@@ -8287,7 +8262,7 @@
                                  data-status="In Progress">
 
                             <img
-                                src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=700&q=80"
+                                src="assets/r15.webp"
                                 alt="Figma interface design"
                                 loading="lazy">
 
@@ -8327,7 +8302,7 @@
                                  data-status="In Progress">
 
                             <img
-                                src="https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=700&q=80"
+                                src="assets/r16.webp"
                                 alt="User research and wireframing"
                                 loading="lazy">
 
@@ -8367,7 +8342,7 @@
                                  data-status="Completed">
 
                             <img
-                                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80"
+                                src="assets/r13.webp"
                                 alt="HTML and CSS development workspace"
                                 loading="lazy">
 
@@ -8407,7 +8382,7 @@
                                  data-status="In Progress">
 
                             <img
-                                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=700&q=80"
+                                src="assets/r14.webp"
                                 alt="JavaScript programming course"
                                 loading="lazy">
 
@@ -8447,7 +8422,7 @@
                                  data-status="In Progress">
 
                             <img
-                                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=700&q=80"
+                                src="assets/r8.webp"
                                 alt="React programming course"
                                 loading="lazy">
 
@@ -8513,7 +8488,7 @@
                             <div class="course-image-wrap">
 
                                 <img
-                                    src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80"
+                                    src="assets/r20.webp"
                                     alt="HTML fundamentals"
                                     loading="lazy">
 
@@ -8557,7 +8532,7 @@
                             <div class="course-image-wrap">
 
                                 <img
-                                    src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=700&q=80"
+                                    src="assets/r21.webp"
                                     alt="Design principles course"
                                     loading="lazy">
 
@@ -8601,7 +8576,7 @@
                             <div class="course-image-wrap">
 
                                 <img
-                                    src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=700&q=80"
+                                    src="assets/u1.webp"
                                     alt="General knowledge study materials"
                                     loading="lazy">
 

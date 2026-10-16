@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SKILLPREP — Admin Dashboard</title>
+    <title>Admin Dashboard</title>
 
     <meta name="description" content="SKILLPREP premium learning platform administration dashboard.">
 
@@ -2178,6 +2178,36 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    text-decoration: none;
+}
+
+.brand-logo {
+    display: block;
+    width: 150px;
+    height: 55px;
+    object-fit: contain;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+@media (max-width: 576px) {
+    .brand-logo {
+        width: 120px;
+        height: 45px;
+    }
+}
     </style>
 </head>
 
@@ -2192,18 +2222,11 @@
 
     <aside class="sidebar" id="sidebar">
 
-        <a href="index.html" class="brand" aria-label="SKILLPREP Dashboard">
-            <div class="brand-logo">
-                <i class="fa-solid fa-graduation-cap"></i>
-            </div>
+<a href="admin-dashboard.html" class="brand" aria-label="SKILLPREP Dashboard">
+    <img src="assets/logo2.webp" alt="SKILLPREP Logo" class="brand-logo">
+</a>
 
-            <div class="brand-copy">
-                <div class="brand-name">SKILL<span>PREP</span></div>
-                <div class="brand-subtitle">LEARNING PLATFORM</div>
-            </div>
-        </a>
 
-        <div class="sidebar-label">MAIN MENU</div>
 
         <!-- EXACTLY FIVE MAIN SIDEBAR SECTIONS -->
         <nav class="sidebar-nav" aria-label="Admin navigation">
@@ -2257,27 +2280,8 @@
 
         <div class="sidebar-bottom">
 
-            <div class="admin-profile">
 
-                <div class="admin-avatar">
-                    <!-- REPLACE ADMIN IMAGE HERE -->
-                    <img
-                        src="assets/images/admin-profile.webp"
-                        alt="Admin profile"
-                        loading="lazy"
-                    >
-                </div>
-
-                <div class="admin-profile-copy">
-                    <strong>Ajith Kumar</strong>
-                    <span>Administrator</span>
-                </div>
-
-                <i class="fa-solid fa-ellipsis-vertical"></i>
-
-            </div>
-
-            <a href="404.html" class="logout-link">
+            <a href="index.html" class="logout-link">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <span class="logout-text">Logout</span>
             </a>
@@ -2403,14 +2407,14 @@
                     >
                         <!-- REPLACE TOPBAR PROFILE IMAGE HERE -->
                         <img
-                            src="assets/images/admin-profile.webp"
+                            src="assets/m1.webp"
                             alt="Ajith Kumar"
                             loading="lazy"
                         >
 
                         <span class="topbar-avatar-copy">
-                            <strong>Ajith Kumar</strong>
-                            <small>Super Admin</small>
+                            <strong>ADMIN</strong>
+                        
                         </span>
 
                         <i class="fa-solid fa-chevron-down"></i>
@@ -2465,7 +2469,7 @@
                         </div>
 
                         <h2>
-                            Welcome back, <span>Ajith!</span>
+                            Welcome back, <span>Admin</span>
                         </h2>
 
                         <p>
@@ -2495,7 +2499,7 @@
                         <!-- REPLACE DASHBOARD HERO IMAGE HERE -->
                         <img
                             class="welcome-image"
-                            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=85"
+                            src="assets/a1.webp"
                             alt="Students learning digital skills"
                             loading="lazy"
                         >
@@ -2810,7 +2814,7 @@
                                     <tr data-search="priya sharma ui ux design student">
                                         <td>
                                             <div class="student-cell">
-                                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Priya Sharma" loading="lazy">
+                                                <img src="assets/f1.webp" >
                                                 <div>
                                                     <strong>Priya Sharma</strong>
                                                     <small>priya@example.com</small>
@@ -2831,7 +2835,7 @@
                                     <tr data-search="rahul kumar web development student">
                                         <td>
                                             <div class="student-cell">
-                                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Rahul Kumar" loading="lazy">
+                                                <img src="assets/m1.webp" >
                                                 <div>
                                                     <strong>Rahul Kumar</strong>
                                                     <small>rahul@example.com</small>
@@ -2852,7 +2856,7 @@
                                     <tr data-search="meena devi tnpsc exam preparation">
                                         <td>
                                             <div class="student-cell">
-                                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" alt="Meena Devi" loading="lazy">
+                                                <img src="assets/f1.webp">
                                                 <div>
                                                     <strong>Meena Devi</strong>
                                                     <small>meena@example.com</small>
@@ -2873,7 +2877,7 @@
                                     <tr data-search="arun prakash javascript development">
                                         <td>
                                             <div class="student-cell">
-                                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80" alt="Arun Prakash" loading="lazy">
+                                                <img src="assets/m1.webp" >
                                                 <div>
                                                     <strong>Arun Prakash</strong>
                                                     <small>arun@example.com</small>
@@ -2894,7 +2898,7 @@
                                     <tr data-search="sneha r UI UX figma design">
                                         <td>
                                             <div class="student-cell">
-                                                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80" alt="Sneha R" loading="lazy">
+                                                <img src="assets/f1.webp">
                                                 <div>
                                                     <strong>Sneha R</strong>
                                                     <small>sneha@example.com</small>
@@ -2945,7 +2949,7 @@
 
                             <div class="course-image-wrap">
                                 <img
-                                    src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=800&q=85"
+                                    src="assets/c11.webp"
                                     alt="UI UX design workspace"
                                     loading="lazy"
                                 >
@@ -2982,7 +2986,7 @@
 
                             <div class="course-image-wrap">
                                 <img
-                                    src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=85"
+                                    src="assets/c5.webp"
                                     alt="Web development coding workspace"
                                     loading="lazy"
                                 >
@@ -3019,7 +3023,7 @@
 
                             <div class="course-image-wrap">
                                 <img
-                                    src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=85"
+                                    src="assets/h5.webp"
                                     alt="Competitive exam study notes"
                                     loading="lazy"
                                 >
@@ -3179,7 +3183,7 @@
                                 <tbody>
 
                                     <tr data-status="active" data-category="design" data-search="priya sharma ui ux design priya@example.com">
-                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Priya Sharma" loading="lazy"><div><strong>Priya Sharma</strong><small>priya@example.com</small></div></div></td>
+                                        <td><div class="student-cell"><img src="assets/f1.webp"><div><strong>Priya Sharma</strong><small>priya@example.com</small></div></div></td>
                                         <td>UI/UX Design</td>
                                         <td>15 Oct 2026</td>
                                         <td><strong>72%</strong></td>
@@ -3188,7 +3192,7 @@
                                     </tr>
 
                                     <tr data-status="active" data-category="development" data-search="rahul kumar frontend web development rahul@example.com">
-                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Rahul Kumar" loading="lazy"><div><strong>Rahul Kumar</strong><small>rahul@example.com</small></div></div></td>
+                                        <td><div class="student-cell"><img src="assets/m1.webp"><div><strong>Rahul Kumar</strong><small>rahul@example.com</small></div></div></td>
                                         <td>Web Development</td>
                                         <td>14 Oct 2026</td>
                                         <td><strong>64%</strong></td>
@@ -3197,7 +3201,7 @@
                                     </tr>
 
                                     <tr data-status="active" data-category="exam" data-search="meena devi tnpsc competitive exams meena@example.com">
-                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" alt="Meena Devi" loading="lazy"><div><strong>Meena Devi</strong><small>meena@example.com</small></div></div></td>
+                                        <td><div class="student-cell"><img src="assets/f1.webp"><div><strong>Meena Devi</strong><small>meena@example.com</small></div></div></td>
                                         <td>TNPSC Preparation</td>
                                         <td>13 Oct 2026</td>
                                         <td><strong>86%</strong></td>
@@ -3206,7 +3210,7 @@
                                     </tr>
 
                                     <tr data-status="pending" data-category="development" data-search="arun prakash javascript arun@example.com">
-                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80" alt="Arun Prakash" loading="lazy"><div><strong>Arun Prakash</strong><small>arun@example.com</small></div></div></td>
+                                        <td><div class="student-cell"><img src="assets/m1.webp"><div><strong>Arun Prakash</strong><small>arun@example.com</small></div></div></td>
                                         <td>JavaScript</td>
                                         <td>12 Oct 2026</td>
                                         <td><strong>21%</strong></td>
@@ -3215,7 +3219,7 @@
                                     </tr>
 
                                     <tr data-status="active" data-category="design" data-search="sneha r figma design sneha@example.com">
-                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80" alt="Sneha R" loading="lazy"><div><strong>Sneha R</strong><small>sneha@example.com</small></div></div></td>
+                                        <td><div class="student-cell"><img src="assets/f1.webp" ><div><strong>Sneha R</strong><small>sneha@example.com</small></div></div></td>
                                         <td>Figma for Beginners</td>
                                         <td>11 Oct 2026</td>
                                         <td><strong>48%</strong></td>
@@ -3224,7 +3228,7 @@
                                     </tr>
 
                                     <tr data-status="inactive" data-category="exam" data-search="vignesh raj ssc competitive exams vignesh@example.com">
-                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Vignesh Raj" loading="lazy"><div><strong>Vignesh Raj</strong><small>vignesh@example.com</small></div></div></td>
+                                        <td><div class="student-cell"><img src="assets/m1.webp"><div><strong>Vignesh Raj</strong><small>vignesh@example.com</small></div></div></td>
                                         <td>SSC Preparation</td>
                                         <td>10 Oct 2026</td>
                                         <td><strong>18%</strong></td>
@@ -3233,7 +3237,7 @@
                                     </tr>
 
                                     <tr data-status="active" data-category="development" data-search="karthik s react frontend karthik@example.com">
-                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&w=120&q=80" alt="Karthik S" loading="lazy"><div><strong>Karthik S</strong><small>karthik@example.com</small></div></div></td>
+                                        <td><div class="student-cell"><img src="assets/m1.webp"><div><strong>Karthik S</strong><small>karthik@example.com</small></div></div></td>
                                         <td>React.js</td>
                                         <td>09 Oct 2026</td>
                                         <td><strong>57%</strong></td>
@@ -3242,7 +3246,7 @@
                                     </tr>
 
                                     <tr data-status="active" data-category="exam" data-search="divya lakshmi general studies divya@example.com">
-                                        <td><div class="student-cell"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=120&q=80" alt="Divya Lakshmi" loading="lazy"><div><strong>Divya Lakshmi</strong><small>divya@example.com</small></div></div></td>
+                                        <td><div class="student-cell"><img src="assets/f1.webp" ><div><strong>Divya Lakshmi</strong><small>divya@example.com</small></div></div></td>
                                         <td>General Studies</td>
                                         <td>08 Oct 2026</td>
                                         <td><strong>91%</strong></td>
@@ -3357,7 +3361,7 @@
 
                         <article class="course-card searchable-course" data-category="design" data-status="published" data-search="ui ux design fundamentals figma creative">
                             <div class="course-image-wrap">
-                                <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=800&q=85" alt="UI UX design workspace" loading="lazy">
+                                <img src="assets/r6.webp" >
                                 <span class="course-image-badge">PUBLISHED</span>
                             </div>
                             <div class="course-card-body">
@@ -3371,7 +3375,7 @@
 
                         <article class="course-card searchable-course" data-category="design" data-status="published" data-search="figma for beginners prototyping design">
                             <div class="course-image-wrap">
-                                <img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?auto=format&fit=crop&w=800&q=85" alt="Creative design workspace" loading="lazy">
+                                <img src="assets/u12.webp" >
                                 <span class="course-image-badge">PUBLISHED</span>
                             </div>
                             <div class="course-card-body">
@@ -3385,7 +3389,7 @@
 
                         <article class="course-card searchable-course" data-category="development" data-status="published" data-search="frontend web development html css javascript">
                             <div class="course-image-wrap">
-                                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=85" alt="Frontend development workspace" loading="lazy">
+                                <img src="assets/r13.webp" >
                                 <span class="course-image-badge">PUBLISHED</span>
                             </div>
                             <div class="course-card-body">
@@ -3399,7 +3403,7 @@
 
                         <article class="course-card searchable-course" data-category="development" data-status="published" data-search="javascript fundamentals programming">
                             <div class="course-image-wrap">
-                                <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=85" alt="JavaScript coding screen" loading="lazy">
+                                <img src="assets/r20.webp" >
                                 <span class="course-image-badge">PUBLISHED</span>
                             </div>
                             <div class="course-card-body">
@@ -3413,7 +3417,7 @@
 
                         <article class="course-card searchable-course" data-category="exam" data-status="published" data-search="tnpsc group iv competitive exam general studies">
                             <div class="course-image-wrap">
-                                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=85" alt="TNPSC exam preparation study notes" loading="lazy">
+                                <img src="assets/u1.webp" >
                                 <span class="course-image-badge">PUBLISHED</span>
                             </div>
                             <div class="course-card-body">
@@ -3427,7 +3431,7 @@
 
                         <article class="course-card searchable-course" data-category="exam" data-status="published" data-search="upsc civil services general studies">
                             <div class="course-image-wrap">
-                                <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=85" alt="Books and study materials" loading="lazy">
+                                <img src="assets/u2.webp" >
                                 <span class="course-image-badge">PUBLISHED</span>
                             </div>
                             <div class="course-card-body">
@@ -3441,7 +3445,7 @@
 
                         <article class="course-card searchable-course" data-category="development" data-status="draft" data-search="react js components hooks frontend">
                             <div class="course-image-wrap">
-                                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=85" alt="Frontend programming code" loading="lazy">
+                                <img src="assets/r14.webp" >
                                 <span class="course-image-badge" style="color:#b45309;">DRAFT</span>
                             </div>
                             <div class="course-card-body">
@@ -3455,7 +3459,7 @@
 
                         <article class="course-card searchable-course" data-category="design" data-status="draft" data-search="design systems responsive interface">
                             <div class="course-image-wrap">
-                                <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=85" alt="Digital design portfolio" loading="lazy">
+                                <img src="assets/r14.webp" >
                                 <span class="course-image-badge" style="color:#b45309;">DRAFT</span>
                             </div>
                             <div class="course-card-body">
@@ -3469,7 +3473,7 @@
 
                         <article class="course-card searchable-course" data-category="exam" data-status="draft" data-search="quantitative aptitude reasoning exam">
                             <div class="course-image-wrap">
-                                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=85" alt="Classroom learning" loading="lazy">
+                                <img src="assets/u2.webp" >
                                 <span class="course-image-badge" style="color:#b45309;">DRAFT</span>
                             </div>
                             <div class="course-card-body">
